@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>thejas.dp — product, design & growth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,500;1,600&family=Caveat:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,500;1,600&family=Caveat:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+<style>
+
+/* ═══════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════ */
+:root {
+  --cream:        #f5f0e8;
+  --parchment:    #ede8dc;
+  --charcoal:     #2a2420;
+  --char-lt:      #4a3f3a;
+  --muted:        #7a6e68;
+  --coral:        #c44040;
+  --coral-dk:     #a03030;
+
+  --grad-heading-v: radial-gradient(circle at 50% 35%,#DB3F50 0%, #7D152D 100%);
+
+  --tag-bg:   #f5ddd8;
+  --tag-text: #c05040;
+
+  
+  --nav-bg:     rgba(245,240,232,0.76);
+  --nav-border: rgba(196,64,64,0.12);
+
+  --display: 'Cormorant Garamond', Georgia, serif;
+  --display: 'Bebas Neue', sans-serif;
+  --hand:  'Caveat', cursive;
+  --sans:  'DM Sans', sans-serif;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --px: 6%;
+
+  /* Timeline geometry — single source of truth */
+  --tl-left:   8rem;   /* how far content is indented from container left */
+  --tl-line-x: 5rem; /* where the vertical line sits (dot centre) */
+}
+
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+img { display: block; max-width: 100%; height: auto; }
+
+/* ═══════════════════════════════════════
+   CURSOR
+═══════════════════════════════════════ */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%); border-radius: 50%;
+}
+.cursor-dot  { width: 8px; height: 8px; background: #FF4646; mix-blend-mode: multiply; }
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 1.5px solid #FF4646; opacity: 0.4;
+  transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s ease;
+}
+.cursor-ring.is-hovering { width: 52px; height: 52px; opacity: 0.2; }
+
+/* ═══════════════════════════════════════
+   GRADIENT TEXT — vertical top-to-bottom
+═══════════════════════════════════════ */
+.grad-text {
+  background: var(--grad-heading-v);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  display: inline-block;
+
+  /* 🔥 CRITICAL FIXES */
+  background-size: 140% 140%;
+  background-position: center;
+
+  /* subtle depth */
+  text-shadow:
+  0 0 12px rgba(219,63,80,0.12),
+  0 0 28px rgba(219,63,80,0.08),
+  0 0 48px rgba(125,21,45,0.06);
+}
+
+.left   { text-align: left;   }
+.center { text-align: center; }
+
+/* ═══════════════════════════════════════
+   TYPE SCALE
+═══════════════════════════════════════ */
+.section-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  display: block;
+}
+
+/* h2 subtitle — block, stacked below h1 */
+.section-sub {
+  display: block;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin-top: 0.55rem;
+  background: var(--grad-heading-v);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+.navbar {
+  position: fixed;
+  top: 1.25rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--nav-border);
+  border-radius: 999px;
+  padding: 0.55rem 0.55rem 0.55rem 1.5rem;
+  width: min(740px, calc(100% - 2.5rem));
+  transition: transform 0.4s ease;
+}
+.navbar-logo {
+  font-family: var(--hand); font-size: 1rem;
+  color: var(--charcoal); letter-spacing: 0.04em;
+  flex-shrink: 0; white-space: nowrap;
+}
+.navbar-links { display: flex; align-items: center; gap: 0.15rem; list-style: none; }
+.navbar-links a {
+  display: block;
+  font-size: 0.6875rem; font-weight: 500;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--char-lt); text-decoration: none;
+  padding: 0.45rem 1rem; border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.navbar-links a:hover { background: rgba(196,64,64,0.08); color: var(--coral); }
+.nav-cta a { background: var(--charcoal) !important; color: var(--cream) !important; }
+.nav-cta a:hover { background: var(--coral) !important; color: #fff !important; }
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+
+  justify-items: center;
+  align-items: start; /* 👈 key change */
+
+  padding-top: 20vh; /* 👈 pushes text down */
+}
+.hero-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 30%;
+}
+.hero-text {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 18vh var(--px) 0;
+}
+.hero-left {
+  max-width: 40%;
+  text-align: left;
+
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 12vw, 9rem);
+
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.hero-right {
+  max-width: 40%;
+  text-align: right;
+
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 12vw, 9rem);
+
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+
+  margin-top: -2vh; /* 🔥 slight lift like your reference */
+}
+
+/* ═══════════════════════════════════════
+   FOREGROUND FLOAT — CSS only, no scroll
+═══════════════════════════════════════ */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px);    }
+  50%       { transform: translateY(-14px); }
+}
+/* hide mobile by default */
+.hero-mobile {
+  display: none;
+}
+
+/* mobile layout */
+@media (max-width: 768px) {
+
+.hero-left,
+.hero-right {
+  display: none;
+}
+
+.hero-mobile {
+  display: block;
+  text-align: center;
+
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 8vw, 3.5rem);
+
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+
+  margin-top: -12vh;
+  max-width: 90%;
+}
+
+.hero-text {
+  justify-content: center;
+  align-items: center;
+  padding-top: 0;
+}
+
+/* 🔥 CRITICAL: align image with timeline bottom */
+.ascent-fg {
+  position: absolute !important;
+  bottom: 0;
+  right: 0;
+
+  width: 100%;
+  height: auto;
+}
+
+.ascent-fg img {
+  width: 140%;
+  max-width: none;
+
+  transform: translateX(-20%);
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+/* CREATIONS stays stacked */
+.creations-fg {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-top: 4rem;
+}
+
+.creations-fg img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+}
+
+
+/* ═══════════════════════════════════════
+   ASCENT — SCROLL-ACTIVATED TIMELINE
+
+   3 scroll "pages": Niti AI (index 0) → Procial (index 1) → Fabrik (index 2)
+   Track height = 3 * 80vh (one page per entry)
+   
+   Each .tblock is position:absolute, stacked at top:0.
+   JS sets .is-active / .is-past to drive slide-up transitions.
+═══════════════════════════════════════ */
+.ascent-track {
+  position: relative;
+  height: calc(3 * 80vh); /* 3 entries × 80vh */
+}
+.ascent-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* BG: static, no parallax */
+.ascent-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 0; filter: brightness(0.88);
+}
+.ascent-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(245,240,232,0.92) 0%,
+    rgba(245,240,232,0.64) 46%,
+    rgba(245,240,232,0.06) 100%
+  );
+}
+
+.ascent-inner {
+  position: relative; z-index: 2;
+  height: 100%;
+  display: flex; flex-direction: column;
+  padding: 4.5rem var(--px) 3rem;
+}
+
+.ascent .section-header {
+  /* More space between subtitle and timeline */
+  .ascent .section-header {
+  margin-bottom: clamp(4rem, 8vw, 8rem);
+}
+}
+
+.ascent-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 5rem;
+  align-items: start;
+  flex: 1; min-height: 0;
+}
+
+/* FG: float only */
+.ascent-fg {
+  position: absolute; top: 0; right: 0;
+  width: 90%; height: 100%;
+  z-index: 3; pointer-events: none;
+}
+.ascent-fg img {
+  width: 100%; height: 100%;
+  object-fit: contain; object-position: right top;
+  filter: drop-shadow(-12px 0 40px rgba(0,0,0,0.14));
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────
+   TIMELINE
+   
+   Layout anatomy (all from container left edge):
+     0 ─────────────────── container left
+     var(--tl-line-x)  ─── vertical line  (dot centre)
+     var(--tl-left)    ─── content start  (text left)
+
+   .tblock has padding-left: var(--tl-left) so text starts there.
+   .tmeta is absolute, right-edge flush with the dot.
+   The dot (.tdot) is the LAST child of .tmeta so it sits
+   exactly on the line.
+───────────────────────────────────── */
+.timeline {
+  position: relative;
+  min-height: 50vh;
+  overflow: hidden;
+}
+
+/* The vertical line — sits at var(--tl-line-x) */
+@media (max-width: 768px) {
+
+.timeline::before {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  bottom: 0; /* 👈 THIS is the key */
+
+  left: var(--tl-left);
+  width: 1px;
+
+  background: var(--coral-dk);
+}
+
+}
+
+@media (max-width: 768px) {
+
+.timeline {
+  position: relative;
+  height: 100%;
+}
+@media (max-width: 768px) {
+
+.ascent {
+  position: relative;
+  min-height: 100vh; /* 👈 ensures enough space */
+}
+
+}
+
+}
+
+/* ── tblock: absolutely stacked ── */
+.tblock {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  padding-left: var(--tl-left); /* text starts at var(--tl-left) */
+  opacity: 0;
+  transform: translateY(44px);
+  transition: opacity 0.52s var(--ease), transform 0.52s var(--ease);
+  pointer-events: none;
+}
+.tblock.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.tblock.is-past {
+  opacity: 0;
+  transform: translateY(-44px);
+}
+
+/* ── Meta strip: sits to the LEFT of var(--tl-left) ──
+   Right-edge of .tmeta lands exactly at var(--tl-line-x) + dot-radius,
+   so the dot's centre is on the line.
+   
+   Width = var(--tl-left) minus a small breathing gap.
+   position: absolute, left: calc(-1 * var(--tl-left))
+── */
+.tmeta {
+  position: absolute;
+  /* start at the tblock's left edge (which is the container left) */
+  left: 0rem;
+  top: 0.1rem; /* align with first line of h4 */
+  /* spans the full indent area */
+  width: calc(var(--tl-line-x) - 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* push org+dot to the right */
+  gap: 0.5rem;
+  padding-right: 0; /* dot will sit right at var(--tl-line-x) */
+}
+
+/* Company / org label */
+.torg {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.6vw, 1.35rem); /* ↑ bigger */
+  letter-spacing: 0.01em;
+  color: var(--coral);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Smaller date / org label (procial, fabrik) */
+.tdate {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.6vw, 1.35rem); /* match .torg */
+  letter-spacing: 0.01em;
+  color: var(--coral);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Dot — centred on the line */
+.tdot {
+  flex-shrink: 0;
+  width: 10px; height: 10px; border-radius: 50%;
+  left: var(--tl-line-x);
+  top: 0.2rem;
+  transform: translateX(-50%);
+  background: var(--coral);
+  border: 2px solid rgba(245,240,232,0.9);
+  outline: 1.5px solid rgba(196,64,64,0.25);
+  position: absolute; z-index: 1;
+  /* nudge right so the dot centre lands exactly on the line */
+
+  transition: background 0.4s ease, outline-color 0.4s ease, box-shadow 0.4s ease;
+}
+.tblock.is-active .tdot {
+  background: var(--coral);
+  outline-color: var(--coral);
+  animation: dot-pulse 1.8s ease infinite;
+}
+@keyframes dot-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(196,64,64,0.35); }
+  60%  { box-shadow: 0 0 0 9px rgba(196,64,64,0);    }
+  100% { box-shadow: 0 0 0 0   rgba(196,64,64,0);    }
+}
+
+/* Role heading */
+.tcontent h4 {
+  font-family: var(--display);  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  line-height: 0.95; letter-spacing: -0.03em;
+  color: var(--coral-dk); margin-bottom: 0.85rem;
+}
+.tcontent ul { padding-left: 0; list-style: none; }
+.tcontent ul li {
+  position: relative; padding-left: 1rem;
+  font-size: 1rem; color: var(--char-lt);
+  line-height: 1.65; margin-bottom: 0.35rem;
+  font-weight: 300; max-width: 52ch;
+}
+.tcontent ul li::before {
+  content: '—'; position: absolute; left: 0; top: 0;
+  font-size: 0.6rem; color: var(--coral); opacity: 0.55; line-height: 1.9;
+}
+.tcontent p {
+  font-size: 1rem; color: var(--char-lt);
+  line-height: 1.65; font-weight: 300; max-width: 52ch;
+}
+
+/* ═══════════════════════════════════════
+   CREATIONS — PROJECTS
+   
+   Section header aligns its LEFT EDGE with the
+   left edge of the projects-grid (the right column
+   of creations-layout).
+   
+   creations-layout: grid-template-columns 1.1fr 1fr
+   Total gap = 2rem. Right column starts at:
+     calc( (1.1 / 2.1) * 100% + 2rem )
+   But we keep it simple — header left = calc(52.4% + 2rem)
+   which matches the 1.1fr spacer.
+═══════════════════════════════════════ */
+.creations {
+  position: relative; overflow: hidden;
+  min-height: 100vh;
+  padding: 6rem var(--px) 6rem;
+}
+.creations-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 0; filter: brightness(0.85);
+}
+.creations-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to left,
+    rgba(237,232,220,0.94) 0%,
+    rgba(237,232,220,0.62) 46%,
+    rgba(237,232,220,0.06) 100%
+  );
+}
+.creations-inner { position: relative; z-index: 2; }
+
+/* Wrapper that holds both header + grid, so they share the same flow */
+.creations-content {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Header lives in the RIGHT column (column 2) */
+.creations-content .section-header {
+  grid-column: 2;
+  text-align: left;
+  margin-bottom: 1.75rem;
+}
+
+/* Grid also in the RIGHT column */
+.creations-content .projects-grid {
+  grid-column: 2;
+}
+
+/* Left spacer column */
+.creations-spacer { grid-column: 1; }
+
+/* FG: float only */
+.creations-fg {
+  position: absolute;
+  bottom: 0;
+  left: calc(-1 * var(--px)); /* 👈 KEY FIX */
+
+  width: 120%;
+  height: 128%;
+  z-index: 1;
+  pointer-events: none;
+}
+.creations-fg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left bottom;
+
+  filter: drop-shadow(18px 0 56px rgba(0,0,0,0.12));
+
+  transform: scaleX(1); /* flip */
+
+  animation: float-creations 9s ease-in-out infinite;
+}
+
+/* ── Glass cards — no hover, no hard shadow ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.pcard {
+  background: rgba(255, 252, 248, 0.26);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border-radius: 20px;
+  padding: 1.75rem 1.75rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.52);
+  border-bottom-color: rgba(255,255,255,0.16);
+  border-right-color:  rgba(255,255,255,0.16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
+}
+.pcard h3 {
+  font-family: var(--serif);  font-weight: 400;
+  font-size: 1.45rem; color: var(--charcoal); text-transform: lowercase;
+  margin-bottom: 0.65rem; line-height: 1.15; letter-spacing: -0.01em;
+}
+.pcard p {
+  font-size: 0.9375rem; color: var(--char-lt);
+  line-height: 1.7; margin-bottom: 1.1rem;
+  font-weight: 300; max-width: 38ch;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.04em;
+  background: rgba(245,221,216,0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--tag-text);
+  padding: 0.28rem 0.8rem; border-radius: 999px;
+  border: 1px solid rgba(192,80,64,0.12);
+}
+.tag.acc { font-weight: 600; }
+
+/* ═══════════════════════════════════════
+   OUTSET — CONTACT
+═══════════════════════════════════════ */
+.outset {
+  position: relative; overflow: hidden;
+  min-height: 90vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2.5rem; padding: 5rem var(--px); text-align: center;
+}
+.outset-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top; z-index: 0;
+}
+.outset-overlay {
+  position: absolute; inset: 0;
+  background: rgba(245,240,232,0.15); z-index: 1;
+}
+.outset .section-header { position: relative; z-index: 2; }
+.contact-links {
+  position: relative; z-index: 2;
+  display: flex; justify-content: center; gap: 0.875rem; flex-wrap: wrap;
+}
+
+/* ── Glass pills — no colour change on hover, only mystic glow ── */
+.cpill {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.9375rem; font-weight: 400; letter-spacing: 0.01em;
+  color: var(--charcoal); text-decoration: none;
+  background: rgba(255, 252, 248, 0.30);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border: 1px solid rgba(255,255,255,0.58);
+  border-bottom-color: rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
+  /* no color/background transition — only glow + shimmer */
+  transition:
+    box-shadow   0.6s ease,
+    border-color 0.5s ease;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer sweep across on hover */
+.cpill::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    108deg,
+    transparent        28%,
+    rgba(255,255,255,0.18) 46%,
+    rgba(232,209,224,0.22) 50%,
+    rgba(255,255,255,0.10) 54%,
+    transparent        72%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+  border-radius: 999px;
+}
+.cpill:hover::before {
+  transform: translateX(120%);
+}
+
+/* Hover: barely-there pearl glow — no colour change */
+.cpill:hover {
+  /* text colour unchanged — same as default */
+  border-color: rgba(255,255,255,0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.65),
+    0 0 18px rgba(232,209,224,0.20),
+    0 0 40px rgba(232,209,224,0.10),
+    0 0 80px rgba(196,64,64,0.04);
+}
+
+/* ═══════════════════════════════════════
+   SCROLL FADE (non-timeline)
+═══════════════════════════════════════ */
+.fade {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.fade.in { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — tablet ≤ 900px
+═══════════════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --px: 5%; }
+
+  .ascent-track  { height: auto; }
+  .ascent-sticky { position: relative; height: auto; overflow: visible; }
+  .ascent-inner  { height: auto; padding: 5rem var(--px) 4rem; }
+  .ascent .section-header { margin-bottom: 3rem; }
+  .ascent-overlay { background: rgba(245,240,232,0.88); }
+
+  /* show all blocks in flow on tablet */
+  .timeline      { overflow: visible; min-height: auto; }
+  .tblock {
+    position: relative !important;
+    opacity: 1 !important;
+    transform: none !important;
+    padding-left: var(--tl-left) !important;
+    margin-bottom: 2.5rem;
+    pointer-events: auto !important;
+  }
+  .tblock.is-active .tdot { animation: none; }
+
+  .creations-content { grid-template-columns: 1fr; }
+  .creations-content .section-header,
+  .creations-content .projects-grid { grid-column: 1; }
+  .creations-spacer  { display: none; }
+  .creations-overlay { background: rgba(237,232,220,0.9); }
+  .projects-grid     { grid-template-columns: 1fr 1fr; }
+  .navbar            { gap: 2rem; }
+  .pcard p           { max-width: none; }
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — mobile ≤ 640px
+═══════════════════════════════════════ */
+@media (max-width: 640px) {
+  :root {
+    --px: 1.25rem;
+    --tl-left: 0rem;
+    --tl-line-x: 5rem;
+  }
+
+  @media (max-width: 768px) {
+
+.ascent {
+  position: relative;
+  min-height: 100vh;
+}
+
+.timeline {
+  position: relative;
+  height: 100%;
+}
+
+.timeline::before {
+  top: 0;
+  bottom: 0;
+}
+
+.ascent-fg {
+  position: absolute !important;
+  bottom: 0;
+  right: 0;
+}
+
+@media (max-width: 768px) {
+
+.timeline::before {
+  bottom: -40vh; /* 👈 extend the line downward */
+}
+
+}
+
+}
+
+  .hero-text { padding: max(18%, 90px) var(--px) 0; }
+  .section-title { font-size: clamp(3rem, 12vw, 4.5rem); }
+  .section-sub   { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+
+  .torg, .tdate  { font-size: 0.85rem; }
+  .tcontent h4   { font-size: 1rem; }
+  .tcontent ul li, .tcontent p { font-size: 0.9375rem; max-width: none; }
+
+  .projects-grid { grid-template-columns: 1fr; }
+  .pcard h3      { font-size: 1.25rem; }
+  .pcard p       { font-size: 0.875rem; max-width: none; }
+
+  .contact-links { flex-direction: column; align-items: stretch; }
+  .cpill         { justify-content: center; }
+
+  .navbar { padding: 0.5rem 0.5rem 0.5rem 1.2rem; gap: 1rem; }
+  .navbar-links li:not(.nav-cta) { display: none; }
+
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot"  id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ─── NAVBAR ──────────────────────────── -->
+<nav class="navbar" aria-label="Main navigation">
+  <span class="navbar-logo">thejas.dp</span>
+  <ul class="navbar-links">
+    <li><a href="#ascent">experience</a></li>
+    <li><a href="#creations">work</a></li>
+    <li class="nav-cta"><a href="#outset">connect</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ────────────────────────────── -->
+<section class="hero">
+  <img class="hero-img" src="images/hero.jpeg" alt="Flower hill landscape" />
+  <div class="hero-text">
+
+    <!-- Desktop split -->
+    <div class="hero-left grad-text fade">
+      AT <br />
+      THE <br />
+      OVERLAP OF
+    </div>
+  
+    <div class="hero-right grad-text fade">
+      PRODUCT, GROWTH <br />
+      & DESIGN
+    </div>
+  
+    <!-- Mobile version -->
+    <h1 class="hero-mobile grad-text fade">
+      at the overlap of product, growth 
+      & design
+    </h1>
+  
+  </div>
+</section>
+
+<!-- ─── ASCENT — EXPERIENCE ─────────────── -->
+<!--
+  3 scroll pages: index 0 = Niti AI, 1 = Procial, 2 = Fabrik
+-->
+<div class="ascent-track" id="ascent">
+  <div class="ascent-sticky">
+
+    <img class="ascent-bg" src="images/ascent bg.png" alt="" aria-hidden="true" />
+    <div class="ascent-overlay"></div>
+
+    <div class="ascent-inner">
+      <div class="section-header left">
+        <h1 class="section-title grad-text">ascent</h1>
+        <h2 class="section-sub">where what holds up, grows</h2>
+      </div>
+
+      <div class="ascent-layout">
+        <div class="timeline" id="timeline">
+
+          <!-- ── Entry 0: Niti AI ── -->
+          <div class="tblock" data-index="0">
+            <div class="tmeta">
+              <span class="torg">Niti AI</span>
+              <span class="tdot"></span>
+            </div>
+            <div class="tcontent">
+              <h4>product manager, growth & sales</h4>
+              <ul>
+                <li>Led end-to-end product delivery for a bank-internal web app — now actively used by 200+ employees across operations.</li>
+                <li>Owned a 2-year NBFC engagement — platform contributed to an 18% increase in loan disbursals within 6 months.</li>
+                <li>Delivered an agri-tech mobile app from scratch — 500+ active farmer users.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ── Entry 1: Procial ── -->
+          <div class="tblock" data-index="1">
+            <div class="tmeta">
+              <span class="tdate">Procial</span>
+              <span class="tdot"></span>
+            </div>
+            <div class="tcontent">
+              <h4>product design intern</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+
+          <!-- ── Entry 2: Fabrik ── -->
+          <div class="tblock" data-index="2">
+            <div class="tmeta">
+              <span class="tdate">Fabrik</span>
+              <span class="tdot"></span>
+            </div>
+            <div class="tcontent">
+              <h4>ux design intern</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+
+        </div>
+        <div></div><!-- spacer column for fg image -->
+      </div>
+    </div>
+
+    <div class="ascent-fg">
+      <img src="images/ascent.png" alt="Floating stone staircase" />
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── CREATIONS — PROJECTS ────────────── -->
+<section class="creations" id="creations">
+  <img class="creations-bg" src="images/creation bg.png" alt="" aria-hidden="true" />
+  <div class="creations-overlay"></div>
+
+  <div class="creations-inner">
+    <!--
+      Both section-header and projects-grid live in the same
+      creations-content grid → column 2, so they share the same
+      left edge automatically.
+    -->
+    <div class="creations-content">
+      <div class="creations-spacer"></div>
+
+      <div class="section-header fade">
+        <h1 class="section-title grad-text">creations</h1>
+        <h2 class="section-sub">where ideas start to take form</h2>
+      </div>
+
+      <div class="creations-spacer"></div>
+
+      <div class="projects-grid">
+
+        <div class="pcard fade">
+          <h3>6+ ai agents</h3>
+          <p>Contributed to AI agent development for martech use cases — defined agent behaviour, prompting strategies, and evaluation criteria for campaign intelligence.</p>
+          <div class="tags">
+            <span class="tag">Martech</span>
+            <span class="tag">AI</span>
+            <span class="tag">Bank</span>
+          </div>
+        </div>
+
+        <div class="pcard fade">
+          <h3>internal bank app</h3>
+          <p>End-to-end product delivery for a bank-internal web app, actively used by 200+ employees. Owned requirements, UX, and delivery coordination.</p>
+          <div class="tags">
+            <span class="tag acc">200+ Active Users</span>
+            <span class="tag">Enterprise</span>
+            <span class="tag">Bank</span>
+          </div>
+        </div>
+
+        <div class="pcard fade">
+          <h3>agri-tech app</h3>
+          <p>Delivered an agri-tech mobile app from scratch for a farming client. Led product scoping, user research with field teams, and supervised development.</p>
+          <div class="tags">
+            <span class="tag acc">500+ Active Users</span>
+            <span class="tag">Enterprise</span>
+            <span class="tag">Bank</span>
+          </div>
+        </div>
+
+        <div class="pcard fade">
+          <h3>internal sales tool for nbfc</h3>
+          <p>Complex multi-user loan workflows for a 2-year NBFC engagement — contributed to an 18% increase in loan disbursals within the first 6 months.</p>
+          <div class="tags">
+            <span class="tag acc">+18% Loan Disbursals</span>
+            <span class="tag">Fintech</span>
+            <span class="tag">Sales</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="creations-fg">
+    <img src="images/creation.png" alt="House frame being built" />
+  </div>
+</section>
+
+<!-- ─── OUTSET — CONTACT ─────────────────── -->
+<section class="outset" id="outset">
+  <img class="outset-bg" src="images/footer.png" alt="" aria-hidden="true" />
+  <div class="outset-overlay"></div>
+
+  <div class="section-header fade">
+    <h1 class="section-title grad-text">outset</h1>
+    <h2 class="section-sub">where something new can start</h2>
+  </div>
+
+  <div class="contact-links">
+    <a href="tel:+91 9847698127"                     class="cpill fade">📞 +91 9847698127</a>
+    <a href="mailto:poonthottathilthejas@gmail.com"  class="cpill fade">✉️ poonthottathilthejas@gmail.com</a>
+    <a href="https://linkedin.com" target="_blank"   class="cpill fade">💼 linkedin</a>
+  </div>
+</section>
+
+<script>
+/* ── Custom cursor ── */
+const dot  = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  dot.style.left = mouseX + 'px';
+  dot.style.top  = mouseY + 'px';
+});
+let ringX = 0, ringY = 0;
+(function loop() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top  = ringY + 'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a, button, .pcard').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
+});
+
+/* ── Scroll fade-ins ── */
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); fadeObs.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.fade').forEach(el => {
+  const parent = el.closest('.projects-grid, .contact-links');
+  if (parent) {
+    const idx = Array.from(parent.querySelectorAll('.fade')).indexOf(el);
+    el.style.transitionDelay = (idx * 0.09) + 's';
+  }
+  fadeObs.observe(el);
+});
+
+/* ── Timeline scroll-game ──
+   3 entries, track height = 3 × 80vh.
+   Scroll progress → active index.
+── */
+const track  = document.getElementById('ascent');
+const blocks = Array.from(document.querySelectorAll('.tblock'));
+const COUNT  = blocks.length; // 3
+
+function updateTimeline() {
+  const rect      = track.getBoundingClientRect();
+  const trackH    = track.offsetHeight;
+  const vh        = window.innerHeight;
+  const maxScroll = trackH - vh;
+  const scrolled  = Math.max(0, -rect.top);
+  const progress  = maxScroll > 0 ? Math.min(1, scrolled / maxScroll) : 0;
+  const active    = Math.min(COUNT - 1, Math.floor(progress * COUNT));
+
+  blocks.forEach((b, i) => {
+    b.classList.toggle('is-active', i === active);
+    b.classList.toggle('is-past',   i < active);
+  });
+}
+
+blocks[0]?.classList.add('is-active');
+window.addEventListener('scroll', updateTimeline, { passive: true });
+updateTimeline();
+
+/* ── Navbar hide/show ── */
+const navbar = document.querySelector('.navbar');
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y > lastY + 8 && y > 80)
+    navbar.style.transform = 'translateX(-50%) translateY(-120%)';
+  else if (y < lastY - 4)
+    navbar.style.transform = 'translateX(-50%) translateY(0)';
+  lastY = y;
+}, { passive: true });
+</script>
+</body>
+</html>

@@ -444,12 +444,11 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   flex:1; min-height:0;
 }
 .proj-list {
-  position:relative; height:100%; display:flex; align-items:flex-start;
-  overflow:hidden;
+  position:relative;
+  display:flex;
 }
 .proj-track {
   display:flex; flex-direction:column;
-  transition:transform 1.1s cubic-bezier(0.16,1,0.3,1);
   width:100%;
 }
 .proj-item {
@@ -1278,12 +1277,6 @@ function renderProject(idx) {
     el.classList.toggle('near', Math.abs(i - idx) === 1);
   });
 
-  if (projTrack && items[idx]) {
-    const activeEl = items[idx];
-    const offset = activeEl.offsetTop;
-    projTrack.style.transform = `translateY(${-offset}px)`;
-  }
-
   const p = projectData[idx];
   projDetailEl.classList.remove('show');
   setTimeout(() => {
@@ -1381,5 +1374,7 @@ function renderFragments() {
 renderFragments();
 
 </script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

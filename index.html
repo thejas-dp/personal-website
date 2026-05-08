@@ -189,35 +189,43 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   line-height:0.88; letter-spacing:-0.01em;
 }
 
-/* ─── Ascent hero: full-bleed image ─── */
-#page-ascent .hero {
+/* ─── Ascent + Materialize hero: full-bleed image ─── */
+#page-ascent .hero,
+#page-creation .hero {
   padding: 0;
   gap: 0;
   align-items: stretch;
   overflow: hidden;
 }
-#page-ascent .ascent-hero-left {
+#page-ascent .ascent-hero-left,
+#page-creation .creation-hero-left {
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: 14vh 4rem 8vh 6vw;
 }
-#page-ascent .hero-image {
+#page-ascent .hero-image,
+#page-creation .hero-image {
   height: 100vh;
 }
-#page-ascent .hero-image img {
+#page-ascent .hero-image img,
+#page-creation .hero-image img {
   object-fit: cover;
   filter: none;
 }
 .hero-rule { display: none; }
-#page-ascent .hero-rule {
+#page-ascent .hero-rule,
+#page-creation .hero-rule {
   display: block; height: 1px; border: none;
   background: var(--ink); margin: 1.8rem 0;
   opacity: 0; animation: fadeInUp 0.6s var(--ease-breathe) 0.9s forwards;
 }
-#page-ascent .hero-meta {
+#page-ascent .hero-meta,
+#page-creation .hero-meta {
   font-variant-caps: small-caps; font-size: 0.82rem;
   letter-spacing: 0.16em; text-transform: uppercase;
   max-width: 36ch; line-height: 1.7;
 }
+/* Materialize title stays ink (not coral) */
+#page-creation .hero-title { color: var(--ink); }
 .hero-title .coral { color:var(--coral); }
 .hero-title .word {
   display:inline-block; overflow:hidden; vertical-align:top;
@@ -705,9 +713,9 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 @media (max-width:960px) {
   .hero { grid-template-columns:1fr; padding:14vh 6vw 4vh; gap:2rem; }
   .hero-image { order:2; min-height:40vh; }
-  #page-ascent .hero { padding:0; gap:0; }
-  #page-ascent .ascent-hero-left { padding:10vh 6vw 4vh; }
-  #page-ascent .hero-image { height:55vw; min-height:260px; }
+  #page-ascent .hero, #page-creation .hero { padding:0; gap:0; }
+  #page-ascent .ascent-hero-left, #page-creation .creation-hero-left { padding:10vh 6vw 4vh; }
+  #page-ascent .hero-image, #page-creation .hero-image { height:55vw; min-height:260px; }
   .section-head { grid-template-columns:1fr; }
   .disciplines-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-row { grid-template-columns:1fr; gap:1rem; padding:2rem 0; }
@@ -1008,15 +1016,16 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 <!-- ═══════════════ MATERIALIZE PAGE ═══════════════ -->
 <main class="page" id="page-creation">
   <section class="hero">
-    <div>
+    <div class="creation-hero-left">
       <div class="hero-label">— Chapter 02</div>
       <h1 class="hero-title">
-        <span class="word"><span class="coral">Materialize</span></span>
+        <span class="word">Materialize</span>
       </h1>
+      <hr class="hero-rule"/>
       <div class="hero-meta">Ideas pushed far enough until they become real, usable, and undeniable</div>
     </div>
     <div class="hero-image">
-      <img src="images/materialize.png" alt="Materialize hero"/>
+      <img src="images/Materealize new image concept.png" alt="Materialize hero"/>
     </div>
   </section>
 

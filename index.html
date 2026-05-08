@@ -188,6 +188,36 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   font-size:clamp(4rem, 12vw, 14rem);
   line-height:0.88; letter-spacing:-0.01em;
 }
+
+/* ─── Ascent hero: full-bleed image ─── */
+#page-ascent .hero {
+  padding: 0;
+  gap: 0;
+  align-items: stretch;
+  overflow: hidden;
+}
+#page-ascent .ascent-hero-left {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 14vh 4rem 8vh 6vw;
+}
+#page-ascent .hero-image {
+  height: 100vh;
+}
+#page-ascent .hero-image img {
+  object-fit: cover;
+  filter: none;
+}
+.hero-rule { display: none; }
+#page-ascent .hero-rule {
+  display: block; height: 1px; border: none;
+  background: var(--ink); margin: 1.8rem 0;
+  opacity: 0; animation: fadeInUp 0.6s var(--ease-breathe) 0.9s forwards;
+}
+#page-ascent .hero-meta {
+  font-variant-caps: small-caps; font-size: 0.82rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  max-width: 36ch; line-height: 1.7;
+}
 .hero-title .coral { color:var(--coral); }
 .hero-title .word {
   display:inline-block; overflow:hidden; vertical-align:top;
@@ -675,6 +705,9 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 @media (max-width:960px) {
   .hero { grid-template-columns:1fr; padding:14vh 6vw 4vh; gap:2rem; }
   .hero-image { order:2; min-height:40vh; }
+  #page-ascent .hero { padding:0; gap:0; }
+  #page-ascent .ascent-hero-left { padding:10vh 6vw 4vh; }
+  #page-ascent .hero-image { height:55vw; min-height:260px; }
   .section-head { grid-template-columns:1fr; }
   .disciplines-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-row { grid-template-columns:1fr; gap:1rem; padding:2rem 0; }
@@ -819,11 +852,12 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 <!-- ═══════════════ ASCENT PAGE ═══════════════ -->
 <main class="page" id="page-ascent">
   <section class="hero">
-    <div>
+    <div class="ascent-hero-left">
       <div class="hero-label">— Chapter 01</div>
       <h1 class="hero-title">
         <span class="word"><span class="coral">Ascent</span></span>
       </h1>
+      <hr class="hero-rule"/>
       <div class="hero-meta">Progress that stacks, compounds, and starts creating its own gravity</div>
     </div>
     <div class="hero-image">

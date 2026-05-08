@@ -189,26 +189,26 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   line-height:0.88; letter-spacing:-0.01em;
 }
 
-/* ─── Ascent + Materialize hero: full-bleed image LEFT ─── */
+/* ─── Ascent + Materialize hero: full-bleed image RIGHT ─── */
 #page-ascent .hero,
 #page-creation .hero {
   padding: 0;
   gap: 0;
   align-items: stretch;
   overflow: hidden;
-  /* Image left (wider) · text right */
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  /* text left (narrower) · image right (wider, bleeds to edge) */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
 }
 #page-ascent .ascent-hero-left,
 #page-creation .creation-hero-left {
   display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 14vh 5vw 8vh 5vw;
-  order: 2; /* text on right */
+  padding: 14vh 4rem 8vh 6vw;
+  order: 1; /* text on left */
 }
 #page-ascent .hero-image,
 #page-creation .hero-image {
   height: 100vh;
-  order: 1; /* image on left */
+  order: 2; /* image on right */
 }
 #page-ascent .hero-image img,
 #page-creation .hero-image img {
@@ -722,7 +722,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   .hero-image { order:2; min-height:40vh; }
   #page-ascent .hero, #page-creation .hero { padding:0; gap:0; grid-template-columns:1fr; }
   #page-ascent .ascent-hero-left, #page-creation .creation-hero-left { padding:6vh 6vw 8vh; order:2; }
-  #page-ascent .hero-image, #page-creation .hero-image { height:60vw; min-height:280px; order:1; }
+  #page-ascent .hero-image, #page-creation .hero-image { height:65vw; min-height:300px; order:1; }
   .section-head { grid-template-columns:1fr; }
   .disciplines-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-row { grid-template-columns:1fr; gap:1rem; padding:2rem 0; }

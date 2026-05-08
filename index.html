@@ -509,64 +509,48 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   font-weight:500;
 }
 
-/* ═══════════════ FRAGMENTS — gallery grid ═══════════════ */
+/* ═══════════════ FRAGMENTS — editorial grid ═══════════════ */
 .fragments { padding:10vh 6vw 6vh; }
 .fragments-grid {
-  display:grid; grid-template-columns:repeat(4, 1fr);
-  gap:1.5rem; margin-top:3rem;
+  display:grid; grid-template-columns:repeat(3, 1fr);
+  gap:3rem 4rem; margin-top:3rem;
 }
-@media (max-width:960px) { .fragments-grid { grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:960px) { .fragments-grid { grid-template-columns:repeat(2, 1fr); gap:2.5rem; } }
 @media (max-width:480px) { .fragments-grid { grid-template-columns:1fr; } }
 
 .frag-card {
-  background:var(--cream);
-  border:1px solid var(--line);
-  overflow:hidden; cursor:default; display:flex; flex-direction:column;
+  background:transparent; border:none;
+  cursor:default; display:flex; flex-direction:row;
+  gap:1.4rem; align-items:flex-start;
 }
 .frag-img {
-  width:100%; aspect-ratio:4/3; overflow:hidden;
+  width:130px; height:130px; flex-shrink:0;
   background:var(--cream-2);
-  display:flex; align-items:flex-end; justify-content:flex-end;
-  position:relative;
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+  border-radius:4px;
 }
 .frag-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 .frag-img-placeholder {
-  font-family:var(--display); font-size:clamp(3rem,5vw,4.5rem);
-  color:rgba(26,26,26,0.07); letter-spacing:-0.03em;
+  font-family:var(--display); font-size:3rem;
+  color:rgba(26,26,26,0.06); letter-spacing:-0.03em;
   text-transform:uppercase; user-select:none;
-  position:relative; z-index:1; padding:0.5rem 0.8rem;
   line-height:1;
 }
-.frag-body { padding:1.4rem 1.5rem 1.4rem; flex:1; }
+.frag-body { flex:1; padding:0; }
 .frag-platform {
-  font-size:0.56rem; letter-spacing:0.24em; text-transform:uppercase;
-  color:var(--muted); font-weight:500; margin-bottom:0.6rem;
+  font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--muted); font-weight:500; margin-bottom:0.55rem;
 }
 .frag-heading {
-  font-family:var(--display); font-weight:400;
-  font-size:clamp(1.1rem, 1.6vw, 1.5rem); letter-spacing:-0.01em; text-transform:uppercase;
-  line-height:1; color:var(--ink); margin-bottom:0.8rem;
+  font-family:var(--sans); font-weight:600;
+  font-size:clamp(1rem, 1.4vw, 1.3rem); letter-spacing:-0.01em; text-transform:none;
+  line-height:1.2; color:var(--ink); margin-bottom:0.65rem;
 }
 .frag-sub {
-  font-size:0.75rem; line-height:1.6; color:var(--ink-lt);
-  max-width:32ch;
+  font-size:0.76rem; line-height:1.65; color:var(--ink-lt);
+  max-width:28ch;
 }
-.frag-footer {
-  display:flex; align-items:center; justify-content:flex-end;
-  padding:0.85rem 1.2rem;
-  margin-top:auto;
-}
-.frag-like {
-  display:flex; align-items:center; gap:0.35rem;
-  font-size:0.65rem; color:var(--muted); cursor:pointer;
-  background:none; border:none; padding:0.2rem 0;
-  font-family:var(--sans); transition:color 0.3s;
-  letter-spacing:0.05em;
-}
-.frag-like:hover { color:var(--coral); }
-.frag-like.liked { color:var(--coral); }
-.frag-like svg { width:13px; height:13px; flex-shrink:0; }
-.frag-like.liked svg { fill:var(--coral); }
 
 /* ═══════════════ FOOTER (umber) ═══════════════ */
 .footer {
@@ -1344,14 +1328,6 @@ function renderFragments() {
         <div class="frag-platform">${f.platform} — ${f.label}</div>
         <div class="frag-heading">${f.heading}</div>
         <div class="frag-sub">${f.sub}</div>
-      </div>
-      <div class="frag-footer">
-        <button class="frag-like ${likedSet.has(i) ? 'liked' : ''}" data-frag="${i}" aria-label="Like">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 13.5S1.5 9.5 1.5 5.5a3 3 0 0 1 6-0.3 3 3 0 0 1 6 0.3c0 4-6.5 8-6.5 8z"/>
-          </svg>
-          <span class="frag-like-count">${likeCounts[i] || ''}</span>
-        </button>
       </div>
     </div>
   `).join('');

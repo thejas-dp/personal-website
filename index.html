@@ -542,18 +542,14 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   font-size:0.56rem; letter-spacing:0.24em; text-transform:uppercase;
   color:var(--muted); font-weight:500; margin-bottom:0.6rem;
 }
-.frag-title {
+.frag-heading {
   font-family:var(--display); font-weight:400;
-  font-size:1rem; letter-spacing:0.01em; text-transform:uppercase;
-  line-height:1.05; color:var(--ink); margin-bottom:0.75rem;
+  font-size:clamp(1.1rem, 1.6vw, 1.5rem); letter-spacing:-0.01em; text-transform:uppercase;
+  line-height:1; color:var(--ink); margin-bottom:0.8rem;
 }
-.frag-quote-1 {
-  font-size:0.72rem; line-height:1.5; color:var(--muted);
-  font-style:italic; margin-bottom:0.2rem;
-}
-.frag-quote-2 {
-  font-size:0.74rem; line-height:1.55; color:var(--ink-lt);
-  max-width:28ch;
+.frag-sub {
+  font-size:0.75rem; line-height:1.6; color:var(--ink-lt);
+  max-width:32ch;
 }
 .frag-footer {
   display:flex; align-items:center; justify-content:flex-end;
@@ -1323,14 +1319,14 @@ renderProject(0);
 
 /* ═══════════════ FRAGMENTS ═══════════════ */
 const fragmentData = [
-  { platform:'Meesho', label:'Live Deal Window', title:'Time changes the price', q1:'Okay but… I didn\'t need this before.', q2:'So why does it suddenly feel like a good idea?', likes:0 },
-  { platform:'WhatsApp', label:'Reply Nudge', title:'Some replies get lost in time', q1:'I did reply…', q2:'just not… actually reply.', likes:0 },
-  { platform:'WhatsApp', label:'Image Provenance', title:'Not everything is new', q1:'This looks new…', q2:'but I swear I\'ve seen this somewhere already.', likes:0 },
-  { platform:'YouTube', label:'Watch Later Revisit', title:'You meant to watch this', q1:'I\'ll watch it later…', q2:'yeah okay, when exactly?', likes:0 },
-  { platform:'Swiggy', label:'Social Proof', title:'Picked by people, not algorithms', q1:'Everyone\'s ordering this…', q2:'should I just stop thinking and order it too?', likes:0 },
-  { platform:'GPay', label:'Payment Wrap', title:'Your spending leaves a pattern', q1:'It\'s just small payments…', q2:'then why does this number feel so wrong?', likes:0 },
-  { platform:'GPay', label:'Payment Reminder', title:'You\'ll remember to ask… right?', q1:'I paid… cool.', q2:'But am I actually going to remind them… or just forget this?', likes:0 },
-  { platform:'Swiggy', label:'Group Ordering', title:'You don\'t have to decide alone', q1:'Okay good, everyone\'s here…', q2:'because I really didn\'t want to pick for everyone again.', likes:0 },
+  { platform:'Meesho', label:'Live Deal Window', heading:'Waiting feels expensive', sub:'Live pricing windows increase urgency by showing discounts that expire in real time.', likes:0 },
+  { platform:'WhatsApp', label:'Reply Nudge', heading:'Replying later becomes never', sub:'Gentle nudges resurface unanswered chats before they silently fade out.', likes:0 },
+  { platform:'WhatsApp', label:'Image Provenance', heading:'The internet forgets the source', sub:'Image provenance helps users trace where forwarded media originally came from.', likes:0 },
+  { platform:'YouTube', label:'Watch Later Revisit', heading:'Saved doesn\'t mean watched', sub:'Watch Later resurfacing prompts users to revisit content they intended to return to.', likes:0 },
+  { platform:'Swiggy', label:'Social Proof', heading:'The crowd removes the risk', sub:'Ordering signals from other users reduce hesitation during food selection.', likes:0 },
+  { platform:'GPay', label:'Payment Wrap', heading:'The summary hits harder than the payment', sub:'Monthly spending recaps expose patterns that individual transactions often hide.', likes:0 },
+  { platform:'GPay', label:'Payment Reminder', heading:'Following up feels personal', sub:'Smart reminders help users recover pending payments without awkward conversations.', likes:0 },
+  { platform:'Swiggy', label:'Group Ordering', heading:'Shared choice reduces blame', sub:'Collaborative ordering distributes decision-making across the entire group.', likes:0 },
 ];
 
 const likeCounts = [...fragmentData.map(f => f.likes)];
@@ -1346,9 +1342,8 @@ function renderFragments() {
       </div>
       <div class="frag-body">
         <div class="frag-platform">${f.platform} — ${f.label}</div>
-        <div class="frag-title">${f.title}</div>
-        <div class="frag-quote-1">${f.q1}</div>
-        <div class="frag-quote-2">${f.q2}</div>
+        <div class="frag-heading">${f.heading}</div>
+        <div class="frag-sub">${f.sub}</div>
       </div>
       <div class="frag-footer">
         <button class="frag-like ${likedSet.has(i) ? 'liked' : ''}" data-frag="${i}" aria-label="Like">

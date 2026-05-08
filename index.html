@@ -349,20 +349,27 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 
 /* ═══════════════ MANIFESTO ═══════════════ */
-.manifesto { padding:10vh 6vw 12vh; position:relative; }
+.manifesto { padding:12vh 6vw 14vh; position:relative; }
 .mf-block {
   font-family:var(--display); font-weight:400;
   font-size:clamp(2.6rem, 5.5vw, 7rem);
   line-height:1.05; letter-spacing:-0.02em;
 }
-.mf-line { display:block; }
+/* Lines slide up like movie credits */
+.mf-line {
+  display:block;
+  opacity:0; transform:translateY(40px);
+  transition:opacity 0.9s var(--ease-breathe), transform 1s var(--ease-breathe);
+}
+.mf-line.up { opacity:1; transform:translateY(0); }
 .mf-gap { display:block; height:0.6em; }
+/* Words: white, dim by default — illuminate from first to last */
 .mf-block .w {
-  color:rgba(26,26,26,0.13);
-  transition:color 0.5s var(--ease);
+  color:rgba(255,255,255,0.18);
+  transition:color 0.45s var(--ease);
   display:inline;
 }
-.mf-block .w.lit { color:var(--ink); }
+.mf-block .w.lit { color:rgba(255,255,255,0.96); }
 
 /* ═══════════════ INDEX CTA ═══════════════ */
 .index-section { padding:6vh 6vw 14vh; }
@@ -877,12 +884,6 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
       <span class="mf-gap"></span>
       <span class="mf-line"><span class="w">this</span> <span class="w">is</span> <span class="w">a</span> <span class="w">space</span> <span class="w">to</span> <span class="w">explore,</span> <span class="w">build,</span></span>
       <span class="mf-line"><span class="w">drift,</span> <span class="w">and</span> <span class="w">see</span> <span class="w">what</span> <span class="w">happens.</span></span>
-      <span class="mf-line"><span class="w">no</span> <span class="w">pressure</span> <span class="w">to</span> <span class="w">be</span> <span class="w">perfect.</span></span>
-      <span class="mf-line"><span class="w">just</span> <span class="w">honest</span> <span class="w">movement.</span></span>
-      <span class="mf-gap"></span>
-      <span class="mf-line"><span class="w">if</span> <span class="w">something</span> <span class="w">sticks,</span> <span class="w">it</span> <span class="w">stays.</span></span>
-      <span class="mf-line"><span class="w">if</span> <span class="w">it</span> <span class="w">doesn't,</span> <span class="w">it</span> <span class="w">taught</span> <span class="w">me</span></span>
-      <span class="mf-line"><span class="w">something</span> <span class="w">anyway.</span></span>
     </div>
   </section>
 
@@ -1277,20 +1278,52 @@ window.addEventListener('scroll', () => {
   lastScroll = y;
 });
 
-/* ═══════════════ MANIFESTO ILLUMINATE ═══════════════ */
-const manifesto = document.getElementById('manifesto');
-if (manifesto) {
-  const words = manifesto.querySelectorAll('.w');
-  window.addEventListener('scroll', () => {
-    const rect = manifesto.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const start = vh * 0.9;
-    const end = -manifesto.offsetHeight * 0.4;
-    const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
-    const litCount = Math.floor(progress * words.length);
-    words.forEach((w, i) => w.classList.toggle('lit', i < litCount));
-  });
-}
+/* ═══════════════ MANIFESTO — bg transition + credits + illuminate ═══════════════ */
+(function() {
+  const section = document.querySelector('#page-home .manifesto');
+  const block   = document.getElementById('manifesto');
+  if (!section || !block) return;
+
+  const words = Array.from(block.querySelectorAll('.w'));
+  const lines = Array.from(block.querySelectorAll('.mf-line'));
+
+  // Stagger line entrances like rolling credits
+  lines.forEach((l, i) => { l.style.transitionDelay = (i * 0.11) + 's'; });
+
+  // Cream → Red colour stops
+  const c1 = [252, 251, 248]; // --cream
+  const c2 = [200, 24, 21];   // --coral #C81815
+
+  let linesTriggered = false;
+
+  function onScroll() {
+    const rect = section.getBoundingClientRect();
+    const vh   = window.innerHeight;
+
+    // 0 → 1 as section scrolls from bottom of viewport to top
+    const bgP = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.85)));
+    const r = Math.round(c1[0] + (c2[0]-c1[0]) * bgP);
+    const g = Math.round(c1[1] + (c2[1]-c1[1]) * bgP);
+    const b = Math.round(c1[2] + (c2[2]-c1[2]) * bgP);
+    section.style.backgroundColor = `rgb(${r},${g},${b})`;
+
+    // Trigger credit slide-up when bg is ~20% red
+    if (!linesTriggered && bgP > 0.2) {
+      linesTriggered = true;
+      lines.forEach(l => l.classList.add('up'));
+    }
+
+    // Illuminate from first word as you scroll through section
+    const litStart = vh * 0.7;
+    const litEnd   = -(block.offsetHeight * 0.5);
+    const litP  = Math.max(0, Math.min(1, (litStart - rect.top) / (litStart - litEnd)));
+    const litN  = Math.floor(litP * words.length);
+    words.forEach((w, i) => w.classList.toggle('lit', i < litN));
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // run once on load in case already scrolled
+})();
 
 /* ═══════════════ SECTION OBSERVERS (chips + exp rows) ═══════════════ */
 function runSectionObservers() {

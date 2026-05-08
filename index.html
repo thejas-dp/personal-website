@@ -349,27 +349,27 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 
 /* ═══════════════ MANIFESTO ═══════════════ */
-.manifesto { padding:12vh 6vw 14vh; position:relative; }
+.manifesto { padding:22vh 6vw 24vh; position:relative; }
 .mf-block {
   font-family:var(--display); font-weight:400;
   font-size:clamp(2.6rem, 5.5vw, 7rem);
-  line-height:1.05; letter-spacing:-0.02em;
+  line-height:1.08; letter-spacing:-0.02em;
 }
-/* Lines slide up like movie credits */
+/* Lines: start off-screen below, roll up like credits */
 .mf-line {
-  display:block;
-  opacity:0; transform:translateY(40px);
-  transition:opacity 0.9s var(--ease-breathe), transform 1s var(--ease-breathe);
+  display:block; overflow:hidden;
+  opacity:0; transform:translateY(90px);
+  transition:opacity 1s var(--ease-breathe), transform 1.2s var(--ease-breathe);
 }
 .mf-line.up { opacity:1; transform:translateY(0); }
 .mf-gap { display:block; height:0.6em; }
-/* Words: white, dim by default — illuminate from first to last */
+/* Words: white dim → white bright */
 .mf-block .w {
-  color:rgba(255,255,255,0.18);
-  transition:color 0.45s var(--ease);
+  color:rgba(255,255,255,0.15);
+  transition:color 0.4s var(--ease);
   display:inline;
 }
-.mf-block .w.lit { color:rgba(255,255,255,0.96); }
+.mf-block .w.lit { color:rgba(255,255,255,0.97); }
 
 /* ═══════════════ INDEX CTA ═══════════════ */
 .index-section { padding:6vh 6vw 14vh; }
@@ -1287,12 +1287,11 @@ window.addEventListener('scroll', () => {
   const words = Array.from(block.querySelectorAll('.w'));
   const lines = Array.from(block.querySelectorAll('.mf-line'));
 
-  // Stagger line entrances like rolling credits
-  lines.forEach((l, i) => { l.style.transitionDelay = (i * 0.11) + 's'; });
+  // Stagger delays: each line enters 140ms after the previous
+  lines.forEach((l, i) => { l.style.transitionDelay = (i * 0.14) + 's'; });
 
-  // Cream → Red colour stops
   const c1 = [252, 251, 248]; // --cream
-  const c2 = [200, 24, 21];   // --coral #C81815
+  const c2 = [200, 24, 21];   // #C81815
 
   let linesTriggered = false;
 
@@ -1300,29 +1299,102 @@ window.addEventListener('scroll', () => {
     const rect = section.getBoundingClientRect();
     const vh   = window.innerHeight;
 
-    // 0 → 1 as section scrolls from bottom of viewport to top
-    const bgP = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.85)));
+    // bg: cream → red as section scrolls from viewport-bottom to viewport-top
+    // Complete transition when section top is at 30% of viewport
+    const bgP = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 1.1)));
     const r = Math.round(c1[0] + (c2[0]-c1[0]) * bgP);
     const g = Math.round(c1[1] + (c2[1]-c1[1]) * bgP);
     const b = Math.round(c1[2] + (c2[2]-c1[2]) * bgP);
     section.style.backgroundColor = `rgb(${r},${g},${b})`;
 
-    // Trigger credit slide-up when bg is ~20% red
-    if (!linesTriggered && bgP > 0.2) {
+    // Lines roll in ONLY once bg is fully red (bgP = 1)
+    if (!linesTriggered && bgP >= 0.98) {
       linesTriggered = true;
       lines.forEach(l => l.classList.add('up'));
     }
+    // Reset if user scrolls back up
+    if (bgP < 0.9) {
+      linesTriggered = false;
+      lines.forEach(l => { l.classList.remove('up'); l.style.transitionDelay = '0s'; });
+      setTimeout(() => lines.forEach((l,i) => { l.style.transitionDelay = (i*0.14)+'s'; }), 50);
+    }
 
-    // Illuminate from first word as you scroll through section
-    const litStart = vh * 0.7;
-    const litEnd   = -(block.offsetHeight * 0.5);
-    const litP  = Math.max(0, Math.min(1, (litStart - rect.top) / (litStart - litEnd)));
-    const litN  = Math.floor(litP * words.length);
-    words.forEach((w, i) => w.classList.toggle('lit', i < litN));
+    // Illuminate from first word once lines are in
+    if (linesTriggered) {
+      const litStart = vh * 0.5;
+      const litEnd   = -(block.offsetHeight * 0.6);
+      const litP  = Math.max(0, Math.min(1, (litStart - rect.top) / (litStart - litEnd)));
+      const litN  = Math.floor(litP * words.length);
+      words.forEach((w, i) => w.classList.toggle('lit', i < litN));
+    } else {
+      words.forEach(w => w.classList.remove('lit'));
+    }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // run once on load in case already scrolled
+  onScroll();
+})();
+
+/* ═══════════════ FALLING GRID — post-loader reveal ═══════════════ */
+(function() {
+  const COLS = 8, ROWS = 6;
+  const grid = document.createElement('div');
+  grid.id = 'fall-grid';
+  Object.assign(grid.style, {
+    position:'fixed', inset:'0', zIndex:'9500',
+    display:'grid',
+    gridTemplateColumns:`repeat(${COLS}, 1fr)`,
+    gridTemplateRows:`repeat(${ROWS}, 1fr)`,
+    pointerEvents:'none',
+  });
+
+  const cells = [];
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const cell = document.createElement('div');
+      Object.assign(cell.style, {
+        background: 'var(--cream)',
+        transform: 'translateY(0)',
+        transition: 'transform 0.7s cubic-bezier(0.55,0,1,0.45)',
+        willChange: 'transform',
+      });
+      cell.dataset.col = c;
+      cell.dataset.row = r;
+      grid.appendChild(cell);
+      cells.push(cell);
+    }
+  }
+  document.body.appendChild(grid);
+
+  // Trigger: called once after loader finishes
+  function dropGrid() {
+    // Stagger by column so it falls like a wave left→right
+    cells.forEach(cell => {
+      const col = parseInt(cell.dataset.col);
+      const row = parseInt(cell.dataset.row);
+      const delay = col * 55 + row * 18; // ms
+      setTimeout(() => {
+        cell.style.transition = `transform 0.65s cubic-bezier(0.55,0,1,0.45)`;
+        cell.style.transform  = 'translateY(105vh)';
+      }, delay);
+    });
+    // Remove grid from DOM after all cells have fallen
+    setTimeout(() => { if (grid.parentNode) grid.parentNode.removeChild(grid); }, 1800);
+  }
+
+  // Hook into the existing loader completion
+  const loaderEl = document.getElementById('loader');
+  if (loaderEl) {
+    const orig = loaderEl.style.cssText;
+    // Watch for loader's 'done' class being added
+    const obs = new MutationObserver(() => {
+      if (loaderEl.classList.contains('done')) {
+        obs.disconnect();
+        setTimeout(dropGrid, 200); // slight pause then drop
+      }
+    });
+    obs.observe(loaderEl, { attributes: true, attributeFilter: ['class'] });
+  }
 })();
 
 /* ═══════════════ SECTION OBSERVERS (chips + exp rows) ═══════════════ */

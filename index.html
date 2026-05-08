@@ -1303,14 +1303,14 @@ renderProject(0);
 
 /* ═══════════════ FRAGMENTS ═══════════════ */
 const fragmentData = [
-  { platform:'Meesho', label:'Live Deal Window', heading:'Waiting feels expensive', sub:'Live pricing windows increase urgency by showing discounts that expire in real time.', likes:0 },
-  { platform:'WhatsApp', label:'Reply Nudge', heading:'Replying later becomes never', sub:'Gentle nudges resurface unanswered chats before they silently fade out.', likes:0 },
-  { platform:'WhatsApp', label:'Image Provenance', heading:'The internet forgets the source', sub:'Image provenance helps users trace where forwarded media originally came from.', likes:0 },
-  { platform:'YouTube', label:'Watch Later Revisit', heading:'Saved doesn\'t mean watched', sub:'Watch Later resurfacing prompts users to revisit content they intended to return to.', likes:0 },
-  { platform:'Swiggy', label:'Social Proof', heading:'The crowd removes the risk', sub:'Ordering signals from other users reduce hesitation during food selection.', likes:0 },
-  { platform:'GPay', label:'Payment Wrap', heading:'The summary hits harder than the payment', sub:'Monthly spending recaps expose patterns that individual transactions often hide.', likes:0 },
-  { platform:'GPay', label:'Payment Reminder', heading:'Following up feels personal', sub:'Smart reminders help users recover pending payments without awkward conversations.', likes:0 },
-  { platform:'Swiggy', label:'Group Ordering', heading:'Shared choice reduces blame', sub:'Collaborative ordering distributes decision-making across the entire group.', likes:0 },
+  { platform:'Meesho', label:'Live Deal Window', heading:'Waiting feels expensive', sub:'Live pricing windows increase urgency by showing discounts that expire in real time.', img:'images/waiting feels expensive.png' },
+  { platform:'WhatsApp', label:'Reply Nudge', heading:'Replying later becomes never', sub:'Gentle nudges resurface unanswered chats before they silently fade out.', img:'images/Replying later becomes never.png' },
+  { platform:'WhatsApp', label:'Image Provenance', heading:'The internet forgets the source', sub:'Image provenance helps users trace where forwarded media originally came from.', img:'images/The internet forgets the source.png' },
+  { platform:'YouTube', label:'Watch Later Revisit', heading:'Saved doesn\'t mean watched', sub:'Watch Later resurfacing prompts users to revisit content they intended to return to.', img:'images/Saved doesn\'t mean watched.png' },
+  { platform:'Swiggy', label:'Social Proof', heading:'The crowd removes the risk', sub:'Ordering signals from other users reduce hesitation during food selection.', img:'' },
+  { platform:'GPay', label:'Payment Wrap', heading:'The summary hits harder than the payment', sub:'Monthly spending recaps expose patterns that individual transactions often hide.', img:'' },
+  { platform:'GPay', label:'Payment Reminder', heading:'Following up feels personal', sub:'Smart reminders help users recover pending payments without awkward conversations.', img:'' },
+  { platform:'Swiggy', label:'Group Ordering', heading:'Shared choice reduces blame', sub:'Collaborative ordering distributes decision-making across the entire group.', img:'' },
 ];
 
 const likeCounts = [...fragmentData.map(f => f.likes)];
@@ -1322,7 +1322,7 @@ function renderFragments() {
   grid.innerHTML = fragmentData.map((f, i) => `
     <div class="frag-card">
       <div class="frag-img">
-        <span class="frag-img-placeholder">${String(i+1).padStart(2,'0')}</span>
+        ${f.img ? `<img src="${f.img}" alt="${f.heading}" loading="lazy"/>` : `<span class="frag-img-placeholder">${String(i+1).padStart(2,'0')}</span>`}
       </div>
       <div class="frag-body">
         <div class="frag-platform">${f.platform} — ${f.label}</div>

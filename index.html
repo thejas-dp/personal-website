@@ -189,6 +189,68 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   line-height:0.88; letter-spacing:-0.01em;
 }
 
+/* ─── Home hero: full-bleed background image ─── */
+#page-home .hero {
+  padding: 0;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+/* Light-to-transparent gradient so dark text is readable top-left */
+#page-home .hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    140deg,
+    rgba(252,251,248,0.93) 0%,
+    rgba(252,251,248,0.75) 28%,
+    rgba(252,251,248,0.2) 55%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+#page-home .hero-text {
+  position: relative; z-index: 2;
+  padding: 14vh 6vw 10vh;
+  max-width: 52%;
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+#page-home .hero-image {
+  position: absolute !important;
+  inset: 0; z-index: 0;
+  height: 100% !important;
+  opacity: 0;
+  animation: heroImageIn 1.6s var(--ease-breathe) 0.3s forwards !important;
+}
+#page-home .hero-image img {
+  object-fit: cover;
+  object-position: center 60%;
+  filter: none;
+}
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 8vh; left: 6vw;
+  z-index: 2;
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 0.55rem;
+  opacity: 0; animation: fadeInUp 0.8s var(--ease-breathe) 1.3s forwards;
+}
+.hero-scroll-label {
+  font-size: 0.6rem; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--ink); font-weight: 500;
+}
+.hero-scroll-line {
+  width: 1px; height: 52px;
+  background: var(--ink); opacity: 0.3;
+}
+/* Title slightly smaller on home so it fits the left block */
+#page-home .hero-title {
+  font-size: clamp(2.8rem, 5.5vw, 7rem);
+  line-height: 1.0; letter-spacing: 0.01em;
+}
+#page-home .hero-label { display: none; }
+
 /* ─── Ascent + Materialize hero: full-bleed image RIGHT ─── */
 #page-ascent .hero,
 #page-creation .hero {
@@ -720,6 +782,8 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 @media (max-width:960px) {
   .hero { grid-template-columns:1fr; padding:14vh 6vw 4vh; gap:2rem; }
   .hero-image { order:2; min-height:40vh; }
+  #page-home .hero-text { max-width:100%; padding:14vh 6vw 16vh; }
+  #page-home .hero-title { font-size:clamp(2.4rem,8vw,4rem) !important; }
   #page-ascent .hero, #page-creation .hero { padding:0; gap:0; grid-template-columns:1fr; }
   #page-ascent .ascent-hero-left, #page-creation .creation-hero-left { padding:6vh 6vw 8vh; order:2; }
   #page-ascent .hero-image, #page-creation .hero-image { height:65vw; min-height:300px; order:1; }
@@ -798,20 +862,22 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 <!-- ═══════════════ HOME PAGE ═══════════════ -->
 <main class="page active" id="page-home">
   <section class="hero">
-    <div>
-      <div class="hero-label">— Intro</div>
+    <div class="hero-text">
       <h1 class="hero-title">
         <span class="word"><span>At&nbsp;</span></span>
         <span class="word"><span>the&nbsp;</span></span>
         <span class="word"><span class="coral">overlap&nbsp;</span></span>
-        <span class="word"><span>of&nbsp;product,&nbsp;</span></span>
+        <span class="word"><span>of&nbsp;product,</span></span>
         <span class="word"><span>growth&nbsp;&&nbsp;</span></span>
-        <span class="word"><span>design.</span></span>
+        <span class="word"><span>design<span class="coral">.</span></span></span>
       </h1>
-      <div class="hero-meta">Thejas DP &nbsp;·&nbsp; Personal Website</div>
     </div>
     <div class="hero-image">
-      <img src="images/home.png" alt="Home hero"/>
+      <img src="images/hero sectoin new.png" alt="Overlap — roads intersecting"/>
+    </div>
+    <div class="hero-scroll-cue">
+      <span class="hero-scroll-label">Scroll to explore</span>
+      <div class="hero-scroll-line"></div>
     </div>
   </section>
 

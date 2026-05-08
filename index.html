@@ -196,25 +196,12 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   position: relative;
   overflow: hidden;
 }
-/* Light-to-transparent gradient so dark text is readable top-left */
-#page-home .hero::before {
-  content: '';
-  position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(
-    140deg,
-    rgba(252,251,248,0.93) 0%,
-    rgba(252,251,248,0.75) 28%,
-    rgba(252,251,248,0.2) 55%,
-    transparent 75%
-  );
-  pointer-events: none;
-}
 #page-home .hero-text {
   position: relative; z-index: 2;
-  padding: 14vh 6vw 10vh;
+  padding: 10vh 6vw 10vh;
   max-width: 52%;
   min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: column; justify-content: flex-start;
 }
 #page-home .hero-image {
   position: absolute !important;

@@ -189,28 +189,35 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   line-height:0.88; letter-spacing:-0.01em;
 }
 
-/* ─── Ascent + Materialize hero: full-bleed image ─── */
+/* ─── Ascent + Materialize hero: full-bleed image LEFT ─── */
 #page-ascent .hero,
 #page-creation .hero {
   padding: 0;
   gap: 0;
   align-items: stretch;
   overflow: hidden;
+  /* Image left (wider) · text right */
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
 }
 #page-ascent .ascent-hero-left,
 #page-creation .creation-hero-left {
   display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 14vh 4rem 8vh 6vw;
+  padding: 14vh 5vw 8vh 5vw;
+  order: 2; /* text on right */
 }
 #page-ascent .hero-image,
 #page-creation .hero-image {
   height: 100vh;
+  order: 1; /* image on left */
 }
 #page-ascent .hero-image img,
 #page-creation .hero-image img {
   object-fit: cover;
   filter: none;
 }
+/* Pull focal subject into frame for each hero image */
+#page-ascent .hero-image img   { object-position: 72% center; }
+#page-creation .hero-image img { object-position: 68% 30%; }
 .hero-rule { display: none; }
 #page-ascent .hero-rule,
 #page-creation .hero-rule {
@@ -222,7 +229,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 #page-creation .hero-meta {
   font-variant-caps: small-caps; font-size: 0.82rem;
   letter-spacing: 0.16em; text-transform: uppercase;
-  max-width: 36ch; line-height: 1.7;
+  max-width: 32ch; line-height: 1.7;
 }
 /* Materialize title stays ink (not coral) */
 #page-creation .hero-title { color: var(--ink); }
@@ -713,9 +720,9 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 @media (max-width:960px) {
   .hero { grid-template-columns:1fr; padding:14vh 6vw 4vh; gap:2rem; }
   .hero-image { order:2; min-height:40vh; }
-  #page-ascent .hero, #page-creation .hero { padding:0; gap:0; }
-  #page-ascent .ascent-hero-left, #page-creation .creation-hero-left { padding:10vh 6vw 4vh; }
-  #page-ascent .hero-image, #page-creation .hero-image { height:55vw; min-height:260px; }
+  #page-ascent .hero, #page-creation .hero { padding:0; gap:0; grid-template-columns:1fr; }
+  #page-ascent .ascent-hero-left, #page-creation .creation-hero-left { padding:6vh 6vw 8vh; order:2; }
+  #page-ascent .hero-image, #page-creation .hero-image { height:60vw; min-height:280px; order:1; }
   .section-head { grid-template-columns:1fr; }
   .disciplines-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-row { grid-template-columns:1fr; gap:1rem; padding:2rem 0; }

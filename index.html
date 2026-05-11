@@ -250,7 +250,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 #page-ascent .ascent-hero-left,
 #page-creation .creation-hero-left {
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: column; justify-content: center;
   padding: 14vh 4rem 8vh 6vw;
   order: 1; /* text on left */
 }
@@ -327,11 +327,11 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 
 /* Section wrapper */
 .section {
-  padding:10vh 6vw; position:relative;
+  padding:16vh 6vw; position:relative;
 }
 .section-head {
   display:grid; grid-template-columns:1fr auto; gap:2rem;
-  margin-bottom:4rem; align-items:end;
+  margin-bottom:6rem; align-items:end;
 }
 .section-label {
   font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase;
@@ -398,105 +398,164 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .mf-block .w.lit { color:rgba(255,255,255,0.97); }
 
 /* ═══════════════ INDEX CTA ═══════════════ */
-.index-section { padding:6vh 6vw 14vh; }
-.index-head { margin-bottom:2.5rem; }
-.index-label {
-  font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase;
-  color:var(--muted); font-weight:500; margin-bottom:0.8rem;
+/* ═══════════════ INDEX NAV STRIP ═══════════════ */
+.index-section { padding:14vh 6vw 18vh; }
+.index-section-num {
+  font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--muted); font-weight:500; margin-bottom:1.4rem;
 }
-.index-title {
-  font-family:var(--display); font-weight:400;
-  font-size:clamp(1.4rem, 2.8vw, 2.3rem);
-  line-height:1.1; letter-spacing:0.01em;
-  text-transform:uppercase; color:var(--ink);
+.index-nav-strip {
+  border-top:1px solid var(--line);
+  padding-top:3rem;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  align-items:center;
+  position:relative;
 }
 
-.index-cards {
-  display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;
+/* Ghost numbers — absolutely centred in the middle col */
+.idx-ghost-center {
+  display:flex; align-items:center; justify-content:center;
+  gap:0.1em; user-select:none; pointer-events:none;
 }
-.idx-card {
-  position:relative; aspect-ratio:16/10;
-  background:#EDE8DD; border:1px solid var(--line);
-  cursor:pointer; overflow:hidden;
-  transition:border-color 0.4s var(--ease-breathe);
+.idx-ghost-num {
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(5rem,11vw,12rem);
+  line-height:1; color:transparent;
+  -webkit-text-stroke:1px rgba(26,26,26,0.09);
+  letter-spacing:-0.04em;
 }
-.idx-card:hover { border-color:rgba(26,26,26,0.18); }
-.idx-card-top {
-  position:absolute; top:1.25rem; left:1.4rem; right:1.4rem; z-index:3;
-  display:flex; align-items:center; justify-content:space-between;
+.idx-ghost-slash {
+  font-family:var(--display); font-weight:300;
+  font-size:clamp(4rem,9vw,10rem);
+  color:rgba(26,26,26,0.07); line-height:1;
+  margin:0 0.1em;
 }
-.idx-card-num {
-  font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase;
-  color:var(--ink); font-weight:500;
+
+/* Left nav */
+.idx-nav-left { cursor:pointer; }
+.idx-nav-title {
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(1.2rem,2vw,2.2rem);
+  letter-spacing:-0.01em; text-transform:uppercase;
+  color:var(--ink); margin-bottom:0.35rem; transition:color 0.22s;
 }
-.idx-card-arrow {
-  font-size:1rem; color:var(--ink);
-  transition:transform 0.45s var(--ease-breathe), color 0.4s var(--ease-breathe);
-  display:inline-block;
+.idx-nav-left:hover .idx-nav-title { color:var(--coral); }
+.idx-nav-desc {
+  font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--muted); font-weight:500;
 }
-.idx-card:hover .idx-card-arrow { transform:translateX(6px) translateY(-2px); color:var(--coral); }
-.idx-card-img {
-  position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover; opacity:1;
-  transition:transform 0.9s var(--ease-breathe);
-  transform-origin:center;
+
+/* Right nav */
+.idx-nav-right {
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:flex-end; gap:1.5rem;
 }
-.idx-card:hover .idx-card-img { transform:scale(1.07); }
-/* subtle gradient overlay for text legibility */
-.idx-card::after {
-  content:''; position:absolute; inset:0; z-index:1;
-  background:linear-gradient(to top, rgba(240,234,218,0.88) 0%, rgba(240,234,218,0.3) 45%, transparent 70%);
-  pointer-events:none;
+.idx-nav-right-text { text-align:right; }
+.idx-nav-right .idx-nav-title { margin-bottom:0.35rem; }
+.idx-nav-right:hover .idx-nav-title { color:var(--coral); }
+.idx-nav-arrow {
+  color:var(--coral); font-size:1.1rem; flex-shrink:0;
+  opacity:0; transform:translateX(-8px);
+  transition:opacity 0.25s var(--ease-breathe), transform 0.25s var(--ease-breathe);
 }
-.idx-card-body {
-  position:absolute; bottom:1.6rem; left:1.5rem; right:1.5rem; z-index:3;
-}
-.idx-card-title {
-  font-family:var(--display); font-weight:400;
-  font-size:clamp(2.2rem, 4vw, 3.6rem);
-  line-height:0.88; letter-spacing:-0.01em;
-  text-transform:uppercase; color:var(--ink); margin-bottom:0.55rem;
-  transition:color 0.4s var(--ease-breathe);
-}
-.idx-card:hover .idx-card-title { color:var(--coral); }
-.idx-card-desc {
-  font-size:0.8rem; color:var(--ink-lt); line-height:1.5; max-width:38ch;
-  letter-spacing:0.01em;
-}
+.idx-nav-right:hover .idx-nav-arrow { opacity:1; transform:translateX(0); }
+.idx-nav-right .idx-nav-desc { text-align:right; }
 
 /* ═══════════════ DISCIPLINES (Ascent) ═══════════════ */
-.disciplines-head {
-  max-width:22ch; margin-bottom:3rem;
-  font-family:var(--display); font-weight:400;
-  font-size:clamp(1.6rem, 3vw, 2.6rem);
-  line-height:1.05; letter-spacing:0; text-transform:none;
+/* ═══════════════ DISCIPLINES — Editorial grid ═══════════════ */
+.disc-section { padding:16vh 0 0; }
+
+.disc-meta {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 6vw 1.4rem;
+  font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--muted); font-weight:500;
 }
-.disciplines-grid {
-  display:grid; grid-template-columns:repeat(3, 1fr);
-  gap:3rem; padding:3rem 0; border-top:1px solid var(--line);
+
+/* Header row: 3 cols with vertical rules */
+.disc-header {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
 }
-.discipline-col-head {
-  display:flex; align-items:baseline; justify-content:space-between;
-  margin-bottom:1.5rem;
+.disc-title-col {
+  padding:3rem 3vw 3rem 6vw;
+  border-right:1px solid var(--line);
 }
-.discipline-name {
-  font-family:var(--display); font-weight:400;
-  font-size:1.05rem; letter-spacing:0.04em; text-transform:uppercase;
+.disc-title {
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(3.2rem,7vw,8.5rem);
+  line-height:0.88; letter-spacing:-0.02em; text-transform:uppercase; color:var(--ink);
 }
-.discipline-num {
-  font-size:0.65rem; letter-spacing:0.18em; color:var(--muted);
+.disc-desc-col {
+  padding:3rem 3vw 3rem 3vw;
+  border-right:1px solid var(--line);
+  display:flex; align-items:flex-start;
 }
-.chip-row {
-  display:flex; flex-wrap:wrap; gap:0.4rem;
+.disc-desc {
+  font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ink-lt); line-height:2; max-width:24ch; font-weight:400;
 }
+.disc-empty-col { padding:3rem 6vw 3rem 3vw; }
+
+/* Bottom grid: 3 rows inside each of 3 cols */
+.disc-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+}
+.disc-col {
+  display:flex; flex-direction:column;
+  border-right:1px solid var(--line);
+}
+.disc-col:last-child { border-right:none; }
+
+/* Row 1: number + name (with bottom rule) */
+.disc-col-head {
+  display:flex; align-items:flex-start; gap:1.2rem;
+  padding:2.5rem 3vw 2.5rem 6vw;
+  border-bottom:1px solid var(--line);
+}
+.disc-col:last-child .disc-col-head { padding-right:6vw; }
+.disc-big-num {
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(4rem,7.5vw,9rem);
+  line-height:0.85; color:var(--coral); letter-spacing:-0.04em; flex-shrink:0;
+}
+.disc-name-block { display:flex; flex-direction:column; gap:0.6rem; padding-top:0.7rem; }
+.disc-name {
+  font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--coral); font-weight:700;
+}
+.disc-name-dash { width:1.2rem; height:2px; background:var(--coral); }
+
+/* Row 2: chips (with bottom rule) */
+.disc-chip-row-wrap {
+  padding:2.5rem 3vw 2.5rem 6vw; flex:1;
+  border-bottom:1px solid var(--line);
+}
+.disc-col:last-child .disc-chip-row-wrap { padding-right:6vw; }
+
+/* Row 3: arrow */
+.disc-col-footer {
+  padding:1.8rem 3vw 1.8rem 6vw;
+}
+.disc-col:last-child .disc-col-footer { padding-right:6vw; }
+.disc-col-arrow {
+  font-size:1rem; color:var(--coral); display:inline-block;
+  transition:transform 0.3s var(--ease-breathe);
+}
+.disc-col:hover .disc-col-arrow { transform:translate(3px,-3px); }
+
+/* Chips */
+.chip-row { display:flex; flex-wrap:wrap; gap:0.5rem; }
 .chip {
   display:inline-flex; align-items:center;
-  padding:0.38rem 0.8rem; border:1px solid var(--line);
-  border-radius:999px; background:var(--cream);
-  font-size:0.62rem; letter-spacing:0.13em; text-transform:uppercase;
-  color:var(--ink-lt); font-weight:500;
+  padding:0.45rem 1rem; border:1px solid rgba(26,26,26,0.22);
+  border-radius:999px; background:transparent;
+  font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink); font-weight:500;
   opacity:0; transform:translateY(8px);
-  transition:opacity 0.5s var(--ease-breathe), transform 0.5s var(--ease-breathe);
+  transition:opacity 0.5s var(--ease-breathe), transform 0.5s var(--ease-breathe), border-color 0.2s, color 0.2s;
 }
 .chip.in { opacity:1; transform:translateY(0); }
 .chip:hover { border-color:var(--coral); color:var(--coral); }
@@ -549,95 +608,160 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .exp-row.in .exp-bullets li:nth-child(2) { transition-delay:0.25s; }
 .exp-row.in .exp-bullets li:nth-child(3) { transition-delay:0.35s; }
 
-/* ═══════════════ MATERIALIZE — ROLLING PROJECTS (scroll-pinned) ═══════════════ */
-.projects-wrap {
-  padding:0; position:relative;
-  height:calc(5 * 80vh + 40vh);
+/* ═══════════════ WORK SECTION — scroll-sticky 2-col ═══════════════ */
+.work-outer {
+  position:relative;
+  height:calc(5 * 90vh + 10vh); /* scroll budget for 5 projects */
 }
-.projects-sticky {
+.work-section {
   position:sticky; top:0; height:100vh; overflow:hidden;
-  padding:7vh 6vw 4vh;
-  display:flex; flex-direction:column;
+  padding:0 6vw;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,2.3fr);
+  gap:5vw;
+  align-items:center;
 }
-.projects-head {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:2rem;
-  padding-bottom:1.25rem; border-bottom:1px solid var(--line);
+
+/* LEFT sidebar */
+.work-sidebar {
+  display:flex; flex-direction:column;
+  height:100%; justify-content:center;
+  padding:6vh 0;
+}
+.work-sidebar-label {
+  font-size:0.58rem; letter-spacing:0.24em; text-transform:uppercase;
+  color:var(--coral); font-weight:700; margin-bottom:0.9rem;
+}
+.work-sidebar-heading {
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(2.6rem,4.2vw,5rem);
+  line-height:1.4; letter-spacing:0.01em;
+  text-transform:uppercase; color:var(--ink); margin-bottom:1.4rem;
+}
+.work-sidebar-heading .accent { color:var(--coral); }
+.work-sidebar-desc {
+  font-size:0.8rem; line-height:1.7; color:var(--ink-lt);
+  max-width:24ch; margin-bottom:3rem;
+}
+
+/* Project list */
+.work-proj-list { list-style:none; }
+.work-proj-item {
+  display:flex; align-items:center; gap:1rem;
+  padding:0.65rem 0; border-top:1px solid var(--line);
+  cursor:pointer; user-select:none;
+}
+.work-proj-item:last-child { border-bottom:1px solid var(--line); }
+.work-proj-num {
+  font-size:0.58rem; letter-spacing:0.1em; color:var(--muted);
+  font-weight:600; flex-shrink:0; min-width:1.2rem; transition:color 0.25s;
+}
+.work-proj-info { flex:1; min-width:0; }
+.work-proj-name {
+  font-size:0.72rem; font-weight:700; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--ink); margin-bottom:0.12rem;
+  transition:color 0.25s; line-height:1.2;
+}
+.work-proj-type {
+  font-size:0.62rem; letter-spacing:0.01em; color:var(--muted);
+  transition:color 0.25s; line-height:1.3;
+}
+.work-proj-arrow {
+  font-size:1.1rem; color:var(--coral);
+  opacity:0; transform:translateX(-8px);
+  transition:opacity 0.25s, transform 0.3s var(--ease-breathe);
   flex-shrink:0;
 }
-.projects-grid {
-  display:grid; grid-template-columns:1fr 1fr; gap:6vw;
-  align-items:start;
-  flex:1; min-height:0;
+.work-proj-item.active .work-proj-num   { color:var(--coral); }
+.work-proj-item.active .work-proj-name  { color:var(--coral); }
+.work-proj-item.active .work-proj-type  { color:var(--coral); }
+.work-proj-item.active .work-proj-arrow { opacity:1; transform:translateX(0); }
+.work-view-all {
+  display:inline-flex; align-items:center; gap:0.4rem; margin-top:2rem;
+  font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase;
+  font-weight:600; color:var(--ink); text-decoration:none; opacity:0.45;
+  transition:opacity 0.2s;
 }
-.proj-list {
-  position:relative;
-  display:flex;
-}
-.proj-track {
-  display:flex; flex-direction:column;
-  width:100%;
-}
-.proj-item {
-  padding:1rem 0;
-  border-top:1px solid var(--line);
-  font-family:var(--display); font-weight:400;
-  font-size:clamp(1.5rem, 2.6vw, 2.4rem);
-  line-height:1; letter-spacing:-0.01em; text-transform:uppercase;
-  color:rgba(26,26,26,0.15);
-  transition:color 0.65s var(--ease-breathe), font-size 0.65s var(--ease-breathe);
-  cursor:default;
-}
-.proj-item.active {
-  color:var(--coral);
-  font-size:clamp(2.8rem, 4.8vw, 4.6rem);
-}
-.proj-item.near { color:rgba(26,26,26,0.32); font-size:clamp(1.8rem, 3vw, 2.8rem); }
+.work-view-all:hover { opacity:1; }
 
-/* right panel */
-.proj-detail {
-  padding:0 0 1rem;
-  opacity:0; transform:translateY(20px);
-  transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+/* RIGHT detail panel */
+.work-detail {
+  height:100%; display:flex; flex-direction:column; justify-content:center;
+  padding:4vh 0; gap:0;
+  opacity:1; transition:opacity 0.28s var(--ease-breathe);
 }
-.proj-detail.show { opacity:1; transform:translateY(0); }
-.proj-detail-num {
-  font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase;
-  color:var(--muted); margin-bottom:1rem;
+.work-detail.fading { opacity:0; }
+
+/* "01" number */
+.work-detail-num {
+  font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--coral); font-weight:700; margin-bottom:0.35rem;
 }
-.proj-detail-title {
-  font-family:var(--display); font-weight:400;
-  font-size:clamp(1.8rem, 2.8vw, 2.6rem);
-  line-height:0.9; letter-spacing:-0.01em; text-transform:uppercase;
-  color:var(--ink); margin-bottom:1.2rem;
+
+/* Title row: big name + ↗ link */
+.work-detail-header {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  margin-bottom:0;
 }
-.proj-desc {
-  font-size:0.95rem; line-height:1.75; color:var(--ink-lt);
-  margin-bottom:2rem; max-width:46ch;
+.work-detail-title {
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(2.8rem,5.2vw,6.5rem);
+  line-height:0.88; letter-spacing:-0.01em;
+  text-transform:uppercase; color:var(--ink);
 }
-.proj-meta {
-  display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;
-  margin-bottom:1.5rem; padding:1.25rem 0;
-  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+.work-detail-link {
+  font-size:1.2rem; color:var(--ink); opacity:0.28;
+  text-decoration:none; flex-shrink:0;
+  margin-top:0.6rem; transition:opacity 0.2s;
 }
-.proj-meta-label {
-  font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase;
-  color:var(--muted); margin-bottom:0.35rem;
+.work-detail-link:hover { opacity:0.7; }
+
+/* "AI AGENTS PLATFORM" subtitle */
+.work-detail-subtitle {
+  font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase;
+  font-weight:700; color:var(--ink); opacity:0.65;
+  margin-top:0.9rem; margin-bottom:0.9rem;
 }
-.proj-meta-val {
-  font-family:var(--sans); font-size:0.95rem; font-weight:500;
-  letter-spacing:0.01em;
+
+/* Description */
+.work-detail-desc {
+  font-size:0.86rem; line-height:1.72; color:var(--ink-lt);
+  max-width:48ch; margin-bottom:1.4rem;
 }
-.proj-tags { display:flex; flex-wrap:wrap; gap:0.5rem; }
-.proj-tag {
-  padding:0.38rem 0.85rem; border:1px solid var(--coral);
-  border-radius:999px; color:var(--coral);
-  font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase;
-  font-weight:500;
+
+/* Image */
+.work-detail-image {
+  width:100%; aspect-ratio:16/8;
+  background:var(--cream-2); border-radius:6px;
+  overflow:hidden; flex-shrink:0; margin-bottom:1.8rem;
+  display:flex; align-items:center; justify-content:center;
+}
+.work-detail-image img { width:100%; height:100%; object-fit:cover; }
+.work-detail-img-placeholder {
+  font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--muted); opacity:0.35;
+}
+
+/* Stats row */
+.work-stats {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line); flex-shrink:0;
+}
+.work-stat { padding:0.9rem 1rem 0.6rem 0; }
+.work-stat:not(:first-child) { padding-left:1rem; border-left:1px solid var(--line); }
+.work-stat-value {
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(1.8rem,3.2vw,3.8rem);
+  line-height:1; color:var(--coral); margin-bottom:0.3rem;
+  letter-spacing:-0.01em;
+}
+.work-stat-label {
+  font-size:0.52rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ink-lt); font-weight:500; line-height:1.45;
 }
 
 /* ═══════════════ FRAGMENTS — editorial grid ═══════════════ */
-.fragments { padding:10vh 6vw 6vh; }
+.fragments { padding:16vh 6vw 10vh; }
 .fragments-grid {
   display:grid; grid-template-columns:repeat(3, 1fr);
   gap:3rem 4rem; margin-top:3rem;
@@ -804,9 +928,24 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   .hero-image { order:2; min-height:40vh; }
   #page-home .hero-text { max-width:100%; padding:14vh 6vw 16vh; }
   #page-home .hero-title { font-size:clamp(2.4rem,8vw,4rem) !important; }
-  #page-ascent .hero, #page-creation .hero { padding:0; gap:0; grid-template-columns:1fr; }
-  #page-ascent .ascent-hero-left, #page-creation .creation-hero-left { padding:6vh 6vw 8vh; order:2; }
-  #page-ascent .hero-image, #page-creation .hero-image { height:65vw; min-height:300px; order:1; }
+  #page-ascent .hero, #page-creation .hero {
+    padding:0; gap:0; grid-template-columns:1fr;
+    position:relative; overflow:hidden; display:block;
+    min-height:100vh;
+  }
+  #page-ascent .ascent-hero-left, #page-creation .creation-hero-left {
+    position:relative; z-index:2;
+    padding:12vh 6vw 42vw; order:1;
+  }
+  #page-ascent .hero-image, #page-creation .hero-image {
+    position:absolute !important; bottom:0; right:0;
+    width:70%; height:45vh; order:2;
+    z-index:1; min-height:280px;
+  }
+  #page-ascent .hero-image img, #page-creation .hero-image img {
+    width:100%; height:100%; object-fit:cover;
+    object-position:left top;
+  }
   .section-head { grid-template-columns:1fr; }
   .disciplines-grid { grid-template-columns:1fr; gap:2rem; }
   .exp-row { grid-template-columns:1fr; gap:1rem; padding:2rem 0; }
@@ -840,7 +979,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 <body>
 
 <!-- COLUMN GRID LINES -->
-<div class="columns"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<!-- columns grid removed -->
 
 <!-- EDGE BLUR -->
 <div class="edge-blur top" id="edgeTop"></div>
@@ -916,33 +1055,25 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
     </section>
   </div>
 
-  <!-- INDEX CARDS (Home) -->
+  <!-- INDEX NAV (Home) -->
   <section class="index-section">
-    <div class="index-head">
-      <div class="index-label">Index</div>
-    </div>
-    <div class="index-cards">
-      <div class="idx-card" data-go="ascent">
-        <img class="idx-card-img" src="images/indexascent.jpg" alt="Ascent"/>
-        <div class="idx-card-top">
-          <span class="idx-card-num">№ 02</span>
-          <span class="idx-card-arrow">→</span>
-        </div>
-        <div class="idx-card-body">
-          <div class="idx-card-title">Ascent</div>
-          <div class="idx-card-desc">Progress that stacks, compounds, and starts creating its own gravity</div>
-        </div>
+    <div class="index-section-num">03</div>
+    <div class="index-nav-strip">
+      <div class="idx-nav-left" data-go="ascent">
+        <div class="idx-nav-title">Ascent</div>
+        <div class="idx-nav-desc">Progress that stacks, compounds</div>
       </div>
-      <div class="idx-card" data-go="creation">
-        <img class="idx-card-img" src="images/indexmate.jpg" alt="Materialize"/>
-        <div class="idx-card-top">
-          <span class="idx-card-num">№ 03</span>
-          <span class="idx-card-arrow">→</span>
+      <div class="idx-ghost-center">
+        <span class="idx-ghost-num">02</span>
+        <span class="idx-ghost-slash">/</span>
+        <span class="idx-ghost-num">03</span>
+      </div>
+      <div class="idx-nav-right" data-go="creation">
+        <div class="idx-nav-right-text">
+          <div class="idx-nav-title">Materialize</div>
+          <div class="idx-nav-desc">Ideas pushed far enough until they become real</div>
         </div>
-        <div class="idx-card-body">
-          <div class="idx-card-title">Materialize</div>
-          <div class="idx-card-desc">Ideas pushed far enough until they become real, usable, and undeniable</div>
-        </div>
+        <span class="idx-nav-arrow">→</span>
       </div>
     </div>
   </section>
@@ -964,58 +1095,93 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
     </div>
   </section>
 
-  <section class="section" id="disciplines">
-    <div class="section-head">
-      <div>
-        <div class="section-label">№ 02 — Disciplines</div>
-      </div>
-      <div class="section-num">01 — 03</div>
+  <section class="disc-section" id="disciplines">
+    <!-- meta bar -->
+    <div class="disc-meta">
+      <span>№ 02 — Disciplines</span>
+      <span>01 — 03</span>
     </div>
-    <div class="disciplines-grid">
-      <div>
-        <div class="discipline-col-head">
-          <span class="discipline-name">Product</span>
-          <span class="discipline-num">01</span>
-        </div>
-        <div class="chip-row">
-          <span class="chip">Roadmapping</span>
-          <span class="chip">Discovery</span>
-          <span class="chip">Systems Thinking</span>
-          <span class="chip">Experimentation</span>
-          <span class="chip">0 → 1</span>
-          <span class="chip">B2B SaaS</span>
-          <span class="chip">Pricing</span>
-        </div>
+
+    <!-- header: DISCIPLINES title + description -->
+    <div class="disc-header">
+      <div class="disc-title-col">
+        <h2 class="disc-title">Disciplines</h2>
       </div>
-      <div>
-        <div class="discipline-col-head">
-          <span class="discipline-name">AI</span>
-          <span class="discipline-num">02</span>
-        </div>
-        <div class="chip-row">
-          <span class="chip">Prompting</span>
-          <span class="chip">Evals</span>
-          <span class="chip">Agents</span>
-          <span class="chip">RAG</span>
-          <span class="chip">LLM Ops</span>
-          <span class="chip">Voice / Multimodal</span>
-          <span class="chip">Fine-Tuning</span>
-        </div>
+      <div class="disc-desc-col">
+        <p class="disc-desc">The core areas<br>of work across<br>product and growth.</p>
       </div>
-      <div>
-        <div class="discipline-col-head">
-          <span class="discipline-name">Design Growth</span>
-          <span class="discipline-num">03</span>
+      <div class="disc-empty-col"></div>
+    </div>
+
+    <!-- 3 discipline columns -->
+    <div class="disc-grid">
+      <!-- 01 Product -->
+      <div class="disc-col">
+        <div class="disc-col-head">
+          <span class="disc-big-num">01</span>
+          <div class="disc-name-block">
+            <span class="disc-name">Product</span>
+            <span class="disc-name-dash"></span>
+          </div>
         </div>
-        <div class="chip-row">
-          <span class="chip">Retention Loops</span>
-          <span class="chip">Activation</span>
-          <span class="chip">Onboarding</span>
-          <span class="chip">Lifecycle</span>
-          <span class="chip">Brand Systems</span>
-          <span class="chip">Landing Craft</span>
-          <span class="chip">Narrative</span>
+        <div class="disc-chip-row-wrap">
+          <div class="chip-row">
+            <span class="chip">Roadmapping</span>
+            <span class="chip">Discovery</span>
+            <span class="chip">Systems Thinking</span>
+            <span class="chip">Experimentation</span>
+            <span class="chip">0 → 1</span>
+            <span class="chip">B2B SaaS</span>
+            <span class="chip">Pricing</span>
+          </div>
         </div>
+        <div class="disc-col-footer"><span class="disc-col-arrow">↗</span></div>
+      </div>
+
+      <!-- 02 AI -->
+      <div class="disc-col">
+        <div class="disc-col-head">
+          <span class="disc-big-num">02</span>
+          <div class="disc-name-block">
+            <span class="disc-name">AI</span>
+            <span class="disc-name-dash"></span>
+          </div>
+        </div>
+        <div class="disc-chip-row-wrap">
+          <div class="chip-row">
+            <span class="chip">Prompting</span>
+            <span class="chip">Evals</span>
+            <span class="chip">Agents</span>
+            <span class="chip">RAG</span>
+            <span class="chip">LLM Ops</span>
+            <span class="chip">Voice / Multimodal</span>
+            <span class="chip">Fine-Tuning</span>
+          </div>
+        </div>
+        <div class="disc-col-footer"><span class="disc-col-arrow">↗</span></div>
+      </div>
+
+      <!-- 03 Design Growth -->
+      <div class="disc-col">
+        <div class="disc-col-head">
+          <span class="disc-big-num">03</span>
+          <div class="disc-name-block">
+            <span class="disc-name">Design Growth</span>
+            <span class="disc-name-dash"></span>
+          </div>
+        </div>
+        <div class="disc-chip-row-wrap">
+          <div class="chip-row">
+            <span class="chip">Retention Loops</span>
+            <span class="chip">Activation</span>
+            <span class="chip">Onboarding</span>
+            <span class="chip">Lifecycle</span>
+            <span class="chip">Brand Systems</span>
+            <span class="chip">Landing Craft</span>
+            <span class="chip">Narrative</span>
+          </div>
+        </div>
+        <div class="disc-col-footer"><span class="disc-col-arrow">↗</span></div>
       </div>
     </div>
   </section>
@@ -1072,33 +1238,25 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
     </div>
   </section>
 
-  <!-- INDEX CARDS (Ascent) -->
+  <!-- INDEX NAV (Ascent) -->
   <section class="index-section">
-    <div class="index-head">
-      <div class="index-label">Index</div>
-    </div>
-    <div class="index-cards">
-      <div class="idx-card" data-go="home">
-        <img class="idx-card-img" src="images/home.png" alt="Home"/>
-        <div class="idx-card-top">
-          <span class="idx-card-num">№ 01</span>
-          <span class="idx-card-arrow">→</span>
-        </div>
-        <div class="idx-card-body">
-          <div class="idx-card-title">Home</div>
-          <div class="idx-card-desc">Intro · Manifesto · Overlap</div>
-        </div>
+    <div class="index-section-num">04</div>
+    <div class="index-nav-strip">
+      <div class="idx-nav-left" data-go="home">
+        <div class="idx-nav-title">Home</div>
+        <div class="idx-nav-desc">Intro · Manifesto · Overlap</div>
       </div>
-      <div class="idx-card" data-go="creation">
-        <img class="idx-card-img" src="images/indexmate.jpg" alt="Materialize"/>
-        <div class="idx-card-top">
-          <span class="idx-card-num">№ 03</span>
-          <span class="idx-card-arrow">→</span>
+      <div class="idx-ghost-center">
+        <span class="idx-ghost-num">01</span>
+        <span class="idx-ghost-slash">/</span>
+        <span class="idx-ghost-num">03</span>
+      </div>
+      <div class="idx-nav-right" data-go="creation">
+        <div class="idx-nav-right-text">
+          <div class="idx-nav-title">Materialize</div>
+          <div class="idx-nav-desc">Ideas pushed far enough until they become real</div>
         </div>
-        <div class="idx-card-body">
-          <div class="idx-card-title">Materialize</div>
-          <div class="idx-card-desc">Ideas pushed far enough until they become real, usable, and undeniable</div>
-        </div>
+        <span class="idx-nav-arrow">→</span>
       </div>
     </div>
   </section>
@@ -1120,26 +1278,64 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
     </div>
   </section>
 
-  <section class="projects-wrap" id="projectsWrap">
-    <div class="projects-sticky">
-      <div class="projects-head">
-        <div class="section-label">№ 02 — The Work</div>
-        <div class="section-num" id="projCounter">01 / 06</div>
-      </div>
-      <div class="projects-grid">
-        <div class="proj-list">
-          <div class="proj-track" id="projTrack">
-            <div class="proj-item active">LoopX</div>
-            <div class="proj-item">Internal Sales Platform</div>
-            <div class="proj-item">TRUST</div>
-            <div class="proj-item">Statement Analyzer</div>
-            <div class="proj-item">AgriTech Platform</div>
+  <div class="work-outer" id="workOuter">
+  <section class="work-section" id="workSection">
+    <!-- LEFT SIDEBAR -->
+    <div class="work-sidebar">
+      <div class="work-sidebar-label">The Work</div>
+      <h2 class="work-sidebar-heading">Projects<br>That Create<br><span class="accent">Impact</span></h2>
+      <p class="work-sidebar-desc">A collection of products I've designed and shipped. Solving real problems and driving measurable results.</p>
+      <ul class="work-proj-list" id="workProjList">
+        <li class="work-proj-item active" data-idx="0">
+          <span class="work-proj-num">01</span>
+          <div class="work-proj-info">
+            <div class="work-proj-name">LoopX</div>
+            <div class="work-proj-type">AI Agents Platform</div>
           </div>
-        </div>
-        <div class="proj-detail show" id="projDetail"></div>
-      </div>
+          <span class="work-proj-arrow">→</span>
+        </li>
+        <li class="work-proj-item" data-idx="1">
+          <span class="work-proj-num">02</span>
+          <div class="work-proj-info">
+            <div class="work-proj-name">Internal Sales Platform</div>
+            <div class="work-proj-type">NBFC Sales Tool</div>
+          </div>
+          <span class="work-proj-arrow">→</span>
+        </li>
+        <li class="work-proj-item" data-idx="2">
+          <span class="work-proj-num">03</span>
+          <div class="work-proj-info">
+            <div class="work-proj-name">TRUST</div>
+            <div class="work-proj-type">Banking Operations</div>
+          </div>
+          <span class="work-proj-arrow">→</span>
+        </li>
+        <li class="work-proj-item" data-idx="3">
+          <span class="work-proj-num">04</span>
+          <div class="work-proj-info">
+            <div class="work-proj-name">Statement Analyzer</div>
+            <div class="work-proj-type">Financial SaaS</div>
+          </div>
+          <span class="work-proj-arrow">→</span>
+        </li>
+        <li class="work-proj-item" data-idx="4">
+          <span class="work-proj-num">05</span>
+          <div class="work-proj-info">
+            <div class="work-proj-name">AgriTech Platform</div>
+            <div class="work-proj-type">Agriculture Platform</div>
+          </div>
+          <span class="work-proj-arrow">→</span>
+        </li>
+      </ul>
+      <a class="work-view-all" href="#">View All Projects &nbsp;↗</a>
+    </div>
+
+    <!-- RIGHT DETAIL PANEL -->
+    <div class="work-detail" id="workDetail">
+      <!-- populated by JS -->
     </div>
   </section>
+  </div>
 
   <!-- FRAGMENTS -->
   <section class="fragments section">
@@ -1153,33 +1349,25 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
     </div>
   </section>
 
-  <!-- INDEX CARDS (Materialize) -->
+  <!-- INDEX NAV (Materialize) -->
   <section class="index-section">
-    <div class="index-head">
-      <div class="index-label">Index</div>
-    </div>
-    <div class="index-cards">
-      <div class="idx-card" data-go="home">
-        <img class="idx-card-img" src="images/home.png" alt="Home"/>
-        <div class="idx-card-top">
-          <span class="idx-card-num">№ 01</span>
-          <span class="idx-card-arrow">→</span>
-        </div>
-        <div class="idx-card-body">
-          <div class="idx-card-title">Home</div>
-          <div class="idx-card-desc">Intro · Manifesto · Overlap</div>
-        </div>
+    <div class="index-section-num">04</div>
+    <div class="index-nav-strip">
+      <div class="idx-nav-left" data-go="home">
+        <div class="idx-nav-title">Home</div>
+        <div class="idx-nav-desc">Intro · Manifesto · Overlap</div>
       </div>
-      <div class="idx-card" data-go="ascent">
-        <img class="idx-card-img" src="images/indexascent.jpg" alt="Ascent"/>
-        <div class="idx-card-top">
-          <span class="idx-card-num">№ 02</span>
-          <span class="idx-card-arrow">→</span>
+      <div class="idx-ghost-center">
+        <span class="idx-ghost-num">01</span>
+        <span class="idx-ghost-slash">/</span>
+        <span class="idx-ghost-num">02</span>
+      </div>
+      <div class="idx-nav-right" data-go="ascent">
+        <div class="idx-nav-right-text">
+          <div class="idx-nav-title">Ascent</div>
+          <div class="idx-nav-desc">Progress that stacks, compounds</div>
         </div>
-        <div class="idx-card-body">
-          <div class="idx-card-title">Ascent</div>
-          <div class="idx-card-desc">Progress that stacks, compounds, and starts creating its own gravity</div>
-        </div>
+        <span class="idx-nav-arrow">→</span>
       </div>
     </div>
   </section>
@@ -1463,93 +1651,136 @@ function runSectionObservers() {
 }
 runSectionObservers();
 
-/* ═══════════════ PROJECTS (Materialize) ═══════════════ */
+/* ═══════════════ WORK SECTION (Materialize) ═══════════════ */
 const projectData = [
   {
-    title:'LoopX — Core AI Platform',
-    desc:"Built the system from zero—no predefined structure, no playbook. Led product and design for a multi-agent AI platform where 6+ agents coordinate to execute tasks across real workflows. Designed the full backbone: integrations layer, action pipelines, and a logic execution engine that handles real-world variability. Built a no-code layer on top so teams didn't need engineers every time they wanted to change behavior—that decision alone shifted the system from tool to operational layer.",
-    role:'Product & Design', year:'2023–24', tags:['AI AGENTS','PLATFORM','NO-CODE']
+    name:'LoopX',
+    subtitle:'AI Agents Platform',
+    desc:"Built the system from zero—no predefined structure, no playbook. Led product and design for a multi-agent AI platform where 6+ agents coordinate to execute tasks across real workflows. Designed the full backbone: integrations layer, action pipelines, and a logic execution engine that handles real-world variability.",
+    stats:[
+      { value:'6+',    label:'AI Agents\nDeployed' },
+      { value:'85%',   label:'Reduction in\nManual Work' },
+      { value:'40+',   label:'Integrations\nSupported' },
+      { value:'99.9%', label:'System\nReliability' },
+    ]
   },
   {
-    title:'Internal Sales Platform',
-    desc:"This one tied directly to money. Led product and execution for an internal platform used by agents to manage and close loans. The core problem wasn't lack of effort—it was friction. Restructured the workflow, simplified decision points, and built around how agents actually operate under pressure. Result: 50% reduction in time spent per workflow and 15% increase in sales output. Not by adding more—but by removing what didn't need to be there.",
-    role:'Product & Design', year:'2024', tags:['NBFC','SALES','ENTERPRISE']
+    name:'Internal Sales Platform',
+    subtitle:'NBFC Sales Tool',
+    desc:"Led product and execution for an internal platform used by agents to manage and close loans. The core problem wasn't lack of effort—it was friction. Restructured the workflow, simplified decision points, and built around how agents actually operate under pressure.",
+    stats:[
+      { value:'50%',  label:'Reduction in\nTime per Workflow' },
+      { value:'15%',  label:'Increase in\nSales Output' },
+      { value:'3',    label:'NBFCs\nDeployed' },
+      { value:'2024', label:'Year\nShipped' },
+    ]
   },
   {
-    title:'TRUST — Banking Ops',
-    desc:"Built for scale and speed inside a bank. Designed and shipped a task resolution system used by 1000+ daily users, where delays compound fast and inefficiencies are expensive. Focused heavily on flow—how tasks enter, move, and get resolved without unnecessary loops. Outcome: workflows became ~2.8x faster, significantly reducing turnaround time across operations. Owned both product and design, making sure the system held up under real usage.",
-    role:'Product & Design', year:'2024', tags:['BANKING','OPS','SCALE']
+    name:'TRUST',
+    subtitle:'Banking Operations',
+    desc:"Built for scale and speed inside a bank. Designed and shipped a task resolution system used by 1000+ daily users, where delays compound fast and inefficiencies are expensive. Focused heavily on flow—how tasks enter, move, and get resolved without unnecessary loops.",
+    stats:[
+      { value:'1K+', label:'Daily\nUsers' },
+      { value:'2.8×', label:'Faster\nWorkflows' },
+      { value:'100%', label:'On-time\nDelivery' },
+      { value:'2024', label:'Year\nShipped' },
+    ]
   },
   {
-    title:'Statement Analyzer',
-    desc:"Took a messy, manual process and made it structured. Owned product and design for a system that converts raw financial statements into usable signals. The challenge wasn't just parsing data—it was aligning outputs with how underwriting teams actually think and decide. Focused on clarity over complexity. The goal wasn't more data—it was better judgment.",
-    role:'Product & Design', year:'2024', tags:['BANKING','AI','UNDERWRITING']
+    name:'Statement Analyzer',
+    subtitle:'Financial SaaS',
+    desc:"Took a messy, manual process and made it structured. Owned product and design for a system that converts raw financial statements into usable signals. The challenge wasn't just parsing data—it was aligning outputs with how underwriting teams actually think and decide.",
+    stats:[
+      { value:'Auto', label:'Automated\nProcessing' },
+      { value:'AI',   label:'Powered\nAnalysis' },
+      { value:'↓',    label:'Reduced\nManual Effort' },
+      { value:'2024', label:'Year\nShipped' },
+    ]
   },
   {
-    title:'AgriTech Platform',
-    desc:"Started from a blank slate. Led product, execution, and design—figuring out what should exist before building it. Worked through fragmented, offline-heavy workflows and translated them into something structured and usable. Balanced ground realities with system constraints, making sure the product didn't just look clean—but actually worked in the environments it was meant for.",
-    role:'Product & Design', year:'2021', tags:['AGRI-TECH','MOBILE','0→1']
+    name:'AgriTech Platform',
+    subtitle:'Agriculture Platform',
+    desc:"Started from a blank slate. Led product, execution, and design—figuring out what should exist before building it. Worked through fragmented, offline-heavy workflows and translated them into something structured and usable.",
+    stats:[
+      { value:'0→1',    label:'Full Product\nBuilt' },
+      { value:'Mobile', label:'First\nPlatform' },
+      { value:'Field',  label:'Tested in\nReal Conditions' },
+      { value:'2021',   label:'Year\nShipped' },
+    ]
   },
 ];
-const projDetailEl = document.getElementById('projDetail');
-const projCounter = document.getElementById('projCounter');
-const projTrack = document.getElementById('projTrack');
-const projWrap = document.getElementById('projectsWrap');
-const projItems = () => document.querySelectorAll('.proj-item');
 
-let currentProj = -1;
-function renderProject(idx) {
-  if (idx === currentProj) return;
-  currentProj = idx;
-  const items = projItems();
-  items.forEach((el, i) => {
+const workDetailEl = document.getElementById('workDetail');
+let currentWork = -1;
+
+function renderWork(idx) {
+  if (idx === currentWork) return;
+  currentWork = idx;
+  // update sidebar active state
+  document.querySelectorAll('.work-proj-item').forEach((el, i) => {
     el.classList.toggle('active', i === idx);
-    el.classList.toggle('near', Math.abs(i - idx) === 1);
   });
-
   const p = projectData[idx];
-  projDetailEl.classList.remove('show');
+  // fade out, swap, fade in
+  workDetailEl.classList.add('fading');
   setTimeout(() => {
-    projDetailEl.innerHTML = `
-      <div class="proj-detail-num">${String(idx+1).padStart(2,'0')} / ${String(projectData.length).padStart(2,'0')}</div>
-      <div class="proj-detail-title">${p.title}</div>
-      <div class="proj-desc">${p.desc}</div>
-      <div class="proj-meta">
-        <div><div class="proj-meta-label">Role</div><div class="proj-meta-val">${p.role}</div></div>
-        <div><div class="proj-meta-label">Year</div><div class="proj-meta-val">${p.year}</div></div>
+    workDetailEl.innerHTML = `
+      <div class="work-detail-num">${String(idx+1).padStart(2,'0')}</div>
+      <div class="work-detail-header">
+        <div class="work-detail-title">${p.name}</div>
+        <a class="work-detail-link" href="#" tabindex="-1">↗</a>
       </div>
-      <div class="proj-tags">${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}</div>
+      <div class="work-detail-subtitle">${p.subtitle}</div>
+      <div class="work-detail-desc">${p.desc}</div>
+      <div class="work-detail-image">
+        <span class="work-detail-img-placeholder">Image Placeholder</span>
+      </div>
+      <div class="work-stats">
+        ${p.stats.map(s => `
+          <div class="work-stat">
+            <div class="work-stat-value">${s.value}</div>
+            <div class="work-stat-label">${s.label.replace('\n','<br>')}</div>
+          </div>
+        `).join('')}
+      </div>
     `;
-    projDetailEl.classList.add('show');
-  }, 180);
-  if (projCounter) projCounter.textContent = String(idx+1).padStart(2,'0') + ' / 0' + projectData.length;
+    workDetailEl.classList.remove('fading');
+  }, 200);
 }
 
-let _projRafPending = false;
-let _projWrapTop = 0, _projWrapTotal = 0;
-function _cacheProjWrap() {
-  if (!projWrap) return;
-  const rect = projWrap.getBoundingClientRect();
-  _projWrapTop = rect.top + window.scrollY;
-  _projWrapTotal = projWrap.offsetHeight - window.innerHeight;
-}
-function updateProjFromScroll() {
-  if (!projWrap || !pages.creation.classList.contains('active')) return;
-  if (_projRafPending) return;
-  _projRafPending = true;
+// Wire up sidebar clicks (manual override)
+document.querySelectorAll('.work-proj-item').forEach(el => {
+  el.addEventListener('click', () => {
+    _scrollOverride = parseInt(el.dataset.idx);
+    renderWork(_scrollOverride);
+    setTimeout(() => { _scrollOverride = -1; }, 1200);
+  });
+});
+
+// Scroll-driven project switching
+let _scrollOverride = -1;
+let _workRaf = false;
+const workOuter = document.getElementById('workOuter');
+
+function updateWorkFromScroll() {
+  if (!workOuter || !pages.creation.classList.contains('active')) return;
+  if (_workRaf) return;
+  _workRaf = true;
   requestAnimationFrame(() => {
-    _projRafPending = false;
-    if (_projWrapTotal <= 0) return;
-    const scrolled = Math.min(Math.max(window.scrollY - _projWrapTop, 0), _projWrapTotal);
-    const progress = scrolled / _projWrapTotal;
+    _workRaf = false;
+    if (_scrollOverride >= 0) return;
+    const rect = workOuter.getBoundingClientRect();
+    const scrolled = Math.max(0, -rect.top);
+    const total = workOuter.offsetHeight - window.innerHeight;
+    const progress = total > 0 ? Math.min(1, scrolled / total) : 0;
     const idx = Math.min(projectData.length - 1, Math.floor(progress * projectData.length));
-    renderProject(idx);
+    renderWork(idx);
   });
 }
-window.addEventListener('scroll', updateProjFromScroll, { passive:true });
-window.addEventListener('resize', () => { _cacheProjWrap(); updateProjFromScroll(); });
-window.addEventListener('resize', updateProjFromScroll);
-renderProject(0);
+
+window.addEventListener('scroll', updateWorkFromScroll, { passive: true });
+window.addEventListener('resize', updateWorkFromScroll);
+renderWork(0);
 
 /* ═══════════════ FRAGMENTS ═══════════════ */
 const fragmentData = [

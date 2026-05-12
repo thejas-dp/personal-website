@@ -611,7 +611,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 /* ═══════════════ WORK SECTION — scroll-sticky 2-col ═══════════════ */
 .work-outer {
   position:relative;
-  height:calc(5 * 90vh + 10vh); /* scroll budget for 5 projects */
+  height:calc(6 * 90vh + 10vh); /* scroll budget for 6 projects */
 }
 .work-section {
   position:sticky; top:0; height:100vh; overflow:hidden;
@@ -1293,37 +1293,45 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
         <li class="work-proj-item active" data-idx="0">
           <span class="work-proj-num">01</span>
           <div class="work-proj-info">
-            <div class="work-proj-name">LoopX</div>
-            <div class="work-proj-type">AI Agents Platform</div>
+            <div class="work-proj-name">GrowX</div>
+            <div class="work-proj-type">Growth Experience Platform</div>
           </div>
           <span class="work-proj-arrow">→</span>
         </li>
         <li class="work-proj-item" data-idx="1">
           <span class="work-proj-num">02</span>
           <div class="work-proj-info">
-            <div class="work-proj-name">Internal Sales Platform</div>
-            <div class="work-proj-type">NBFC Sales Tool</div>
+            <div class="work-proj-name">LoopX</div>
+            <div class="work-proj-type">AI Agents Platform</div>
           </div>
           <span class="work-proj-arrow">→</span>
         </li>
         <li class="work-proj-item" data-idx="2">
           <span class="work-proj-num">03</span>
           <div class="work-proj-info">
-            <div class="work-proj-name">TRUST</div>
-            <div class="work-proj-type">Banking Operations</div>
+            <div class="work-proj-name">Performance Powered Motivation System</div>
+            <div class="work-proj-type">Driving sales motivation through performance insights</div>
           </div>
           <span class="work-proj-arrow">→</span>
         </li>
         <li class="work-proj-item" data-idx="3">
           <span class="work-proj-num">04</span>
           <div class="work-proj-info">
-            <div class="work-proj-name">Statement Analyzer</div>
-            <div class="work-proj-type">Financial SaaS</div>
+            <div class="work-proj-name">TRUST</div>
+            <div class="work-proj-type">Banking Operations</div>
           </div>
           <span class="work-proj-arrow">→</span>
         </li>
         <li class="work-proj-item" data-idx="4">
           <span class="work-proj-num">05</span>
+          <div class="work-proj-info">
+            <div class="work-proj-name">Statement Analyzer</div>
+            <div class="work-proj-type">Financial SaaS</div>
+          </div>
+          <span class="work-proj-arrow">→</span>
+        </li>
+        <li class="work-proj-item" data-idx="5">
+          <span class="work-proj-num">06</span>
           <div class="work-proj-info">
             <div class="work-proj-name">AgriTech Platform</div>
             <div class="work-proj-type">Agriculture Platform</div>
@@ -1658,6 +1666,17 @@ runSectionObservers();
 /* ═══════════════ WORK SECTION (Materialize) ═══════════════ */
 const projectData = [
   {
+    name:'GrowX',
+    subtitle:'Growth Experience Platform',
+    desc:"AI-powered platform that helps product and growth teams design, build, and launch in-app experiences faster. From onboarding journeys and loyalty flows to nudges, banners, referrals, and personalized user experiences — GrowX enables teams to go from idea to production in minutes using AI-assisted creation, no-code workflows, and reusable design systems.",
+    stats:[
+      { value:'Min',  label:'Idea to\nProduction' },
+      { value:'0',    label:'Code\nRequired' },
+      { value:'∞',    label:'Experiments\nPossible' },
+      { value:'AI',   label:'Assisted\nCreation' },
+    ]
+  },
+  {
     name:'LoopX',
     subtitle:'AI Agents Platform',
     desc:"Built the system from zero—no predefined structure, no playbook. Led product and design for a multi-agent AI platform where 6+ agents coordinate to execute tasks across real workflows. Designed the full backbone: integrations layer, action pipelines, and a logic execution engine that handles real-world variability.",
@@ -1669,8 +1688,8 @@ const projectData = [
     ]
   },
   {
-    name:'Internal Sales Platform',
-    subtitle:'NBFC Sales Tool',
+    name:'Performance Powered Motivation System',
+    subtitle:'Driving sales motivation through performance insights',
     desc:"Led product and execution for an internal platform used by agents to manage and close loans. The core problem wasn't lack of effort—it was friction. Restructured the workflow, simplified decision points, and built around how agents actually operate under pressure.",
     stats:[
       { value:'50%',  label:'Reduction in\nTime per Workflow' },

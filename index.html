@@ -614,16 +614,17 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .exp-row.in .exp-bullets li:nth-child(3) { transition-delay:0.35s; }
 
 /* ═══════════════ WORK SECTION — Swiss Editorial Grid ═══════════════ */
+/*
+  Architecture: images and text are INDEPENDENT direct grid children.
+  Every element has explicit grid-column AND grid-row coordinates.
+  Nothing floats, nothing centers — pure grid placement.
+  grid-auto-rows: 1vw = fine-grained module system (≈14px per row @ 1440px).
+*/
 
-/* Section shell */
 .sw-section { padding:0; position:relative; }
 
-/* Header: giant title + subtitle */
-.sw-header {
-  padding:14vh 6vw 0;
-  border-bottom:1px solid var(--line);
-  overflow:hidden;
-}
+/* ── Header ── */
+.sw-header { padding:14vh 6vw 0; border-bottom:1px solid var(--line); }
 .sw-title {
   font-family:'Inter', sans-serif; font-weight:900;
   font-size:clamp(5rem,13vw,15rem);
@@ -635,131 +636,113 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   font-size:clamp(0.95rem,1.5vw,1.25rem);
   line-height:1.45; color:var(--ink); font-weight:400;
   max-width:36ch;
-  /* indent to roughly 1/6 of width — aligns to col-2 boundary */
-  margin-left:calc(100% / 6);
+  margin-left:calc(100% / 6); /* aligns to col-2 start */
   padding-bottom:4rem;
 }
 
-/* 6-column editorial grid */
+/* ── 6-column module grid ── */
 .sw-work-grid {
   display:grid;
   grid-template-columns:repeat(6,1fr);
-  align-items:start;
+  grid-auto-rows:1vw;         /* 1 row = 1vw ≈ 14.4px @ 1440px */
+  column-gap:0; row-gap:0;
   padding:0 6vw;
   position:relative;
 }
 
-/* Subtle column lines drawn as a repeating gradient behind content */
+/*
+  Column lines: pseudo-element spans exactly the content area
+  (left:6vw; right:6vw mirrors the grid padding) so lines align
+  with actual column boundaries. z-index:10 draws them on top.
+*/
 .sw-work-grid::before {
   content:'';
-  position:absolute; inset:0;
-  background-image:
-    repeating-linear-gradient(
-      to right,
-      var(--line) 0, var(--line) 1px,
-      transparent 1px, transparent calc(100% / 6)
-    );
-  pointer-events:none; z-index:0;
+  position:absolute;
+  top:0; bottom:0;
+  left:6vw; right:6vw;       /* content-area only — matches grid padding */
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent calc(100% / 6 - 1px),
+    rgba(26,26,26,0.07) calc(100% / 6 - 1px),
+    rgba(26,26,26,0.07) calc(100% / 6)
+  );
+  pointer-events:none; z-index:10;
 }
 
-/* Each item spans exactly 2 columns; internal layout: stacked (image then text) */
-.sw-item {
+/* ── Image blocks ── fills grid area edge-to-edge, no padding */
+.sw-img {
   position:relative; z-index:1;
-  display:flex; flex-direction:column;
-  padding:0 2rem 8rem;
-  align-self:start;
-}
-
-/* Precise grid-column & stagger — row 1: items 1-3, row 2: items 4-6 */
-/* Row 1 */
-.sw-item:nth-child(1) { grid-column:1/3; padding-top:5rem; }
-.sw-item:nth-child(2) { grid-column:3/5; padding-top:18rem; }
-.sw-item:nth-child(3) { grid-column:5/7; padding-top:2rem; }
-/* Row 2 — starts visually after row 1 items end; stagger within the row */
-.sw-item:nth-child(4) { grid-column:1/3; padding-top:3rem; }
-.sw-item:nth-child(5) { grid-column:3/5; padding-top:0; }
-.sw-item:nth-child(6) { grid-column:5/7; padding-top:14rem; }
-
-/* Image block — slightly portrait, no radius, no shadow */
-.sw-item-image {
-  width:100%; aspect-ratio:4/5;
+  overflow:hidden;
   background:var(--cream-2);
-  overflow:hidden; flex-shrink:0;
-  margin-bottom:2rem;
+  border:1px solid rgba(26,26,26,0.06);   /* just enough to read in preview */
   display:flex; align-items:center; justify-content:center;
+  /* No padding, no radius, no shadow — pure grid object */
 }
-.sw-item-image img {
+.sw-img img {
   width:100%; height:100%;
-  object-fit:cover; object-position:top center;
+  object-fit:cover; object-position:center top;
   display:block;
 }
-.sw-item-img-placeholder {
-  font-size:0.52rem; letter-spacing:0.22em;
+.sw-img-placeholder {
+  font-size:0.5rem; letter-spacing:0.2em;
   text-transform:uppercase; color:var(--muted); opacity:0.38;
 }
 
-/* For items 3 & 4 — image comes AFTER text (reversed order) */
-.sw-item:nth-child(3) .sw-item-image,
-.sw-item:nth-child(4) .sw-item-image { order:2; margin-bottom:0; margin-top:2rem; }
-.sw-item:nth-child(3) .sw-item-text,
-.sw-item:nth-child(4) .sw-item-text  { order:1; }
-
-/* Text block */
-.sw-item-text { display:flex; flex-direction:column; }
-
-.sw-item-num {
-  font-size:0.52rem; letter-spacing:0.24em;
-  text-transform:uppercase; color:var(--muted);
-  font-weight:600; margin-bottom:0.7rem;
+/* ── Text blocks ── grid-placed, tight internal padding */
+.sw-text {
+  position:relative; z-index:1;
+  padding:2rem 1.8rem;
+  display:flex; flex-direction:column; justify-content:flex-start;
 }
-.sw-item-heading {
+.sw-text .sw-num {
+  font-size:0.5rem; letter-spacing:0.26em;
+  text-transform:uppercase; color:var(--muted);
+  font-weight:600; margin-bottom:0.55rem;
+}
+.sw-text .sw-heading {
   font-family:var(--display); font-weight:700;
-  font-size:clamp(2rem,3.2vw,4rem);
+  font-size:clamp(1.8rem,2.8vw,3.8rem);
   line-height:0.88; text-transform:uppercase;
   color:var(--ink); letter-spacing:-0.01em;
-  margin-bottom:1.2rem;
+  margin-bottom:1rem;
   word-break:break-word; hyphens:auto;
 }
-.sw-item-desc {
-  font-size:0.72rem; line-height:1.72;
-  color:var(--ink-lt); max-width:32ch;
+.sw-text .sw-desc {
+  font-size:0.7rem; line-height:1.72; color:var(--ink-lt);
 }
 
-/* Column number bar at the bottom */
+/* ── Column numbers ── */
 .sw-col-nums {
   display:grid; grid-template-columns:repeat(6,1fr);
-  padding:4rem 6vw;
+  padding:3rem 6vw;
   border-top:1px solid var(--line);
-  margin-top:2rem;
 }
 .sw-col-num {
   font-family:var(--display); font-weight:700;
   font-size:clamp(3rem,7vw,8.5rem);
   line-height:1; text-align:center;
   color:transparent;
-  -webkit-text-stroke:1px rgba(26,26,26,0.11);
-  letter-spacing:-0.02em;
-  user-select:none;
+  -webkit-text-stroke:1px rgba(26,26,26,0.10);
+  letter-spacing:-0.02em; user-select:none;
 }
 
-/* ── Responsive ── */
-@media (max-width:1024px) {
-  .sw-item:nth-child(2) { padding-top:10rem; }
-  .sw-item:nth-child(6) { padding-top:8rem; }
-}
-@media (max-width:768px) {
-  .sw-work-grid { grid-template-columns:repeat(2,1fr); }
-  .sw-item { grid-column:auto !important; padding-top:3rem !important; }
-  .sw-subtitle { margin-left:0; }
-  .sw-item:nth-child(3) .sw-item-image,
-  .sw-item:nth-child(4) .sw-item-image { order:1; margin-top:0; margin-bottom:2rem; }
-  .sw-item:nth-child(3) .sw-item-text,
-  .sw-item:nth-child(4) .sw-item-text  { order:2; }
+/* ── Responsive: reset to flow layout below 900px ── */
+@media (max-width:900px) {
+  .sw-work-grid {
+    grid-template-columns:repeat(2,1fr);
+    grid-auto-rows:auto;
+  }
+  /* Reset all explicit placement — let grid auto-place */
+  .sw-img, .sw-text {
+    grid-column:auto !important;
+    grid-row:auto !important;
+  }
   .sw-col-nums { grid-template-columns:repeat(3,1fr); }
 }
 @media (max-width:480px) {
   .sw-work-grid { grid-template-columns:1fr; }
-  .sw-item { grid-column:1 !important; padding:2.5rem 1.5rem !important; }
+  .sw-subtitle { margin-left:0; }
   .sw-col-nums { display:none; }
 }
 
@@ -1690,27 +1673,54 @@ const projectData = [
 ];
 
 /* ═══════════════ WORK — Swiss Editorial Grid Render ═══════════════ */
+/*
+  True Swiss grid: images and text are SEPARATE direct grid children.
+  Each element has explicit grid-column + grid-row via inline style.
+  grid-auto-rows: 1vw — every row unit = 1vw ≈ 14.4px @ 1440px.
+
+  Layout table (col pairs use 6-col grid, rows in 1vw units):
+  ┌────────────────┬──────────┬──────────┬──────────┐
+  │ Project        │ Cols     │ Img rows │ Txt rows │
+  ├────────────────┼──────────┼──────────┼──────────┤
+  │ 01 GrowX       │ 1 → 3   │  5 → 55  │ 60 → 80  │  ← starts highest, left
+  │ 02 LoopX       │ 3 → 5   │ 20 → 70  │ 75 → 95  │  ← 15 rows below GrowX
+  │ 03 PPMS        │ 5 → 7   │ 10 → 60  │ 65 → 85  │  ← 5 rows below GrowX
+  │ 04 TRUST       │ 1 → 3   │110 → 160 │165 → 185 │  ← band 2, left
+  │ 05 StmtAnlzr   │ 3 → 5   │120 → 170 │175 → 195 │  ← 10 rows below TRUST
+  │ 06 AgriTech    │ 5 → 7   │105 → 155 │160 → 180 │  ← band 2 starts highest, right
+  └────────────────┴──────────┴──────────┴──────────┘
+  Band-1 stagger: left(5) → right(10) → center(20)  — cascade left-to-right
+  Band-2 stagger: right(105) → left(110) → center(120) — opposite, creates tension
+  Gap between bands: rows 95–105 = ~144px empty column space
+*/
 (function renderSwissWorkGrid() {
   const grid = document.getElementById('swWorkGrid');
   if (!grid) return;
 
-  grid.innerHTML = projectData.map((p, i) => {
-    const num = String(i + 1).padStart(2, '0');
+  const layout = [
+    // [projIdx, colStart, colEnd, imgRowStart, imgRowEnd, txtRowStart, txtRowEnd]
+    [0,  1, 3,   5,  55,  60,  80],   // GrowX
+    [1,  3, 5,  20,  70,  75,  95],   // LoopX
+    [2,  5, 7,  10,  60,  65,  85],   // PPMS
+    [3,  1, 3, 110, 160, 165, 185],   // TRUST
+    [4,  3, 5, 120, 170, 175, 195],   // Statement Analyzer
+    [5,  5, 7, 105, 155, 160, 180],   // AgriTech
+  ];
+
+  grid.innerHTML = layout.map(([pi, cs, ce, ir, ie, tr, te]) => {
+    const p = projectData[pi];
+    const num = String(pi + 1).padStart(2, '0');
     const imgHTML = p.img
       ? `<img src="${p.img}" alt="${p.name}" loading="lazy"/>`
-      : `<span class="sw-item-img-placeholder">Image Placeholder</span>`;
+      : `<span class="sw-img-placeholder">Image Placeholder</span>`;
 
-    return `
-      <article class="sw-item">
-        <div class="sw-item-image">${imgHTML}</div>
-        <div class="sw-item-text">
-          <div class="sw-item-num">${num}</div>
-          <h3 class="sw-item-heading">${p.name}</h3>
-          <p class="sw-item-desc">${p.desc}</p>
-        </div>
-      </article>
-    `;
-  }).join('');
+    return `<div class="sw-img" style="grid-column:${cs}/${ce};grid-row:${ir}/${ie};">${imgHTML}</div>
+<div class="sw-text" style="grid-column:${cs}/${ce};grid-row:${tr}/${te};">
+  <span class="sw-num">${num}</span>
+  <h3 class="sw-heading">${p.name}</h3>
+  <p class="sw-desc">${p.desc}</p>
+</div>`;
+  }).join('\n');
 })();
 
 /* ═══════════════ FRAGMENTS ═══════════════ */

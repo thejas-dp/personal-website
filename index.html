@@ -3213,7 +3213,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
         <div class="cn-divider"></div>
       </div>
       <div class="cn-contacts">
-        <div class="cn-row" onclick="copyEmailRow(this)">
+        <div class="cn-row" onclick="copyEmailRow(this)" data-cursor-open data-cursor-label="COPY">
           <span class="cn-label">Email</span>
           <div class="cn-main">
             <span class="cn-val" data-orig="poonthottathilthejas@gmail.com">poonthottathilthejas@gmail.com</span>
@@ -4231,10 +4231,13 @@ function renderFragments_UNUSED() {
       el.addEventListener('mouseenter', function() {
         isOpen = true;
         cursor.classList.add('cursor-open');
+        var lbl = el.dataset.cursorLabel;
+        if (lbl) cursor.querySelector('.cursor-label').textContent = lbl;
       });
       el.addEventListener('mouseleave', function() {
         isOpen = false;
         cursor.classList.remove('cursor-open');
+        cursor.querySelector('.cursor-label').textContent = 'OPEN';
       });
     });
   }

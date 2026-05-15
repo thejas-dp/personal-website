@@ -2336,6 +2336,50 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   color:rgba(255,255,255,0.22);
 }
 
+/* ── Rich case study content ── */
+.md-role {
+  display:inline-block; font-size:0.52rem; letter-spacing:0.22em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.1);
+  padding:0.28rem 0.6rem; border-radius:2px; margin-bottom:1rem;
+}
+.md-section { margin-bottom:1.8rem; }
+.md-section-label {
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:0.52rem; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--coral); margin-bottom:0.65rem;
+}
+.md-body {
+  font-family:'Inter',sans-serif; font-size:0.76rem;
+  line-height:1.72; color:rgba(255,255,255,0.42); max-width:52ch;
+}
+.md-divider { height:1px; background:rgba(255,255,255,0.07); margin:1.8rem 0; }
+.md-callout {
+  background:rgba(255,255,255,0.03); border-left:2px solid var(--coral);
+  padding:0.8rem 1rem; font-size:0.74rem; line-height:1.68;
+  color:rgba(255,255,255,0.5); margin:1rem 0;
+}
+.md-num {
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:1.05em; color:#fff; letter-spacing:-0.01em;
+}
+.md-metrics {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem 2.2rem;
+}
+.md-metric-num {
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:clamp(2rem,3.8vw,3.2rem); line-height:1;
+  letter-spacing:-0.02em; color:#fff; margin-bottom:0.3rem;
+}
+.md-metric-num--hi { color:var(--coral); }
+.md-metric-label {
+  font-size:0.56rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:rgba(255,255,255,0.32); font-weight:500; font-family:'Inter',sans-serif;
+}
+.md-metric-sub {
+  font-size:0.6rem; color:rgba(255,255,255,0.18);
+  margin-top:0.2rem; font-family:'Inter',sans-serif;
+}
+
 /* ═══════════════ CONTACT — full black right panel ═══════════════ */
 #page-contact .asp-right {
   background:#0a0a0a;
@@ -3828,14 +3872,76 @@ runSectionObservers();
 const projectData = [
   {
     name:'GrowX',
-    subtitle:'Growth Experience Platform',
-    desc:"AI-powered platform that helps product and growth teams design, build, and launch in-app experiences faster. From onboarding journeys and loyalty flows to nudges, banners, referrals, and personalized user experiences — GrowX enables teams to go from idea to production in minutes using AI-assisted creation, no-code workflows, and reusable design systems.",
-    stats:[
-      { value:'Min',  label:'Idea to\nProduction' },
-      { value:'0',    label:'Code\nRequired' },
-      { value:'∞',    label:'Experiments\nPossible' },
-      { value:'AI',   label:'Assisted\nCreation' },
-    ]
+    subtitle:'Prompt-to-Production Growth Experimentation Platform',
+    desc:"No-code platform that lets product teams build, connect, and ship in-app experiments — UI and backend logic — without engineering. From prompt to live result.",
+    body:`<div class="md-role">PM + Design Lead — Zero to One</div>
+<div class="md-heading">GROWX</div>
+<div class="md-subtitle">Prompt-to-Production Growth Experimentation Platform</div>
+<div class="md-divider"></div>
+<div class="md-section">
+  <div class="md-section-label">The Problem</div>
+  <p class="md-body">Growth teams spend <span class="md-num">2–4 weeks</span> on experiments that should take <span class="md-num">2 days</span>. Not because execution is hard — because of the translation chain between intent and production. Every link is a meeting, a dependency, or a sprint cycle. GrowX was built to delete it.</p>
+</div>
+<div class="md-section">
+  <div class="md-section-label">The Solution</div>
+  <p class="md-body">A no-code, prompt-to-production platform for shipping in-app experiments — UI and backend logic together — without engineering. Two composable modules: a frontend builder (Figma import, templates, AI generation, canvas) and a backend builder (Postman import, visual graph, prompt-to-logic). GrowX connects them, instruments the experiment, and puts a kill switch on every launch.</p>
+</div>
+<div class="md-callout">Before: PRD → Design → Engineering → QA → ship in <span class="md-num">18 days</span>.<br>After: describe intent → GrowX → live experiment in <span class="md-num">6 hours</span>.</div>
+<div class="md-divider"></div>
+<div class="md-section-label" style="margin-bottom:1.2rem">Performance</div>
+<div class="md-metrics">
+  <div class="md-metric">
+    <div class="md-metric-num">87%</div>
+    <div class="md-metric-label">Time-to-launch reduction</div>
+    <div class="md-metric-sub">18 days → 6 hours</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">5.2×</div>
+    <div class="md-metric-label">Experiment velocity</div>
+    <div class="md-metric-sub">0.8 → 4.2 per PM/week</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">74%</div>
+    <div class="md-metric-label">Shipped without engineering</div>
+    <div class="md-metric-sub">Zero dev involvement</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">90%</div>
+    <div class="md-metric-label">Engineering cost reduction</div>
+    <div class="md-metric-sub">34 hrs → under 3 hrs</div>
+  </div>
+</div>
+<div class="md-divider"></div>
+<div class="md-section-label" style="margin-bottom:1.2rem">Product Outcomes</div>
+<div class="md-metrics">
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">23%</div>
+    <div class="md-metric-label">Avg activation lift</div>
+    <div class="md-metric-sub">Onboarding experiments</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">17%</div>
+    <div class="md-metric-label">Conversion lift</div>
+    <div class="md-metric-sub">Trial → paid flows</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">31%</div>
+    <div class="md-metric-label">Feature adoption lift</div>
+    <div class="md-metric-sub">Targeted nudge campaigns</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">+14pp</div>
+    <div class="md-metric-label">D7 retention improvement</div>
+    <div class="md-metric-sub">vs control group</div>
+  </div>
+</div>
+<div class="md-divider"></div>
+<div class="md-callout">Best result: Progressive onboarding checklist → <span class="md-num">38%</span> activation lift + <span class="md-num">19%</span> week-one retention. Cost recovery in <span class="md-num">6 weeks</span> on eng hours alone.</div>
+<div class="md-divider"></div>
+<div class="md-section">
+  <div class="md-section-label">The Insight</div>
+  <p class="md-body">Teams shipping 20 experiments a month and winning 30% beat teams shipping 4 and winning 60% — the former compounds knowledge faster. GrowX is a throughput machine built on a quality guardrail. Speed without credibility is noise. GrowX produces both.</p>
+</div>`
   },
   {
     name:'LoopX',
@@ -3976,19 +4082,23 @@ function matSelect(rowEl, type, idx) {
       var p = projectData[idx];
       topbarEl.textContent = 'CASE — ' + String(idx + 1).padStart(2, '0') + ' OF ' + projectData.length;
       ghostEl.textContent  = p.name;
-      var statsHTML = '';
-      if (p.stats && p.stats.length) {
-        statsHTML = '<div class="md-stats">' +
-          p.stats.map(function(s) {
-            return '<div><div class="md-stat-val">' + s.value + '</div>' +
-              '<div class="md-stat-label">' + s.label + '</div></div>';
-          }).join('') + '</div>';
+      if (p.body) {
+        contentEl.innerHTML = p.body;
+      } else {
+        var statsHTML = '';
+        if (p.stats && p.stats.length) {
+          statsHTML = '<div class="md-stats">' +
+            p.stats.map(function(s) {
+              return '<div><div class="md-stat-val">' + s.value + '</div>' +
+                '<div class="md-stat-label">' + s.label + '</div></div>';
+            }).join('') + '</div>';
+        }
+        contentEl.innerHTML =
+          '<div class="md-heading">' + p.name + '</div>' +
+          '<div class="md-subtitle">' + p.subtitle + '</div>' +
+          '<p class="md-desc">' + p.desc + '</p>' +
+          statsHTML;
       }
-      contentEl.innerHTML =
-        '<div class="md-heading">' + p.name + '</div>' +
-        '<div class="md-subtitle">' + p.subtitle + '</div>' +
-        '<p class="md-desc">' + p.desc + '</p>' +
-        statsHTML;
     } else {
       var f = fragmentData[idx];
       topbarEl.textContent = 'OBSERVATION — ' + String(idx + 1).padStart(2, '0') + ' OF ' + fragmentData.length;

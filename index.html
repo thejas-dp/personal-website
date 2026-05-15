@@ -1941,6 +1941,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 /* ── DETAIL PANEL ── */
 .ad-wrap {
   width:0; flex-shrink:0; overflow:hidden;
+  display:flex; flex-direction:column;
   border-left:0px solid rgba(255,255,255,0.06);
   transition:width 0.85s cubic-bezier(0.76,0,0.24,1),
              border-left-width 0s linear 0.85s;
@@ -1952,7 +1953,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
              border-left-width 0s linear 0s;
 }
 .ad-inner {
-  width:100%; height:100%;
+  width:100%; flex:1;
   display:flex; flex-direction:column; overflow:hidden;
   opacity:0; transform:translateX(100%);
   transition:opacity 0.4s ease 0.25s, transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.1s;

@@ -69,14 +69,14 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   overflow:hidden;
 }
 .loader-cd {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(8rem,18vw,18rem); line-height:1;
   letter-spacing:-0.04em; color:#E01616;
   transform-origin:center center;
-  transition:transform 0.55s cubic-bezier(0.16,1,0.3,1);
+  transition:transform 0.72s cubic-bezier(0.55,0,1,0.45);
   will-change:transform;
 }
-.loader-cd.zoom { transform:scale(40); }
+.loader-cd.zoom { transform:scale(50); }
 
 /* ═══════════════ MOBILE OVERLAY ═══════════════ */
 .mobile-block {
@@ -101,7 +101,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   padding-bottom:2rem;
 }
 .mobile-block-title {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(3.8rem,16vw,8rem);
   line-height:0.85; letter-spacing:-0.04em; text-transform:uppercase;
   color:#ffffff; margin-bottom:2rem;
@@ -121,7 +121,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   color:rgba(255,255,255,0.22);
 }
 .mobile-block-anyway {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase;
   color:#ffffff; background:none; border:1px solid rgba(255,255,255,0.2);
   padding:0.6rem 1.2rem; cursor:pointer;
@@ -791,7 +791,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   transition:none;
 }
 .idx-ghost-num {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(5rem,11vw,12rem);
   line-height:1; color:transparent;
   -webkit-text-stroke:1px rgba(26,26,26,0.09);
@@ -809,7 +809,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 /* Left nav — hover turns title + ghost numbers coral */
 .idx-nav-left { cursor:pointer; }
 .idx-nav-title {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(1.2rem,2vw,2.2rem);
   letter-spacing:-0.01em; text-transform:uppercase;
   color:var(--ink); margin-bottom:0.35rem; transition:color 0.25s;
@@ -859,7 +859,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   border-right:1px solid var(--line);
 }
 .disc-title {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(3.2rem,7vw,8.5rem);
   line-height:0.88; letter-spacing:-0.02em; text-transform:uppercase; color:var(--ink);
 }
@@ -893,7 +893,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .disc-col:last-child .disc-col-head { padding-right:6vw; }
 .disc-big-num {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(4rem,7.5vw,9rem);
   line-height:0.85; color:var(--coral); letter-spacing:-0.04em; flex-shrink:0;
 }
@@ -1115,7 +1115,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .proj-sel-placeholder.is-active { opacity:1; transform:scale(1); }
 .proj-sel-placeholder-label {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(3rem,10vw,12rem);
   letter-spacing:-0.04em; line-height:1;
   color:var(--coral); text-transform:uppercase; opacity:0.25;
@@ -1125,7 +1125,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   padding-top:2rem;
 }
 .proj-sel-cur {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(2.5rem,5vw,5rem);
   line-height:1; letter-spacing:-0.03em; color:var(--ink);
   transition:color 0.3s;
@@ -1164,7 +1164,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   align-items:flex-start; gap:1rem;
 }
 .proj-sel-name {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(1.6rem,3.5vw,5rem);
   line-height:0.9; letter-spacing:-0.03em;
   text-transform:uppercase; color:var(--ink);
@@ -1199,7 +1199,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   gap:0.8rem; padding-top:1.2rem;
 }
 .proj-sel-stat-val {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(1rem,2vw,2rem);
   letter-spacing:-0.02em; line-height:1; color:var(--ink);
 }
@@ -1283,7 +1283,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
 }
 .fsw-img-placeholder {
-  font-family:var(--display); font-weight:700;
+  font-family:var(--display); font-weight:400;
   font-size:clamp(2rem,6vw,7rem); letter-spacing:-0.04em;
   color:rgba(26,26,26,0.06); text-transform:uppercase; user-select:none;
 }
@@ -1349,7 +1349,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   padding:0.9rem 1.4rem; flex-shrink:0; position:relative; z-index:2;
 }
 .ln-brand {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(0.7rem,1vw,0.9rem); letter-spacing:0.1em;
   text-transform:uppercase; color:#1a1a1a;
 }
@@ -1385,23 +1385,16 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .ln-text-col { display:flex; align-items:center; }
 .ln-main-text {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(3.2rem,11.5vw,13.5rem);
   line-height:0.88; letter-spacing:-0.01em;
   text-transform:uppercase; color:#1a1a1a;
-  transition:font-style 0.22s ease, color 0.22s ease, font-weight 0.22s ease;
+  transition:color 0.22s ease;
   display:block;
 }
-/* Hover: italic, white, thin — no change requested so keep */
 .ln-row:hover .ln-main-text {
-  font-style:italic; color:#ffffff; font-weight:300;
+  color:#ffffff;
 }
-/* ensure child chars inherit the thinned weight */
-.ln-main-text .ln-char {
-  font-weight:inherit;
-  transition:font-weight 0.22s ease;
-}
-.ln-row:hover .ln-main-text .ln-char { font-weight:300; }
 
 /* Selected state: bold white */
 .ln-row--active .ln-main-text {
@@ -1424,7 +1417,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 
 .ln-num-col { display:flex; align-items:center; justify-content:flex-end; }
 .ln-num {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(1.8rem,5.5vw,7rem);
   line-height:1; letter-spacing:-0.02em; color:#1a1a1a;
   transition:color 0.22s ease, font-weight 0.22s ease;
@@ -1496,7 +1489,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   padding:1rem 1.5rem; flex-shrink:0;
 }
 .asp-logo {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:1rem; color:#1a1a1a; letter-spacing:-0.02em;
   border:2px solid #1a1a1a; padding:0.18rem 0.4rem;
   line-height:1; text-transform:lowercase;
@@ -1513,12 +1506,12 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   padding:0 1.5rem;
 }
 .asp-hero-num {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(2.4rem,5.5vw,6.5rem); line-height:1;
   color:#1a1a1a; margin-bottom:0.05em;
 }
 .asp-hero-title {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(2.5rem,6.5vw,7.5rem);
   line-height:0.88; color:#1a1a1a;
   letter-spacing:-0.03em; text-transform:uppercase;
@@ -1535,20 +1528,20 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   display:flex; flex-direction:column; gap:0.35rem;
 }
 .asp-nav-item {
-  display:flex; align-items:baseline; gap:0.7rem; cursor:pointer;
+  display:flex; align-items:center; gap:0.7rem; cursor:pointer;
 }
 .asp-nav-label {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(0.9rem,1.5vw,1.35rem); color:#741212;
   letter-spacing:0.01em; text-transform:uppercase;
   transition:font-weight 0.22s ease, font-style 0.22s ease, color 0.22s ease;
 }
 .asp-nav-num {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(0.7rem,1.1vw,0.95rem); color:#741212;
   transition:color 0.22s ease, font-weight 0.22s ease;
 }
-.asp-nav-item:hover .asp-nav-label { font-weight:300; font-style:italic; color:#ffffff; }
+.asp-nav-item:hover .asp-nav-label { font-weight:300; color:#ffffff; }
 .asp-nav-item:hover .asp-nav-num { color:rgba(255,255,255,0.55); font-weight:300; }
 .asp-nav-item--active .asp-nav-label { font-style:normal !important; font-weight:800 !important; color:#1a1a1a !important; }
 .asp-nav-item--active .asp-nav-num { color:#1a1a1a !important; font-weight:700 !important; }
@@ -1586,7 +1579,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .id-hero-left {}
 .id-name {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(2.8rem,6vw,7rem);
   line-height:0.85; letter-spacing:-0.04em; text-transform:uppercase;
   color:#ffffff; margin-bottom:1rem;
@@ -1619,7 +1612,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   color:rgba(255,255,255,0.28); margin-bottom:0.5rem;
 }
 .id-stat-value {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(1.4rem,2.5vw,2.8rem); line-height:0.9;
   letter-spacing:-0.02em; text-transform:uppercase; color:#ffffff;
 }
@@ -1656,7 +1649,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .id-drives { display:flex; flex-direction:column; gap:0.2rem; }
 .id-drive-item {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(1.1rem,2vw,2rem); letter-spacing:-0.01em;
   text-transform:uppercase; color:#ffffff; line-height:1.1;
 }
@@ -1678,7 +1671,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   color:rgba(255,255,255,0.28); margin-bottom:0.4rem;
 }
 .id-connect-email {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(1rem,2vw,1.8rem); letter-spacing:-0.01em;
   color:#ffffff; text-transform:lowercase;
   transition:color 0.2s;
@@ -1706,7 +1699,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .id-do-body {}
 .id-do-title {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(0.85rem,1.3vw,1.1rem); letter-spacing:0.06em;
   text-transform:uppercase; color:#ffffff; margin-bottom:0.3rem;
 }
@@ -1721,12 +1714,12 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .id-fw-item {}
 .id-fw-num {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(1.6rem,2.5vw,2.5rem); line-height:1;
   color:rgba(255,255,255,0.1); margin-bottom:0.5rem; letter-spacing:-0.02em;
 }
 .id-fw-title {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(0.8rem,1.2vw,1rem); letter-spacing:0.06em;
   text-transform:uppercase; color:#ffffff; margin-bottom:0.35rem;
 }
@@ -1764,7 +1757,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .asp-stat { display:flex; flex-direction:column; align-items:flex-end; line-height:1; }
 .asp-stat-num {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(1.2rem,2.2vw,2.2rem); line-height:1.05; color:#1a1a1a;
 }
 .asp-stat-label {
@@ -1829,7 +1822,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   padding-bottom:0;
 }
 .ao-head-title {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(3.2rem,6.5vw,8.5rem);
   line-height:0.88; text-transform:uppercase;
   letter-spacing:-0.03em; color:#ffffff; margin-bottom:1rem;
@@ -1876,7 +1869,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   color:rgba(255,255,255,0.22);
 }
 .ao-row-name {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(3.2rem,7vw,9rem);
   line-height:0.88; text-transform:uppercase; letter-spacing:-0.03em;
   color:rgba(255,255,255,0.82);
@@ -1909,7 +1902,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   display:flex; align-items:flex-end; justify-content:space-between;
 }
 .ao-row-compact-name {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(2.4rem,4.5vw,5.5rem);
   line-height:0.88; text-transform:uppercase; letter-spacing:-0.025em;
   color:rgba(255,255,255,0.14);
@@ -1982,7 +1975,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   padding:2rem 2.8rem 0; flex-shrink:0;
 }
 .ad-logo-ghost-text {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(3.5rem,7vw,9.5rem);
   line-height:0.88; text-transform:uppercase; letter-spacing:-0.04em;
   color:transparent;
@@ -2000,7 +1993,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 
 /* Role heading */
 .ad-heading {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(2.8rem,5.5vw,7.5rem);
   line-height:0.84; color:#ffffff; text-transform:uppercase;
   letter-spacing:-0.03em; margin-bottom:1rem;
@@ -2026,7 +2019,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   color:rgba(255,255,255,0.22); margin-bottom:0.32rem;
 }
 .ad-meta-value {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase;
   color:#ffffff;
 }
@@ -2079,7 +2072,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   flex-shrink:0; margin-top:auto;
 }
 .asp-download-link {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(0.85rem,1.4vw,1.2rem); letter-spacing:0.1em;
   text-transform:uppercase; color:#1a1a1a;
   display:inline-flex; align-items:center; gap:0.6rem;
@@ -2155,7 +2148,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .mat-outer.mat-open .mo-section-head { padding-bottom:0.5rem; }
 .mo-section-head + .mo-section-head,
-.mo-divider + .mo-divider + .mo-section-head { padding-top:1.6rem; }
+.mo-divider + .mo-section-head { padding-top:3.6rem; }
 .mo-section-label {
   font-family:'Barlow Condensed',sans-serif; font-weight:400;
   font-size:clamp(0.85rem,1.1vw,1.05rem); letter-spacing:0.28em; text-transform:uppercase;
@@ -2194,7 +2187,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 
 .mo-row-body { display:flex; flex-direction:column; gap:0.25rem; min-width:0; }
 .mo-row-title {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(3.2rem,7vw,9rem);
   color:rgba(255,255,255,0.82); text-transform:uppercase; letter-spacing:-0.03em;
   line-height:0.88; flex-shrink:0;
@@ -2268,7 +2261,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 /* Ghost text */
 .md-ghost { padding:2rem 2.8rem 0; flex-shrink:0; }
 .md-ghost-text {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(3rem,6vw,8.5rem);
   line-height:0.88; text-transform:uppercase; letter-spacing:-0.04em;
   color:transparent; -webkit-text-stroke:1px rgba(255,255,255,0.08);
@@ -2281,7 +2274,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 
 /* Heading */
 .md-heading {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(2.2rem,4.5vw,6rem);
   line-height:0.86; color:#ffffff; text-transform:uppercase;
   letter-spacing:-0.03em; margin-bottom:0.8rem; word-break:break-word;
@@ -2308,7 +2301,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   border-top:1px solid rgba(255,255,255,0.07); padding-top:1.4rem;
 }
 .md-stat-val {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(1.8rem,3.5vw,4rem); color:#ffffff;
   line-height:1; letter-spacing:-0.02em;
 }
@@ -2344,7 +2337,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .md-section { margin-bottom:1.8rem; }
 .md-section-label {
-  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:0.52rem; letter-spacing:0.28em; text-transform:uppercase;
   color:var(--coral); margin-bottom:0.65rem;
 }
@@ -2359,14 +2352,14 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   color:rgba(255,255,255,0.5); margin:1rem 0;
 }
 .md-num {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:1.05em; color:#fff; letter-spacing:-0.01em;
 }
 .md-metrics {
   display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem 2.2rem;
 }
 .md-metric-num {
-  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-family:'Anton',sans-serif; font-weight:400;
   font-size:clamp(2rem,3.8vw,3.2rem); line-height:1;
   letter-spacing:-0.02em; color:#fff; margin-bottom:0.3rem;
 }
@@ -3878,22 +3871,43 @@ const projectData = [
 <div class="md-heading">GROWX</div>
 <div class="md-subtitle">Prompt-to-Production Growth Experimentation Platform</div>
 <div class="md-divider"></div>
+
 <div class="md-section">
   <div class="md-section-label">The Problem</div>
-  <p class="md-body">Growth teams spend <span class="md-num">2–4 weeks</span> on experiments that should take <span class="md-num">2 days</span>. Not because execution is hard — because of the translation chain between intent and production. Every link is a meeting, a dependency, or a sprint cycle. GrowX was built to delete it.</p>
+  <p class="md-body">Growth teams spend <span class="md-num">2–4 weeks</span> on experiments that should take <span class="md-num">2 days</span>. Not because execution is hard — because of the translation chain between intent and production. A PM has an idea. It goes into a PRD. The PRD goes to design. Design goes to engineering. Engineering scopes it, puts it in a sprint, builds it, hands it to QA, then ships it. Every link in that chain is a meeting, a dependency, a context-switch, or a sprint cycle that doesn't start for another ten days. By the time the experiment is live, the hypothesis is stale, the team has moved on, and the learning cost is buried under three other priorities. The average growth team runs fewer than <span class="md-num">1 experiment per PM per week</span>. That's not a talent problem. That's a systems problem. GrowX was built to delete the chain entirely.</p>
 </div>
+
 <div class="md-section">
-  <div class="md-section-label">The Solution</div>
-  <p class="md-body">A no-code, prompt-to-production platform for shipping in-app experiments — UI and backend logic together — without engineering. Two composable modules: a frontend builder (Figma import, templates, AI generation, canvas) and a backend builder (Postman import, visual graph, prompt-to-logic). GrowX connects them, instruments the experiment, and puts a kill switch on every launch.</p>
+  <div class="md-section-label">The Solution — Frontend Module</div>
+  <p class="md-body">The frontend module gives product and growth teams a no-code canvas for building in-app UI experiments without touching a single line of code. Teams can import directly from Figma, start from a library of pre-built experiment templates (onboarding checklists, feature nudges, modal flows, tooltip sequences, banners), or describe what they want in plain language and let the AI layer generate the component. The canvas supports drag-and-drop composition, live variant preview, device responsiveness checks, and inline copy editing. Every component is instrumented automatically — no manual tagging, no analytics events to define, no developer handoff required. The module was designed so that the person with the hypothesis — the PM, the growth lead, the designer — could be the same person who ships it.</p>
 </div>
-<div class="md-callout">Before: PRD → Design → Engineering → QA → ship in <span class="md-num">18 days</span>.<br>After: describe intent → GrowX → live experiment in <span class="md-num">6 hours</span>.</div>
+
+<div class="md-section">
+  <div class="md-section-label">The Solution — Backend Module</div>
+  <p class="md-body">The backend module is a visual logic builder for the API and data layer that powers experiments — without writing code. Teams can import existing API definitions from Postman collections or OpenAPI specs, or build new logic using a node-based graph editor where conditions, transformations, triggers, and data sources are connected visually. For teams who prefer natural language, the prompt-to-logic feature converts a plain English description of the desired behavior — "show this variant only to users who signed up in the last 7 days and haven't completed onboarding step 3" — into a runnable logic graph. The backend module handles auth, rate limiting, error states, and retry logic automatically, so teams aren't building infrastructure — they're expressing intent. Every logic graph is version-controlled and diff-viewable, so rollbacks take seconds.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">The Solution — Frontend Connected to Backend</div>
+  <p class="md-body">The real unlock is the connection layer. GrowX binds the frontend UI module and the backend logic module into a single deployable experiment unit. A PM can define targeting rules (user segment, geography, device, plan tier, behavioral trigger), attach a UI variant, wire it to backend logic, set traffic splits, configure success metrics, and deploy — all without leaving the platform and without involving engineering. Every experiment ships with an auto-generated kill switch: one click to halt, roll back, or redirect 100% of traffic to the control. The instrumentation layer captures exposure, interaction, conversion, and downstream retention signals automatically and pipes them into the team's existing analytics stack via native integrations with Mixpanel, Amplitude, Segment, and custom webhooks.</p>
+</div>
+
+<div class="md-callout">Before: PRD → Design → Engineering → QA → ship in <span class="md-num">18 days</span> average.<br>After: describe intent → GrowX builds it → live experiment in <span class="md-num">6 hours</span>.</div>
+
+<div class="md-section" style="margin-top:1.8rem">
+  <div class="md-section-label">Workflow</div>
+  <p class="md-body">The GrowX workflow was designed to compress the entire idea-to-insight loop into a single session. A growth PM describes the experiment in plain language — what they want to test, who they want to target, what they consider a win. GrowX uses that description to scaffold a UI variant, generate the targeting logic, suggest success metrics, and estimate sample size given current traffic volumes. The PM refines on the canvas, connects or imports their API logic, sets the traffic split, and hits deploy. The platform handles SDK injection, experiment registration, targeting enforcement, analytics instrumentation, and monitoring setup automatically. Once live, results surface in a dedicated experiment dashboard with statistical significance indicators, segment breakdowns, and auto-alerts when the experiment reaches significance or crosses a guardrail metric. The old workflow: <span class="md-num">18 days</span>, <span class="md-num">4–6 people</span>, <span class="md-num">34+ engineering hours</span> per experiment. The GrowX workflow: <span class="md-num">6 hours</span>, <span class="md-num">1 person</span>, under <span class="md-num">3 engineering hours</span> total — and only when a custom integration is needed.</p>
+</div>
+
 <div class="md-divider"></div>
-<div class="md-section-label" style="margin-bottom:1.2rem">Performance</div>
-<div class="md-metrics">
+
+<div class="md-section-label" style="margin-bottom:0.8rem">Success Metrics</div>
+<p class="md-body" style="margin-bottom:1.4rem">The platform was measured across two categories: operational efficiency (did it actually eliminate the engineering bottleneck?) and product impact (did faster experimentation produce better outcomes?). On efficiency, the results validated the core thesis — the time-to-launch compression was not marginal. On product impact, higher experiment velocity directly translated to better product decisions and measurable business outcomes, confirming that the volume of experiments run is a leading indicator of product improvement rate.</p>
+<div class="md-metrics" style="margin-bottom:1.8rem">
   <div class="md-metric">
     <div class="md-metric-num">87%</div>
     <div class="md-metric-label">Time-to-launch reduction</div>
-    <div class="md-metric-sub">18 days → 6 hours</div>
+    <div class="md-metric-sub">18 days → 6 hours avg</div>
   </div>
   <div class="md-metric">
     <div class="md-metric-num">5.2×</div>
@@ -3911,9 +3925,15 @@ const projectData = [
     <div class="md-metric-sub">34 hrs → under 3 hrs</div>
   </div>
 </div>
+
 <div class="md-divider"></div>
-<div class="md-section-label" style="margin-bottom:1.2rem">Product Outcomes</div>
-<div class="md-metrics">
+
+<div class="md-section">
+  <div class="md-section-label">Impact</div>
+  <p class="md-body">The downstream impact of running more experiments was not linear — it was compounding. Each experiment produced a signal. Signals shaped the next hypothesis. Teams that adopted GrowX went from running <span class="md-num">3–4 experiments per quarter</span> to running <span class="md-num">15–20</span>, which meant they were generating and validating product knowledge at <span class="md-num">4–5×</span> the rate of teams relying on the traditional engineering-dependent workflow. This showed up directly in activation, conversion, retention, and feature adoption numbers. The best-performing experiment — a progressive onboarding checklist variant — produced a <span class="md-num">38%</span> activation lift and a <span class="md-num">19%</span> improvement in week-one retention. Engineering cost recovery on that experiment alone happened in under <span class="md-num">6 weeks</span>. Across the portfolio, the platform paid back its build cost in engineering hours within the first quarter of rollout.</p>
+</div>
+
+<div class="md-metrics" style="margin-bottom:1.8rem">
   <div class="md-metric">
     <div class="md-metric-num md-metric-num--hi">23%</div>
     <div class="md-metric-label">Avg activation lift</div>
@@ -3935,24 +3955,164 @@ const projectData = [
     <div class="md-metric-sub">vs control group</div>
   </div>
 </div>
+
+<div class="md-callout">Best result: Progressive onboarding checklist → <span class="md-num">38%</span> activation lift + <span class="md-num">19%</span> week-one retention improvement. Full engineering cost recovery in <span class="md-num">6 weeks</span> on eng hours alone.</div>
+
 <div class="md-divider"></div>
-<div class="md-callout">Best result: Progressive onboarding checklist → <span class="md-num">38%</span> activation lift + <span class="md-num">19%</span> week-one retention. Cost recovery in <span class="md-num">6 weeks</span> on eng hours alone.</div>
+
+<div class="md-section">
+  <div class="md-section-label">Risks and Mitigation</div>
+  <p class="md-body"><strong style="color:rgba(255,255,255,0.7)">Experiment quality degradation.</strong> The core risk of radically increasing experiment volume is that low-quality hypotheses flood the roadmap and dilute signal. Mitigated by building a mandatory hypothesis framing step into the GrowX workflow — every experiment requires a defined metric, a directional prediction, and a minimum detectable effect before deployment is enabled. Bad ideas get filtered structurally, not by committee.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Engineering trust and adoption resistance.</strong> Engineering teams were initially skeptical of a platform that was explicitly designed to remove their involvement. Mitigated by positioning GrowX as a tool that eliminates low-value experiment work (simple UI variants, basic targeting) so engineering capacity can focus on high-complexity, high-leverage infrastructure work. Adoption was anchored to eng team buy-in from day one, including a shared review process for the backend module architecture.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Instrumentation accuracy.</strong> Auto-generated analytics instrumentation carries the risk of silent errors — miscounted exposures, duplicated events, or missed conversions — that corrupt experiment results without anyone noticing. Mitigated by building a live validation layer that runs schema checks on every event before an experiment can go live, plus a post-launch audit dashboard that flags statistical anomalies in exposure curves within the first <span class="md-num">24 hours</span> of a live experiment.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Platform dependency lock-in.</strong> As teams build more experiments on GrowX, their experiment history and institutional knowledge becomes locked in a proprietary system. Mitigated by designing the data layer around an open schema with full CSV and JSON export at the experiment, variant, and metric level — and by ensuring analytics integrations write to the team's own warehouse, not a GrowX-controlled destination.</p>
+</div>
+
 <div class="md-divider"></div>
+
 <div class="md-section">
   <div class="md-section-label">The Insight</div>
-  <p class="md-body">Teams shipping 20 experiments a month and winning 30% beat teams shipping 4 and winning 60% — the former compounds knowledge faster. GrowX is a throughput machine built on a quality guardrail. Speed without credibility is noise. GrowX produces both.</p>
+  <p class="md-body">The core insight behind GrowX is about compounding, not speed. A team shipping <span class="md-num">20 experiments</span> a month and winning <span class="md-num">30%</span> of them doesn't just beat a team shipping <span class="md-num">4</span> and winning <span class="md-num">60%</span> on raw win count — they beat them on learning rate. Six wins versus two wins per month. Over a year that's <span class="md-num">72</span> validated product improvements against <span class="md-num">24</span>. The former team compounds knowledge. The gap widens. GrowX is a throughput machine built on a quality guardrail. It doesn't replace judgment — it removes the latency between judgment and validation. Speed without credibility is noise. GrowX produces both.</p>
 </div>`
   },
   {
     name:'LoopX',
-    subtitle:'AI Agents Platform',
-    desc:"Built the system from zero—no predefined structure, no playbook. Led product and design for a multi-agent AI platform where 6+ agents coordinate to execute tasks across real workflows. Designed the full backbone: integrations layer, action pipelines, and a logic execution engine that handles real-world variability.",
-    stats:[
-      { value:'6+',    label:'AI Agents\nDeployed' },
-      { value:'85%',   label:'Reduction in\nManual Work' },
-      { value:'40+',   label:'Integrations\nSupported' },
-      { value:'99.9%', label:'System\nReliability' },
-    ]
+    subtitle:'Agentic Growth Strategist for D2C Brands',
+    desc:"Six specialised AI agents that together perform the complete role of a human growth strategist — continuously analysing customer data, building margin-aware strategies, and deploying campaigns. Founding PM + Design Lead, zero to live product.",
+    body:`<div class="md-role">Founding PM + Design Lead — Zero to One</div>
+<div class="md-heading">LOOPX</div>
+<div class="md-subtitle">Agentic Growth Strategist for D2C Brands</div>
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">The Problem</div>
+  <p class="md-body">D2C brands above the ₹5 crore monthly revenue threshold face a specific and expensive problem. They are spending heavily on retention — discounts, campaigns, winback flows, reactivation sequences — but they are applying it uniformly. A blanket 20 percent discount goes to the highest-margin loyal customer and to the chronic returner who was never profitable in the first place. One builds the business. The other quietly destroys it.</p>
+  <p class="md-body" style="margin-top:1rem">The deeper problem is that the strategic thinking required to fix this — identifying which customers are worth saving, at what margin, through which channel, with what offer — is entirely manual. A human strategist can analyse <span class="md-num">15 to 20</span> customer variables when building a segment. They can produce <span class="md-num">2 to 3</span> comprehensive campaigns a week if they are exceptional. And they cost <span class="md-num">₹15–25 lakh a year</span> to hire and retain, assuming you can find them.</p>
+  <p class="md-body" style="margin-top:1rem">Most mid-market D2C brands cannot afford a dedicated growth strategist. The ones that hire one get a person who is already at capacity managing the existing stack — Shopify, Klaviyo, Meta, Google — and cannot get to the analytical depth that actually drives compounding retention improvements. The result is a retention operation that looks busy but is structurally bleeding margin.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">The Solution</div>
+  <p class="md-body">LoopX is an agentic growth intelligence platform — a system of six specialised AI agents that together perform the complete role of a human growth strategist, continuously, at the depth a human team cannot match, and at a fraction of the cost. This is not a tool that assists. It is not a copilot that suggests. It is a system that autonomously analyses customer data, identifies growth opportunities, creates margin-aware campaign strategies, designs segment-specific offers, and produces ready-to-execute plans — every day, not quarterly.</p>
+  <p class="md-body" style="margin-top:1rem">The six agents work as a continuous feedback loop, each handling a specific function and passing output to the next.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Insights Agent</div>
+  <p class="md-body">Monitors over <span class="md-num">100 customer features daily</span> — behavioural, transactional, and engagement signals — and flags opportunities ranked by potential revenue and margin impact. If revenue drops 12 percent on a Tuesday, this agent identifies whether it is a traffic issue, a conversion problem, or a specific high-value segment churning faster than usual. It surfaces the why behind every spike and dip before it becomes an emergency. What it replaces is manual dashboard monitoring, weekly reporting delays, and the gut feeling that something is wrong but nobody can pinpoint what.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Strategy Agent</div>
+  <p class="md-body">Takes what the Insights Agent surfaces and transforms it into multi-campaign growth strategies tailored to the brand's specific customers and margins. It generates mutually exclusive, collectively exhaustive campaign bundles — ensuring comprehensive coverage without audience overlap and without the strategic gaps that manual planning almost always produces. Every strategy factors in customer segments, seasonal patterns, inventory levels, and margin impact. This is not generic playbook advice. It is a strategy built from the brand's actual data.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Segmentation Agent</div>
+  <p class="md-body">Builds precise customer segments with SQL queries, human-readable definitions, and live audience counts. Where a human analyst might work with <span class="md-num">3 to 5</span> segments based on RFM, this agent operates across <span class="md-num">100+ features simultaneously</span> — producing segments that reflect real behavioural nuance rather than blunt demographic groupings. Crucially, it also flags which at-risk customers are worth saving and which unprofitable customers should be allowed to churn naturally. This single capability can save brands hundreds of thousands of rupees in wasted retention spend annually.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Offers Agent</div>
+  <p class="md-body">Designs margin-aware offers per segment, balancing conversion probability against profitability. This is the agent that ends the blanket discount problem. Different segments get different offers — not because a human analyst had time to think about it, but because the system calculates the optimal incentive for each audience based on their purchase history, margin profile, price sensitivity, and churn risk. An offer that makes sense for a high-LTV lapsed customer is different from what makes sense for a low-margin frequent returner.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Playbook Agent</div>
+  <p class="md-body">Converts strategies into ready-to-execute campaign plans with timing, channel orchestration, copy direction, and creative requirements. It eliminates the back-and-forth between strategy and implementation by generating campaign specs that the brand's team or their existing marketing automation — Klaviyo, MoEngage, Meta, Google — can deploy immediately. Execution speed is a genuine competitive advantage at this scale, and the Playbook Agent is designed to compress the time from insight to live campaign.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Performance Agent</div>
+  <p class="md-body">Monitors live campaign results in real time and feeds learnings back to the Insights Agent — closing the loop. Every campaign makes the system smarter. Every result updates the strategy for the next cycle. This is the compounding mechanism: the system does not just run campaigns, it continuously improves the strategy behind them based on what actually worked. The platform integrates directly with the existing brand stack — Shopify for transaction data, Klaviyo or MoEngage for campaign execution, Meta and Google for acquisition data — through a BigQuery warehouse. Brands do not replace their tools. LoopX adds intelligence on top of them.</p>
+  <p class="md-body" style="margin-top:1rem">I owned the full product surface across the agent system — the analytical framework for what each agent surfaces and why, the orchestration logic between agents, the brand-facing UX for reviewing and approving agent outputs, the integration architecture, the margin-aware offer engine, PRDs, user stories, acceptance criteria, and go-to-market positioning.</p>
+</div>
+
+<div class="md-callout">Every campaign makes the system smarter. The longer a brand runs on LoopX, the higher the floor on every future campaign.</div>
+
+<div class="md-section" style="margin-top:1.8rem">
+  <div class="md-section-label">Workflow</div>
+  <p class="md-body">The system runs continuously without requiring a human to initiate each cycle. Every day, the Insights Agent processes the brand's full customer and transaction data, monitoring <span class="md-num">100+ features</span> and flagging the highest-impact opportunities available. If a cohort of high-margin customers in the D30 to D60 window is showing elevated browse activity without purchase, that signal surfaces immediately — ranked by its estimated revenue impact if acted on.</p>
+  <p class="md-body" style="margin-top:1rem">The Strategy Agent picks up those signals and generates a set of campaign strategies. Each strategy is accompanied by the rationale, the target segment, the recommended channel mix, the expected impact range, and the margin implications. The brand's team reviews and approves. For brands that want fully autonomous execution, the system can push directly to their campaign tools without a human approval step.</p>
+  <p class="md-body" style="margin-top:1rem">The Segmentation Agent builds the precise audiences for each approved strategy. The Offers Agent designs the specific incentive for each segment. The Playbook Agent generates the full campaign brief — timing sequence, channel schedule, copy direction, creative requirements — ready for immediate deployment. Once the campaign is live, the Performance Agent monitors it in real time, catching underperformance early and feeding results back into the next cycle. The loop closes. The next cycle is smarter than the last.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section-label" style="margin-bottom:0.8rem">Success Metrics</div>
+<p class="md-body" style="margin-bottom:1.4rem">The north star metric is margin-adjusted retention — revenue retained from high-value customers net of the discount and campaign cost required to retain them. The goal is not maximum retention. It is profitable retention. Retaining an unprofitable customer at scale is subsidisation disguised as growth.</p>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num">33%</div>
+    <div class="md-metric-label">High-margin churn reduction</div>
+    <div class="md-metric-sub">4.2% → 2.8% monthly</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">4–5×</div>
+    <div class="md-metric-label">Strategic throughput</div>
+    <div class="md-metric-sub">2–3 → 10+ campaign cycles/wk</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">100+</div>
+    <div class="md-metric-label">Features per segment</div>
+    <div class="md-metric-sub">vs 15–20 with human analyst</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">18%</div>
+    <div class="md-metric-label">Discount-dependent converted</div>
+    <div class="md-metric-sub">To lower-discount behaviour, Q1</div>
+  </div>
+</div>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">₹3.2L</div>
+    <div class="md-metric-label">LTV preserved per brand/month</div>
+    <div class="md-metric-sub">Within first 60 days</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">3.35×</div>
+    <div class="md-metric-label">Monthly ROI (pilot brand)</div>
+    <div class="md-metric-sub">₹6.7L gain on ₹2L investment</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">40%</div>
+    <div class="md-metric-label">Wasted retention spend cut</div>
+    <div class="md-metric-sub">Budget on never-profitable users</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">90 days</div>
+    <div class="md-metric-label">To positive ROI</div>
+    <div class="md-metric-sub">Pilot brand, full agent system</div>
+  </div>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">Impact</div>
+  <p class="md-body">On cost, the platform replaces a capability that would otherwise require a dedicated growth strategist at <span class="md-num">₹15–25 lakh annually</span>, a retention analyst, and significant campaign management overhead. The platform operates at a fraction of that cost with greater analytical depth and no capacity ceiling.</p>
+  <p class="md-body" style="margin-top:1rem">On velocity, the agent system runs every day. Human strategists plan in weekly or monthly cycles. The compounding effect of daily analysis and continuous optimisation produces a structural strategic advantage that grows over time. Brands that deploy the full agent system are running <span class="md-num">10+ experiments per week</span> versus the <span class="md-num">2 to 3</span> a human team can manage at the same budget level.</p>
+  <p class="md-body" style="margin-top:1rem">On margin, the Offers Agent and Segmentation Agent together address the most expensive structural problem in D2C retention: blanket discounting. By designing margin-aware offers at the segment level, brands stop giving unnecessary discounts to customers who would have purchased anyway and stop spending retention budget on customers who were never profitable. Across pilot brands, wasted retention spend reduced by an estimated <span class="md-num">40%</span>.</p>
+  <p class="md-body" style="margin-top:1rem">On scale, the system handles analytical complexity that grows with the brand without requiring additional headcount. A brand at <span class="md-num">₹5 crore</span> monthly revenue and a brand at <span class="md-num">₹50 crore</span> monthly revenue run the same agent system with the same team overhead. The intelligence scales. The cost does not.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">Risks and Mitigation</div>
+  <p class="md-body"><strong style="color:rgba(255,255,255,0.7)">Brand trust in autonomous AI.</strong> Asking a D2C founder to let an AI system design offers and deploy campaigns without human review is a significant trust ask. The mitigation is a graduated autonomy model — the system starts in review mode, where every recommendation requires human approval before deployment. As the brand builds confidence in the output quality, they can progressively enable autonomous execution for specific campaign types.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Margin model accuracy.</strong> The entire value proposition rests on margin-aware decision making — and that requires clean, accurate margin data. Brands with messy product cost data will get imprecise margin signals. The mitigation is a structured onboarding process with a margin data audit before the agents go live, and conservative margin assumptions by default until the data is verified.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Brand voice drift.</strong> If the Playbook Agent generates campaign briefs that are inconsistent with the brand's tone and creative standards, campaigns become generic and erode the brand relationship. The mitigation is brand voice configuration at onboarding — style guidelines, tone parameters, and creative constraints that bound what the agent can generate — combined with a creative review step for all outward-facing copy.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Point solution perception.</strong> The risk of being perceived as a retention tool rather than a strategic growth layer. The mitigation is positioning and product expansion — framing LoopX from day one as the growth intelligence layer across acquisition efficiency and retention profitability, and building the agent capabilities to match that framing over time.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">The Insight</div>
+  <p class="md-body">The bottleneck in D2C retention is not execution — most brands have Klaviyo, have MoEngage, have Meta and Google running. The bottleneck is strategic thinking: the continuous, margin-aware analysis of which customers to target, with what, at what cost, and when. That work has always required a human with time, skill, and data access. Most mid-market brands do not have all three simultaneously. LoopX is built on the bet that agentic AI can perform that strategic function — not as a copilot, but as the system itself.</p>
+  <p class="md-body" style="margin-top:1rem">The compounding mechanism is the most important architectural decision. An agent system that only runs campaigns is a tool. An agent system where every campaign result feeds back into the next cycle's strategy is a learning machine. The longer a brand runs on LoopX, the better the system's understanding of what works for their specific customers — and the higher the floor on every future campaign.</p>
+</div>`
   },
   {
     name:'Performance Powered Motivation System',
@@ -3968,41 +4128,395 @@ const projectData = [
   },
   {
     name:'TRUST',
-    subtitle:'Banking Operations',
-    desc:"Built for scale and speed inside a bank. Designed and shipped a task resolution system used by 1000+ daily users, where delays compound fast and inefficiencies are expensive. Focused heavily on flow—how tasks enter, move, and get resolved without unnecessary loops.",
-    stats:[
-      { value:'1K+', label:'Daily\nUsers' },
-      { value:'2.8×', label:'Faster\nWorkflows' },
-      { value:'100%', label:'On-time\nDelivery' },
-      { value:'2024', label:'Year\nShipped' },
-    ]
+    subtitle:'Loan Workflow Orchestration Platform',
+    desc:"Workflow orchestration and enforcement layer for loan operations — turning a messy multi-actor human process into a governed, auditable system. PM + Design Lead, end-to-end ownership across a live B2B operations platform serving NBFCs and ATSL operators.",
+    body:`<div class="md-role">PM + Design Lead — Strategy to Shipped</div>
+<div class="md-heading">TRUST</div>
+<div class="md-subtitle">Loan Workflow Orchestration Platform</div>
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">The Problem</div>
+  <p class="md-body">NBFCs process hundreds to thousands of loan applications every day across distributed teams — internal sales and ops, credit and compliance, and third-party field operators. The coordination between these actors is what determines how fast and how accurately loans get processed. And in most operations, that coordination is entirely manual.</p>
+  <p class="md-body" style="margin-top:1rem">Data lives across phone calls, WhatsApp threads, spreadsheets, and physical paper trails. Handoffs between teams happen informally, which means ownership of any given application is implied rather than explicit — nobody is clearly responsible, so nobody is clearly accountable. Documents go missing, get duplicated, or arrive in the wrong format. Approvals depend on someone chasing someone else. Checkers send applications back to makers repeatedly because submissions are incomplete, and each loop adds days to the turnaround time.</p>
+  <p class="md-body" style="margin-top:1rem">The outcome at scale is predictable. Decisions are slow. Error rates are high. And nobody has a reliable, real-time view of where any application actually stands. The operation runs on individual effort and institutional memory rather than on a system — which means it doesn't scale, and it doesn't improve.</p>
+  <p class="md-body" style="margin-top:1rem">This wasn't a people problem. The teams were working hard. It was a coordination problem. There was no layer between the actors enforcing structure, making ownership explicit, or creating an auditable record of what happened and why.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">The Solution</div>
+  <p class="md-body">TRUST is a workflow orchestration and enforcement layer built for loan operations. It sits between the teams and tools already in place, enforcing structured progression, making ownership explicit at every stage, and turning a messy multi-actor human process into a governed, auditable system. It is not a loan origination system. It is not a CRM. It is the coordination layer that makes the existing operation actually work under load.</p>
+  <p class="md-body" style="margin-top:1rem">The platform is built around four core mechanics.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Role-Based Architecture</div>
+  <p class="md-body">Every action in TRUST is mapped to a role — NBFC makers who initiate and input, ATSL makers who execute field and document tasks, checkers at both NBFC and ATSL levels who validate and gate progression, and admins who configure roles, access, and governance rules. Ownership is never implied. At every point in the process, one actor holds the application and knows what they need to do next. This eliminates the single biggest coordination failure in manual ops: the application that exists in a grey zone where everyone assumes someone else is handling it.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">State Machine — Structured Lifecycle</div>
+  <p class="md-body">Every loan moves through a non-skippable state machine: data capture, document upload, field execution, multi-level validation, and final approval or rejection. States cannot be skipped or reordered. This means silent failures — applications that stall without anyone noticing — are structurally impossible. Every bottleneck is visible and measurable. The process becomes debuggable in a way that a WhatsApp-based operation never could be.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Deviation Engine</div>
+  <p class="md-body">Real loan operations are not clean. Documents go missing. Exceptions arise. Non-standard cases need extraordinary approval. TRUST handles this through a first-class deviation engine rather than forcing teams to work around the system. Deviations are explicitly triggered, tracked as their own objects with full audit trails, and resolved through controlled overrides. This was the design decision that separated a rigid workflow tool from a system that actually survives production reality.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Document Lifecycle Management</div>
+  <p class="md-body">Documents are centrally stored, linked to application state, and permissioned by role. No more lost files, duplicated submissions, or compliance exposure from documents sitting in someone's email inbox. Every document is where it's supposed to be, accessible to the people who need it, and off-limits to those who don't.</p>
+  <p class="md-body" style="margin-top:1rem">I owned the full product surface — problem framing, system design, roles and permissions architecture, state machine design, deviation handling, verification logic, PRDs, user stories, acceptance criteria, sprint planning, IA and task flows, interaction design for all three actor types, design system, dev handoff, onboarding flows, and operational rollout planning.</p>
+</div>
+
+<div class="md-callout">Before TRUST: people coordinated the system.<br>After TRUST: the system coordinates people.</div>
+
+<div class="md-section" style="margin-top:1.8rem">
+  <div class="md-section-label">Workflow</div>
+  <p class="md-body">A maker opens a new application and is guided through structured data capture with explicit document requirements at each step. Nothing is left to interpretation. The system tells the maker exactly what is needed before the application can progress. Once submitted, ATSL operators receive a clear task with defined scope — what they need to collect, scan, or execute in the field — and the application cannot move forward until those tasks are marked complete.</p>
+  <p class="md-body" style="margin-top:1rem">The application then moves to the checker layer. Checkers work from a standardised validation view that surfaces exactly what they need to review and why. If the submission is complete and correct, they approve and the application progresses. If something is wrong, they send it back with an explicit reason attached — not a phone call, not a message, a structured send-back that creates a record and routes the application back to the right actor with full context.</p>
+  <p class="md-body" style="margin-top:1rem">Deviations are handled as first-class events throughout. When a document is missing, when a case is non-standard, when an exception needs escalation, the system routes it through a controlled override process rather than letting it fall into a WhatsApp thread.</p>
+  <p class="md-body" style="margin-top:1rem">At every point, admins and supervisors have real-time visibility into where every application sits, who owns it, how long it has been in its current state, and whether it is at risk of breaching its SLA. The operation is no longer dependent on someone having the right spreadsheet open.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section-label" style="margin-bottom:0.8rem">Success Metrics</div>
+<p class="md-body" style="margin-bottom:1.4rem">The north star metric is time-to-decision with quality — speed and correctness together. A fast decision based on incomplete information is not a good outcome. TRUST is designed to improve both simultaneously by eliminating the rework loops that slow things down and the document failures that create downstream risk.</p>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num">41%</div>
+    <div class="md-metric-label">TAT reduction</div>
+    <div class="md-metric-sub">11 days → 6.5 days median</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">43%</div>
+    <div class="md-metric-label">Rework loop reduction</div>
+    <div class="md-metric-sub">Maker-checker cycles</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">52%</div>
+    <div class="md-metric-label">Manual follow-ups reduced</div>
+    <div class="md-metric-sub">Teams shifted to platform</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">1.8×</div>
+    <div class="md-metric-label">Applications per ops user</div>
+    <div class="md-metric-sub">Same headcount, 2× volume</div>
+  </div>
+</div>
+
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">100%</div>
+    <div class="md-metric-label">Real-time state visibility</div>
+    <div class="md-metric-sub">vs 34% before platform</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">9%</div>
+    <div class="md-metric-label">Missing doc rate at checker</div>
+    <div class="md-metric-sub">Down from 38%</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">11%</div>
+    <div class="md-metric-label">SLA breach rate</div>
+    <div class="md-metric-sub">Down from 27%</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">1.3</div>
+    <div class="md-metric-label">Avg send-back loops</div>
+    <div class="md-metric-sub">Down from 2.7 cycles</div>
+  </div>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">Impact</div>
+  <p class="md-body">The impact of TRUST compounds across three dimensions: operational speed, error reduction, and governance quality.</p>
+  <p class="md-body" style="margin-top:1rem">On speed, the <span class="md-num">41%</span> reduction in TAT directly translates to faster disbursements and a better borrower experience. At a volume of <span class="md-num">500 applications a month</span>, reducing the median processing time by <span class="md-num">4.5 days</span> means the operation is consistently running <span class="md-num">2,250 fewer application-days in process</span> at any given time. That is capital deployed faster and risk resolved sooner.</p>
+  <p class="md-body" style="margin-top:1rem">On quality, the drop in rework loops from <span class="md-num">2.7 to 1.3 cycles per application</span> means checkers are spending their time on genuine validation rather than repeatedly correcting the same submission errors. The <span class="md-num">missing document rate reduction from 38% to 9%</span> at the checker stage alone eliminates one of the most expensive recurring failure modes in manual loan ops.</p>
+  <p class="md-body" style="margin-top:1rem">On throughput, the <span class="md-num">1.8×</span> improvement in applications processed per ops user means the operation can scale volume without a proportional increase in headcount. For a team of <span class="md-num">20 ops users</span>, this is the effective capacity of <span class="md-num">36 users</span> on the previous system.</p>
+  <p class="md-body" style="margin-top:1rem">On governance, having <span class="md-num">100% application traceability</span> with a full audit trail for every state transition, decision, and deviation means the operation can pass a compliance audit, identify systemic failure patterns, and improve over time. Before TRUST, none of that was possible because the data didn't exist in a structured form.</p>
+</div>
+
+<div class="md-callout">Average ops team in the pilot recovered implementation cost within <span class="md-num">8 weeks</span> on headcount efficiency alone — before accounting for loan error reduction and compliance risk reduction from proper document management.</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">Risks and Mitigation</div>
+  <p class="md-body"><strong style="color:rgba(255,255,255,0.7)">Adoption friction.</strong> Structured systems change how people work, and ops teams under volume pressure have very little tolerance for tools that slow them down before they speed them up. The mitigation was role-specific UX designed around each actor's actual task — makers see a guided capture flow, checkers see a validation-focused interface, operators see a task list. Progressive disclosure keeps complexity out of the way until it's needed, and "what happens next" transparency was built into every screen so no actor is ever confused about their next action.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Flexibility versus control.</strong> A strict state machine can feel rigid, particularly for experienced ops staff who know when a rule should bend. The deviation engine was the direct answer to this: teams retain the ability to handle exceptions, but every exception is explicit, tracked, and approved through a controlled mechanism rather than handled informally outside the system.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Partial adoption.</strong> Teams using TRUST for some applications and falling back to manual coordination for others produces worse outcomes than either approach alone. The mitigation was designing the platform to make the manual fallback actively harder than using the system, combined with admin visibility into which applications are in the platform so supervisors can identify and address gaps.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Auditability trust.</strong> Whether ops and compliance teams would actually rely on TRUST's audit trail for regulatory and internal review required the audit log to be genuinely complete rather than a superficial record. Every state transition, every send-back, every deviation, every override is logged with actor, timestamp, and reason. The audit trail was designed to be court-admissible in intent, not just operationally useful.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">The Insight</div>
+  <p class="md-body">The real product insight behind TRUST is deceptively simple: in a multi-actor operation, the system should be the coordinator — not the most organised person on the team.</p>
+  <p class="md-body" style="margin-top:1rem">Manual coordination is fragile. It depends on individuals knowing the process, following up consistently, and never dropping context across a handoff. When any of those things fail — and at scale they always do — the operation degrades. TRUST replaces individual coordination effort with structural enforcement. The workflow doesn't break when someone is busy, absent, or new. It behaves the same way every time because the rules are in the system, not in someone's head.</p>
+  <p class="md-body" style="margin-top:1rem">The deviation engine is where this philosophy is most visible. It would have been easier to build a rigid workflow and tell teams to conform to it. Instead TRUST was designed around the reality that exceptions are not edge cases in loan ops — they are a constant. Making deviations a first-class, auditable concept rather than something teams work around is what makes the platform trustworthy in production rather than just in a demo.</p>
+</div>`
   },
   {
     name:'Statement Analyzer',
-    subtitle:'Financial SaaS',
-    desc:"Took a messy, manual process and made it structured. Owned product and design for a system that converts raw financial statements into usable signals. The challenge wasn't just parsing data—it was aligning outputs with how underwriting teams actually think and decide.",
-    stats:[
-      { value:'Auto', label:'Automated\nProcessing' },
-      { value:'AI',   label:'Powered\nAnalysis' },
-      { value:'↓',    label:'Reduced\nManual Effort' },
-      { value:'2024', label:'Year\nShipped' },
-    ]
+    subtitle:'AI-Powered Bank Statement Intelligence',
+    desc:"AI-powered financial intelligence layer that parses raw bank statements and surfaces structured, actionable insight for credit officers — replacing manual review with a governed, consistent, auditable analysis engine.",
+    body:`<div class="md-role">PM + Design Lead — End-to-End Ownership</div>
+<div class="md-heading">STATEMENT ANALYZER</div>
+<div class="md-subtitle">AI-Powered Bank Statement Intelligence</div>
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">The Problem</div>
+  <p class="md-body">Underwriting a loan in an NBFC context depends heavily on one thing: understanding a borrower's actual financial behaviour. Not just their declared income — their real cash flow patterns, their recurring obligations, their spending volatility, and whether their stated income matches what actually hits their account.</p>
+  <p class="md-body" style="margin-top:1rem">The traditional way of doing this is manual. A credit officer downloads a PDF bank statement, scrolls through months of transactions, mentally categorises inflows and outflows, and makes a judgment call. At low volumes, this works. At scale, it breaks — it's slow, inconsistent across analysts, and entirely dependent on individual interpretation. Two analysts looking at the same statement can reach different conclusions. There is no audit trail for the reasoning. And for borrowers with complex or irregular income patterns, the manual process almost always produces conservative, inaccurate assessments.</p>
+  <p class="md-body" style="margin-top:1rem">The cost is real: good borrowers get rejected or under-served because the analysis is too slow or too shallow, and risky borrowers slip through because the signals aren't being read correctly.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">The Solution</div>
+  <p class="md-body">The Statement Analyzer is an AI-powered financial intelligence layer that parses raw bank statements and surfaces structured, actionable insight for credit officers — replacing manual review with a governed, consistent, auditable analysis engine. The product has four core surfaces.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Credit Score Dashboard</div>
+  <p class="md-body">The primary view gives credit officers an at-a-glance health picture of the borrower's financial profile — a derived credit score, income stability indicators, obligation-to-income ratios, and cash flow trend lines over the statement period. What previously required <span class="md-num">20 minutes</span> of manual calculation is surfaced in seconds, in a standardised format that every analyst reads the same way. The dashboard is designed around the decision the credit officer needs to make — approve, reject, or escalate — not around raw data display.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Advanced Filter</div>
+  <p class="md-body">The filter system is where the depth of the analysis becomes usable. Credit officers can slice transaction data across multiple dimensions simultaneously — transaction type, date range, amount bands, merchant category, inflow versus outflow, and flagged anomalies. The filter is built for investigative workflows: an analyst who wants to verify whether the borrower's EMI obligations match what they declared can get there in two taps. The advanced filter handles the kind of nuanced interrogation that previously required exporting to Excel and building pivot tables manually. Across the pilot, analysts used the filter layer on <span class="md-num">over 60%</span> of reviewed statements, indicating it became a core part of the review workflow rather than an occasional tool.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Search Suggestions</div>
+  <p class="md-body">The search layer is built with context-aware suggestions that surface the most analytically relevant queries first — common searches like salary credits, recurring debits, UPI inflows, and flagged irregularities. This reduces the time from opening a statement to finding a specific signal from several minutes to under <span class="md-num">30 seconds</span> on average. Search suggestions were adopted by <span class="md-num">89%</span> of active analysts within the first two weeks, indicating fast organic adoption without training overhead.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Component System</div>
+  <p class="md-body">The entire product is built on a consistent component library — cards, data rows, filter chips, score indicators, and trend modules — that allows the interface to scale across different statement types, lenders, and borrower profiles without fragmenting the design. This was a deliberate investment: the component system means new statement categories and new data signals can be added to the product without rebuilding the UX each time.</p>
+  <p class="md-body" style="margin-top:1rem">I owned the full product surface — the analytical framework for what signals to surface and why, the information architecture, the credit score model UX, the filter system design, the search experience, the component library, PRDs, user stories, and dev handoff.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Workflow</div>
+  <p class="md-body">A credit officer receives a loan application with bank statements attached. Instead of opening the PDF and beginning manual review, they open the Statement Analyzer. The system has already parsed the statement, categorised transactions, identified income credits, flagged irregularities, and derived the financial health indicators.</p>
+  <p class="md-body" style="margin-top:1rem">The officer reviews the credit dashboard first — income stability, average monthly inflow, obligation load, and the presence of any flagged patterns like bounced EMIs, sudden large outflows, or irregular income timing. If the dashboard is clean, the review can be completed in under <span class="md-num">3 minutes</span>. If something needs investigation, the officer drops into the advanced filter to interrogate the specific signal — whether a declared salary is actually appearing as a regular credit, whether existing loan EMIs match what the borrower disclosed, whether there are recurring outflows to categories that suggest undisclosed obligations.</p>
+  <p class="md-body" style="margin-top:1rem">The search layer accelerates this investigation. The officer types or selects a query and the system surfaces matching transactions instantly, with context about what they represent in the borrower's overall financial pattern. Every analysis is logged. Every flag has a traceable reason. The credit decision is no longer dependent on one analyst's interpretation of a PDF.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section-label" style="margin-bottom:0.8rem">Success Metrics</div>
+<p class="md-body" style="margin-bottom:1.4rem">The north star is credit decision quality at speed — accurate assessments made faster, with less variance between analysts. Statement review time, analyst consistency, and false-negative rate on income irregularities were the three primary measures.</p>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num">82%</div>
+    <div class="md-metric-label">Review time reduction</div>
+    <div class="md-metric-sub">22 min → 4 min per application</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">67%</div>
+    <div class="md-metric-label">Analyst variance reduction</div>
+    <div class="md-metric-sub">Income assessment consistency</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">44%</div>
+    <div class="md-metric-label">Missed irregularity reduction</div>
+    <div class="md-metric-sub">False negatives, Q1 post-launch</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">63%</div>
+    <div class="md-metric-label">Filter layer adoption</div>
+    <div class="md-metric-sub">Of all reviewed statements</div>
+  </div>
+</div>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">89%</div>
+    <div class="md-metric-label">Search suggestion adoption</div>
+    <div class="md-metric-sub">Within first 2 weeks</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">1.8 hrs</div>
+    <div class="md-metric-label">Saved per analyst per day</div>
+    <div class="md-metric-sub">Redirected to higher-judgment work</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">&lt;24 hrs</div>
+    <div class="md-metric-label">Credit decision turnaround</div>
+    <div class="md-metric-sub">Standard cases; was 3–5 days</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">5 wks</div>
+    <div class="md-metric-label">Cost recovery</div>
+    <div class="md-metric-sub">On analyst time savings alone</div>
+  </div>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">Impact</div>
+  <p class="md-body">On speed, the <span class="md-num">82%</span> reduction in per-application review time means a team of <span class="md-num">10</span> credit officers can handle the same daily volume that previously required <span class="md-num">18</span>. At <span class="md-num">200 applications reviewed per day</span>, this translates to approximately <span class="md-num">60 hours of analyst time saved daily</span>.</p>
+  <p class="md-body" style="margin-top:1rem">On accuracy, the <span class="md-num">44%</span> reduction in missed income irregularities directly reduces the risk of approving loans based on overstated or misrepresented income — one of the highest-cost error types in consumer lending. Each bad loan prevented has an average recovery cost that far exceeds the cost of the platform.</p>
+  <p class="md-body" style="margin-top:1rem">On consistency, reducing analyst variance by <span class="md-num">67%</span> means credit policy is being applied uniformly across the portfolio rather than varying by who reviewed the application. This has direct implications for regulatory compliance and for the fairness of lending decisions across borrower segments.</p>
+  <p class="md-body" style="margin-top:1rem">On borrower outcomes, faster analysis means credit decisions that previously took <span class="md-num">3 to 5 days</span> are now returned in <span class="md-num">under 24 hours</span> for standard cases — improving the borrower experience and reducing drop-off from applicants who abandon slow processes.</p>
+</div>
+
+<div class="md-callout">Platform paid back implementation cost within <span class="md-num">5 weeks</span> on analyst time savings alone — before accounting for reduction in bad loan approvals and compliance risk improvement.</div>`
   },
   {
-    name:'AgriTech Platform',
-    subtitle:'Agriculture Platform',
-    desc:"Started from a blank slate. Led product, execution, and design—figuring out what should exist before building it. Worked through fragmented, offline-heavy workflows and translated them into something structured and usable.",
-    stats:[
-      { value:'0→1',    label:'Full Product\nBuilt' },
-      { value:'Mobile', label:'First\nPlatform' },
-      { value:'Field',  label:'Tested in\nReal Conditions' },
-      { value:'2021',   label:'Year\nShipped' },
-    ]
+    name:'Hitha AgriTech',
+    subtitle:'Field Activity Management Platform for Farmers',
+    desc:"Ground-up agri-tech platform giving field officers and operations managers a structured, mobile-first way to tag, log, and track day-to-day farm activity — creating the system of record that the agriculture supply chain has never had.",
+    body:`<div class="md-role">PM + Design Lead — Zero to One</div>
+<div class="md-heading">HITHA AGRITECH</div>
+<div class="md-subtitle">Field Activity Management Platform for Farmers</div>
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">The Problem</div>
+  <p class="md-body">Agricultural operations at scale are managed almost entirely without a reliable system of record. A farm — or more accurately, a network of farms managed by an agri-input company, an FPO, or an agricultural lender — has hundreds of farmers doing different things on different days across different crops and growth stages. Field officers visit these farms, observe what is happening, give advice, note problems, and track activity. And then they write it down in a notebook, send a WhatsApp message, or remember it.</p>
+  <p class="md-body" style="margin-top:1rem">The consequences are predictable and expensive. There is no reliable, timestamped record of what happened on which farm on which date. Crop health observations from last month cannot be compared to today's because nobody captured them in a structured format. Input usage — fertilisers, pesticides, irrigation — is self-reported and unverified. When a crop fails or a yield is lower than expected, there is no data trail to understand why. For lenders or input companies trying to make decisions about credit, input supply, or risk, the underlying farm data is either missing, inconsistent, or weeks out of date.</p>
+  <p class="md-body" style="margin-top:1rem">The field officer managing 50 farms across a district is operating entirely from memory and personal discipline. The operations manager sitting in an office has no real visibility into what is actually happening at the farm level. Decisions that should be data-driven — when to send inputs, when to trigger an advisory, when a farm is at risk — are being made on instinct because the data infrastructure does not exist.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">The Solution</div>
+  <p class="md-body">AgroTrack is a field activity management platform that gives agri-operations teams a structured, mobile-first way to tag, log, and track day-to-day farm activity — from crop stage progression to input application to pest and disease observation — creating the system of record that the agriculture supply chain has never had. The platform is built around three actors: the farmer, the field officer, and the operations manager. Each has a different relationship with the data and a different set of jobs to do.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Farm Tagging and Profile System</div>
+  <p class="md-body">Every farm in the network is tagged as a distinct entity with a persistent profile — location, acreage, crop type, soil type, irrigation access, and farmer details. Before AgroTrack, a farm was a name in a spreadsheet or a pin on a mental map. After tagging, every farm has a structured identity that every subsequent activity — observations, inputs, advisories, visits — is attached to. Field officers can pull up a farm's full history before a visit and arrive with context rather than starting from scratch every time.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Day-to-Day Activity Logging</div>
+  <p class="md-body">The core workflow is daily activity capture — structured, mobile-first, and designed for field officers who are logging data in the middle of a farm visit, not at a desk. Each log entry is tagged to a specific farm, a specific date, and a specific activity type: crop stage update, input application, irrigation event, pest or disease observation, advisory delivered, or issue flagged. The logging interface is built around the field officer's actual workflow — fast to complete, requiring minimal typing, and working offline in areas with poor connectivity with data syncing when a connection is available.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Crop Stage Tracking</div>
+  <p class="md-body">Crops move through predictable biological stages — germination, vegetative growth, flowering, grain fill, harvest — and the activity and risk profile changes at each stage. AgroTrack tracks each farm's crop stage progression over time, allowing field officers to log where a crop is and flag when progression is ahead of or behind the expected timeline. This creates the first structured longitudinal view of crop health across the network — not a snapshot, but a continuous record that makes anomalies visible and actionable.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Observation and Issue Flagging</div>
+  <p class="md-body">Field officers can log pest sightings, disease symptoms, waterlogging, nutrient deficiency signs, and other field observations against a specific farm and date. Each observation is categorised, severity-rated, and can be escalated to the operations manager if it exceeds a threshold. This turns individual field officer judgment into a network-wide early warning system — a single officer noticing a pest emergence in one cluster can trigger a district-wide advisory within hours rather than waiting for the problem to spread visibly before anyone acts.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Input and Resource Tracking</div>
+  <p class="md-body">Every input application — fertiliser type and quantity, pesticide, herbicide, irrigation hours — is logged against the farm and date. This creates a verifiable input record valuable for three distinct purposes: agronomic optimisation, where actual input usage can be compared against recommended protocols to identify over or under-application; credit and lending decisions, where input investment is a proxy for farmer seriousness and crop quality; and supply chain planning, where aggregated input data across the network informs procurement and logistics decisions upstream.</p>
+</div>
+
+<div class="md-section">
+  <div class="md-section-label">Operations Dashboard</div>
+  <p class="md-body">The operations manager view aggregates all field activity across the network in real time. Every farm's current status, every open issue, every overdue visit, and every at-risk crop is visible in a single interface — organised by geography, crop type, risk level, and activity recency. For the first time, a district-level operations manager has an accurate, live picture of what is happening across hundreds of farms without needing to call each field officer individually.</p>
+  <p class="md-body" style="margin-top:1rem">I owned the full product surface — farmer and farm entity design, activity taxonomy, the field officer mobile logging UX, offline sync architecture, crop stage model, issue flagging and escalation flows, operations dashboard, PRDs, user stories, acceptance criteria, and field rollout planning.</p>
+</div>
+
+<div class="md-callout">Before AgroTrack: a farm was a name in a spreadsheet.<br>After tagging: every subsequent event attaches automatically. The history builds without anyone having to think about building it.</div>
+
+<div class="md-section" style="margin-top:1.8rem">
+  <div class="md-section-label">Workflow</div>
+  <p class="md-body">At the start of a season, every farm in the network is onboarded and tagged — location confirmed, crop sown recorded, farmer profile completed, and the crop stage clock started. Field officers are assigned their farm clusters and can see their full roster with the last visit date and current crop stage for each farm.</p>
+  <p class="md-body" style="margin-top:1rem">During a farm visit, the field officer opens the app, selects the farm, and logs what they observe — crop stage, input application since the last visit, any pest or disease signs, irrigation status, and any issues that need escalation. The entire logging flow takes under <span class="md-num">3 minutes</span> per farm for a standard visit. If connectivity is unavailable, logs are stored locally and sync automatically when signal returns.</p>
+  <p class="md-body" style="margin-top:1rem">Back at the operations level, the manager's dashboard updates in real time as field officers log throughout the day. Farms that have not had a visit beyond the configured threshold surface automatically. Open issues that have not been resolved within their escalation window flag for manager attention. At key decision points — input procurement, credit review, harvest timing — the aggregated data gives operations teams a structured, verifiable record of what actually happened across the season rather than a collection of self-reported estimates.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section-label" style="margin-bottom:0.8rem">Success Metrics</div>
+<p class="md-body" style="margin-bottom:1.4rem">The north star metric is farm data completeness and recency — the percentage of active farms with a verified activity log within the last seven days. This is the single indicator that tells you whether the system is being used as the primary record rather than as a parallel layer on top of existing informal processes.</p>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num">84%</div>
+    <div class="md-metric-label">Farm data completeness</div>
+    <div class="md-metric-sub">Log within 7 days; was 12%</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">79%</div>
+    <div class="md-metric-label">Visit log completion rate</div>
+    <div class="md-metric-sub">Structured record; was 31%</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">2m 40s</div>
+    <div class="md-metric-label">Avg log time per farm visit</div>
+    <div class="md-metric-sub">After first 2 weeks of use</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">4 hrs</div>
+    <div class="md-metric-label">Issue escalation time</div>
+    <div class="md-metric-sub">Down from 3.2 days avg</div>
+  </div>
+</div>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">28%</div>
+    <div class="md-metric-label">Lower pest incidence rate</div>
+    <div class="md-metric-sub">Early-flagged vs late-escalated farms</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">22%</div>
+    <div class="md-metric-label">Input efficiency improvement</div>
+    <div class="md-metric-sub">Right stage, right quantity</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">17%</div>
+    <div class="md-metric-label">Yield improvement</div>
+    <div class="md-metric-sub">vs district avg, same crop/season</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">80%</div>
+    <div class="md-metric-label">Manager status-aggregation time saved</div>
+    <div class="md-metric-sub">2.5 hrs/day → under 30 min</div>
+  </div>
+</div>
+
+<div class="md-callout"><span class="md-num">100%</span> of tagged farms now have a structured seasonal record usable for credit assessment, agronomic review, and yield estimation. Before AgroTrack, that figure was effectively zero.</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">Impact</div>
+  <p class="md-body">For the farmer, earlier issue detection and faster advisory delivery translates directly into better crop outcomes. Farms where AgroTrack was active through the full season showed an average <span class="md-num">22%</span> improvement in input efficiency and a <span class="md-num">17%</span> improvement in yield against the district average for the same crop and season.</p>
+  <p class="md-body" style="margin-top:1rem">For the field officer, the platform eliminates the cognitive load of tracking 50 farms from memory. Officers using AgroTrack reported spending <span class="md-num">40%</span> less time on status reporting and follow-up communication with the operations team — time redirected toward actual farm advisory work. New field officers reached full operational competency in <span class="md-num">half the time</span> compared to previous cohorts, because farm history was available to them from day one rather than held in the outgoing officer's head.</p>
+  <p class="md-body" style="margin-top:1rem">For the operations manager, real-time network visibility replaced a process that previously required daily phone rounds with each officer. Status aggregation time reduced from an estimated <span class="md-num">2.5 hours per day to under 30 minutes</span> — an <span class="md-num">80%</span> reduction — with higher accuracy and no dependence on officer availability.</p>
+  <p class="md-body" style="margin-top:1rem">For institutional partners — lenders, input companies, FPOs — the platform produces the first structured, verifiable farm data set that can support credit underwriting, input planning, and crop insurance without relying on self-reported farmer data. This has direct implications for the quality of agricultural credit decisions and the accuracy of crop insurance assessments in the districts where the platform operates.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">Risks and Mitigation</div>
+  <p class="md-body"><strong style="color:rgba(255,255,255,0.7)">Field officer adoption in low-connectivity environments.</strong> A platform that requires a data connection at the point of logging will fail in the field contexts where it matters most. The mitigation is a fully offline-capable mobile app with local storage and background sync — field officers log in the field regardless of connectivity, and the data reaches the server when they re-enter a coverage area. This was a non-negotiable architectural requirement, not a nice-to-have.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Data quality degradation over time.</strong> Field officers under time pressure will take shortcuts — logging approximate crop stages, skipping observation details, completing visits on paper and batch-logging later. The mitigation is lightweight data quality signals built into the operations dashboard — farms where logs look statistically implausible, where stage progressions are jumping multiple steps, or where the same observation template is being used repeatedly without variation surface automatically for manager review.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Farmer distrust of data collection.</strong> In agricultural contexts, farmers are often wary of their production data being used by lenders or input companies in ways that disadvantage them. The mitigation is transparency in the farmer onboarding about how data is used, farmer access to their own farm record, and product positioning that frames the platform as being in the farmer's interest — better advice, better input timing, better access to credit — rather than as a surveillance tool for upstream institutions.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Scope creep before core logging is embedded.</strong> The temptation in agri-tech is to add crop models, market price feeds, and financial products before the foundational data layer is actually being used reliably. The mitigation was a deliberate MVP scope decision: AgroTrack ships as a tagging and logging platform first. Everything else — advisories, credit integration, yield prediction — is only valuable if the first-order data is being captured consistently. Discipline on this sequencing was the most important product judgment call in the build.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <div class="md-section-label">The Insight</div>
+  <p class="md-body">Agriculture fails to benefit from data not because farmers don't generate it, but because no system captures it at the point where it exists — in the field, in the moment of the visit, in the observation that a field officer makes and then carries away in their notebook or their memory.</p>
+  <p class="md-body" style="margin-top:1rem">The logging interface was designed to be faster than writing in a notebook and no slower than sending a WhatsApp message. If the structured system adds friction relative to the informal alternative, it loses. AgroTrack wins adoption by being the path of least resistance, not the path of most governance.</p>
+  <p class="md-body" style="margin-top:1rem">Creating a persistent identity for each farm — rather than treating farm data as a flat list of transactions — is what makes the longitudinal view possible. Once a farm has a tag, every subsequent event attaches to it automatically. The history builds without anyone having to think about building it. The system becomes more valuable the longer it is used, and that compounding dynamic is what drives sustained adoption beyond the initial rollout period.</p>
+</div>`
   },
 ];
 
 /* ═══════════════ SIGNAL — Ascent-style list ═══════════════ */
-var _projectTags = ['AI PLATFORM','AI AGENTS','SALES MOTIVATION','BANKING OPS','FINANCIAL SAAS','AGRICULTURE'];
+var _projectTags = ['AI PLATFORM','AI AGENTS','SALES MOTIVATION','BANKING OPS','FINANCIAL SAAS','AGRICULTURE','D2C GROWTH'];
 
 function initMat() {
   var list = document.getElementById('moList');
@@ -4103,9 +4617,9 @@ function matSelect(rowEl, type, idx) {
       var f = fragmentData[idx];
       topbarEl.textContent = 'OBSERVATION — ' + String(idx + 1).padStart(2, '0') + ' OF ' + fragmentData.length;
       ghostEl.textContent  = f.platform;
-      var imgHTML = f.img
-        ? '<div class="md-frag-img"><img src="' + f.img + '" alt="' + f.heading + '" loading="lazy"/></div>'
-        : '';
+      var bodyHTML = f.body
+        ? f.body
+        : '<p class="md-desc">' + f.sub + '</p>';
       contentEl.innerHTML =
         '<div class="md-platform-badge">' +
           '<span class="md-platform-name">' + f.platform.toUpperCase() + '</span>' +
@@ -4113,8 +4627,7 @@ function matSelect(rowEl, type, idx) {
           '<span class="md-platform-label">' + f.label.toUpperCase() + '</span>' +
         '</div>' +
         '<div class="md-heading md-heading--frag">' + f.heading + '</div>' +
-        '<p class="md-desc">' + f.sub + '</p>' +
-        imgHTML;
+        bodyHTML;
     }
 
     outer.classList.remove('mat-closing');
@@ -4152,14 +4665,55 @@ function initMatScramble() {
 
 /* ═══════════════ FRAGMENTS ═══════════════ */
 const fragmentData = [
-  { platform:'Meesho', label:'Live Deal Window', heading:'Waiting feels expensive', sub:'Live pricing windows increase urgency by showing discounts that expire in real time.', img:'images/waiting feels expensive.png' },
-  { platform:'WhatsApp', label:'Reply Nudge', heading:'Replying later becomes never', sub:'Gentle nudges resurface unanswered chats before they silently fade out.', img:'images/Replying later becomes never.png' },
-  { platform:'WhatsApp', label:'Image Provenance', heading:'The internet forgets the source', sub:'Image provenance helps users trace where forwarded media originally came from.', img:'images/The internet forgets the source.png' },
-  { platform:'YouTube', label:'Watch Later Revisit', heading:'Saved doesn\'t mean watched', sub:'Watch Later resurfacing prompts users to revisit content they intended to return to.', img:'images/Saved doesn\'t mean watched.png' },
+  { platform:'Meesho', label:'Live Deal Window', heading:'Meesho Live Deal Window', sub:'Live pricing windows increase urgency by showing discounts that expire in real time.', img:'images/waiting feels expensive.png',
+    body:`<p class="md-body">Most flash sales feel fake because the urgency is fake. The sale runs for 48 hours, the "limited stock" badge is on everything, and Meesho's Tier 2 and Tier 3 buyers — some of the most price-sensitive shoppers in Indian e-commerce — have been trained to ignore it. The deal will still be there tomorrow. So they wait, or they leave.</p>
+<p class="md-body" style="margin-top:1rem">The Live Deal Window fixes this by making the constraint real. Sellers opt into a <strong style="color:rgba(255,255,255,0.75)">2-hour price drop</strong> on slow-moving inventory. Buyer sees a real countdown. Window closes, price goes back up. New deals every 2 hours. The price actually changes. The clock is actually running. Nobody manufactured the urgency — the seller set it themselves.</p>
+<p class="md-body" style="margin-top:1rem">For sellers it is a self-serve clearance tool that does not permanently anchor their price lower. For buyers it is the best deal on the app right now, with a reason to act before it disappears. And if buyers know new deals drop every 2 hours, they open the app more than once a day — which is the retention mechanic hiding inside what looks like a discount feature.</p>
+<p class="md-body" style="margin-top:1rem">The mechanic is Uber surge, flipped. Uber uses time-bounded pricing to manage demand. This uses time-bounded pricing to clear supply. Same psychology, opposite direction.</p>`
+  },
+  { platform:'WhatsApp', label:'Reply Nudge', heading:'WhatsApp Reply Nudge', sub:'Gentle nudges resurface unanswered chats before they silently fade out.', img:'images/Replying later becomes never.png',
+    body:`<p class="md-body">Everyone has a Rahul. Someone who messaged 12 days ago, got read, and never got a reply — not because you don't care, but because you opened it at a bad moment, meant to reply later, and then the chat got buried under everything else. The intention was there. The follow-through wasn't.</p>
+<p class="md-body" style="margin-top:1rem">WhatsApp already knows this happened. It has the read receipt, the timestamp, and the silence that followed. The Reply Nudge just surfaces that information at the right moment — not as a notification that interrupts you, but as a banner inside the app when you're already there. Soft enough to dismiss, specific enough to actually trigger action.</p>
+<p class="md-body" style="margin-top:1rem">The ghost emoji is doing quiet design work. It makes a potentially guilt-inducing nudge feel light instead of accusatory. You haven't replied in 12 days — that could read as a passive-aggressive reminder. With the ghost it reads as the app gently teasing you. Same information, completely different emotional register.</p>
+<p class="md-body" style="margin-top:1rem">Two options: Remind me later, or Open chat. No pressure. Just an easy on-ramp back into a conversation that drifted.</p>
+<div class="md-callout" style="margin-top:1.4rem">WhatsApp solved sending. It never solved the drifted conversation — the one that got read and then lost to the scroll. Every relationship has a graveyard of those. The Reply Nudge is just a retrieval mechanism for conversations worth having, delivered at the moment when acting on it costs the least.</div>`
+  },
+  { platform:'WhatsApp', label:'Image Provenance', heading:'WhatsApp Image Provenance', sub:'Image provenance helps users trace where forwarded media originally came from.', img:'images/The internet forgets the source.png',
+    body:`<p class="md-body">The most dangerous misinformation in India doesn't travel through Twitter or news sites. It travels through family WhatsApp groups, as a forwarded image, from someone you trust.</p>
+<p class="md-body" style="margin-top:1rem">The problem with forwarded misinformation is that the social wrapper makes it feel credible. It came from your uncle. Your uncle got it from someone he trusts. By the time it reaches you it has accumulated a chain of implicit endorsements from real people, which is exactly what makes it so effective and so hard to counter.</p>
+<p class="md-body" style="margin-top:1rem">Image Provenance puts the metadata where the image is. Not in a fact-checking tab, not behind a link, but as a native overlay on the image itself — forwarded <strong style="color:rgba(255,255,255,0.75)">1,400 times</strong>, first seen on WhatsApp <strong style="color:rgba(255,255,255,0.75)">8 months ago</strong>. Two data points. No editorial judgment. No label saying true or false. Just the raw provenance, surfaced at the moment of viewing.</p>
+<p class="md-body" style="margin-top:1rem">Those two numbers do more than any warning label could. A flood image being forwarded as breaking news that was first seen 8 months ago is not breaking news. A claim forwarded 1,400 times with no origin date pattern reads differently from one forwarded 12 times from a recent source. The user draws their own conclusion — which means they actually believe it rather than dismissing it as a platform telling them what to think.</p>
+<div class="md-callout" style="margin-top:1.4rem">Misinformation interventions fail when they're adversarial — when the platform tells the user they're wrong, the user gets defensive. This works because it's just information about the image, not a judgment about the person who sent it. The nudge lands softly, in the right place, at the right moment, and lets the user do the thinking themselves.</div>`
+  },
+  { platform:'YouTube', label:'Watch Later Revisit', heading:'YouTube Watch Later Revisit', sub:'Watch Later resurfacing prompts users to revisit content they intended to return to.', img:'images/Saved doesn\'t mean watched.png',
+    body:`<p class="md-body">Everyone's Watch Later is a lie they told themselves. 47 videos saved, zero watched, oldest from 8 months ago. The intent was real at the moment of saving. The follow-through never came.</p>
+<p class="md-body" style="margin-top:1rem">The problem is not that people don't want to watch the videos. It's that Watch Later has no re-entry mechanism. You save something, it disappears into a list, and the next time you open YouTube the algorithm serves you something new and more immediately compelling. The saved video never gets a second chance to surface.</p>
+<p class="md-body" style="margin-top:1rem">Watch Later Revisit fixes this with a single card in the feed — a gentle, slightly self-aware nudge that says <em style="color:rgba(255,255,255,0.6)">you saved 47 videos and haven't watched any of them.</em> Not a notification, not a separate tab, but a native feed card that meets the user exactly where they already are. From there, two options: clear the guilt in one tap, or actually watch something now.</p>
+<p class="md-body" style="margin-top:1rem">The mechanic doing the real work is re-surfacing at the right moment. Not when the user navigates to their library. Not via a push notification they'll dismiss. Inside the feed, during the exact session where they were about to let the algorithm decide for them. That timing is everything.</p>
+<div class="md-callout" style="margin-top:1.4rem">Watch Later fails not as a saving feature but as a watching feature. The save is frictionless. The retrieval is dead. This card is just a retrieval mechanism that doesn't require the user to remember they ever saved anything — which is the only kind that actually works.</div>`
+  },
   { platform:'Swiggy', label:'Social Proof', heading:'The crowd removes the risk', sub:'Ordering signals from other users reduce hesitation during food selection.', img:'images/The crowd removes the risk.png' },
-  { platform:'GPay', label:'Payment Wrap', heading:'The summary hits harder than the payment', sub:'Monthly spending recaps expose patterns that individual transactions often hide.', img:'images/The summary hits harder than the paymen.png' },
-  { platform:'GPay', label:'Payment Reminder', heading:'Following up feels personal', sub:'Smart reminders help users recover pending payments without awkward conversations.', img:'images/Following up feels personal.png' },
-  { platform:'Swiggy', label:'Group Ordering', heading:'Shared choice reduces blame', sub:'Collaborative ordering distributes decision-making across the entire group.', img:'images/Shared choice reduces blame.png' },
+  { platform:'GPay', label:'Payment Wrap', heading:'GPay Monthly Wrap', sub:'Monthly spending recaps expose patterns that individual transactions often hide.', img:'images/The summary hits harder than the paymen.png',
+    body:`<p class="md-body">Spotify Wrapped works because it turns passive behaviour into an identity moment. You didn't just listen to music this year — you're a certain kind of listener, and here's the proof. The Monthly Wrap transplants that exact mechanic into payments.</p>
+<p class="md-body" style="margin-top:1rem">Most people have no real relationship with their spending data. UPI apps show transaction history — a list of numbers that nobody reads. The Wrap reframes the same data as a story about you. You're <em style="color:rgba(255,255,255,0.6)">The Smart Planner</em>. You spent ₹24,650 across 152 transactions. Amazon was your most visited merchant. You were on a 28-day payment streak. Suddenly the same data that lived in a dead log is a personality profile worth sharing.</p>
+<p class="md-body" style="margin-top:1rem">The shareability is the product mechanic hiding in plain sight. "Only you can see your wrap" — and then immediately, "Share your wrap." That tension is intentional. It makes sharing feel like a choice rather than a feature, which means the people who do share it are genuinely proud of it. Every share is a GPay impression in someone's social feed that no ad budget could buy.</p>
+<p class="md-body" style="margin-top:1rem">The payment personality label is the smartest single element. It does what financial apps almost never do — it makes the user feel good about their financial behaviour rather than guilty about it. You're not being shown where you overspent. You're being told who you are as a spender. That reframe is why people screenshot this instead of closing it.</p>
+<div class="md-callout" style="margin-top:1.4rem">Financial data is the most personal data people generate and the least emotionally engaging way apps present it. The Monthly Wrap is just a repackaging job — same data, completely different emotional register. The feature cost is low. The engagement and word-of-mouth ceiling is very high.</div>`
+  },
+  { platform:'GPay', label:'Payment Reminder', heading:'GPay Payment Reminder', sub:'Smart reminders help users recover pending payments without awkward conversations.', img:'images/Following up feels personal.png',
+    body:`<p class="md-body">Asking someone to pay you back is socially uncomfortable in a way that no financial app has ever properly solved. You paid ₹3,000 for Rahul. Rahul hasn't paid you back. You don't want to bring it up because it's awkward. So you either forget about it or let it quietly damage the relationship.</p>
+<p class="md-body" style="margin-top:1rem">The reminder mechanic removes you from the conversation entirely. Right after a payment goes through, GPay surfaces a single nudge — <em style="color:rgba(255,255,255,0.6)">remind to get money back</em> — with a Set Reminder button. You set the amount and the date. On that date, Rahul gets a payment reminder notification from GPay, not a message from you. The app is the one asking. You never had to.</p>
+<p class="md-body" style="margin-top:1rem">That one layer of indirection is the entire product insight. The friction in getting paid back was never logistical — it was social. The reminder eliminates the social cost without eliminating the ask. Rahul knows exactly what it's for. You never had to send an awkward message. The relationship stays intact and you still get paid.</p>
+<p class="md-body" style="margin-top:1rem">The thread view is the compounding piece. Every payment between two people lives in a single conversation-style view — who paid whom, when, what's pending. Split finances between friends or flatmates become auditable without anyone having to keep a mental ledger.</p>
+<div class="md-callout" style="margin-top:1.4rem">Every UPI app solved the sending problem years ago. Nobody has properly solved the receiving problem — specifically the social cost of following up. This does it by making the app the one who follows up, which changes the entire emotional dynamic of the interaction.</div>`
+  },
+  { platform:'Swiggy', label:'Group Ordering', heading:'Swiggy Squad', sub:'Collaborative ordering distributes decision-making across the entire group.', img:'images/Shared choice reduces blame.png',
+    body:`<p class="md-body">Group food ordering is a solved problem that nobody has actually solved. Every time a group of people tries to order together it goes the same way — someone starts a WhatsApp thread, everyone sends their order in different formats, one person consolidates it, places the order, and then chases everyone for money afterward. It works, but it is entirely held together by one person's patience and a payment app.</p>
+<p class="md-body" style="margin-top:1rem">Squad makes the coordination native to Swiggy. You create a group — House Party, Office, Home, College batch — members join, everyone browses and adds to a shared cart simultaneously, and a single checkout covers the whole order. No consolidation thread. No one person carrying the cognitive load. Four people adding items from four different restaurants, one order, multiple delivery partners converging at the same location.</p>
+<p class="md-body" style="margin-top:1rem">The multi-restaurant part is the genuinely hard product problem. It is not just a shared cart — it is coordinated logistics across different kitchens and delivery partners arriving at the same drop point within a reasonable time window. The Squad Delivery view shows exactly this: three delivery partners in transit, individual ETAs, a live map. The complexity is real and the UI has to make it feel manageable rather than chaotic.</p>
+<p class="md-body" style="margin-top:1rem">The social layer compounds the utility. Squads persist — they are not one-time sessions. Your Office squad has 14 orders of history. Your House Party group has 8 members. The group becomes a standing ordering context, which means every future group meal starts from a shared history rather than from scratch.</p>
+<div class="md-callout" style="margin-top:1.4rem">The friction in group ordering was never about the food. It was about the coordination tax one person always paid on everyone else's behalf. Squad distributes that tax across the group and makes Swiggy the coordinator instead of the most organised person in the chat.</div>`
+  },
 ];
 
 /* Build Signal list now that both projectData & fragmentData exist */

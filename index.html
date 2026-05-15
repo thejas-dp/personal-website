@@ -3246,12 +3246,17 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 function copyEmailRow(row) {
   var val = row.querySelector('.cn-val');
   var arr = row.querySelector('.cn-arr');
+  var cursorLabel = document.querySelector('#custom-cursor .cursor-label');
   navigator.clipboard.writeText('poonthottathilthejas@gmail.com').then(function() {
-    val.textContent = 'Copied!';
+    val.textContent = 'COPIED';
     if (arr) arr.textContent = '✓';
+    if (cursorLabel) cursorLabel.textContent = 'COPIED';
+    row.dataset.cursorLabel = 'COPIED';
     setTimeout(function() {
       val.textContent = val.dataset.orig;
       if (arr) arr.textContent = '↗';
+      if (cursorLabel) cursorLabel.textContent = 'COPY';
+      row.dataset.cursorLabel = 'COPY';
     }, 1800);
   });
 }

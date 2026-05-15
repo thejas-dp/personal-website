@@ -51,7 +51,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 
 /* ═══════════════ LOADER ═══════════════ */
 .loader {
-  position:fixed; inset:0; z-index:10000;
+  position:fixed; inset:0; z-index:100000;
   background:#0d0d0d;
   display:flex; flex-direction:column; justify-content:space-between;
   padding:2rem 2.5rem;
@@ -1947,13 +1947,13 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .ad-inner {
   width:100%; height:100%;
   display:flex; flex-direction:column; overflow:hidden;
-  opacity:0; transform:translateX(2.5rem);
-  transition:opacity 0.45s ease 0.42s, transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.42s;
+  opacity:0; transform:translateX(100%);
+  transition:opacity 0.4s ease 0.25s, transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.1s;
 }
 .ascent-outer.ascent-open  .ad-inner { opacity:1; transform:translateX(0); }
 .ascent-outer.ascent-closing .ad-inner {
-  opacity:0; transform:translateX(2rem);
-  transition:opacity 0.22s ease, transform 0.28s cubic-bezier(0.76,0,0.24,1);
+  opacity:0; transform:translateX(100%);
+  transition:opacity 0.2s ease, transform 0.35s cubic-bezier(0.76,0,0.24,1);
 }
 
 /* Top bar */
@@ -2095,6 +2095,10 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .mat-outer {
   display:flex; width:100%; height:100%; overflow:hidden;
 }
+/* Pass-through flex wrapper — desktop uses direct flex, mobile overrides with track */
+.mat-track, .ao-track {
+  display:flex; flex:1; min-width:0; height:100%;
+}
 
 /* ── Overview wrap ── */
 .mo-wrap {
@@ -2183,13 +2187,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .mo-row.mo-in { opacity:1; transform:translateX(0); }
 .mat-outer.mat-open .mo-row { padding:1rem 0; }
 
-.mo-row-num {
-  font-family:'Barlow Condensed',sans-serif; font-weight:400;
-  font-size:0.75rem; letter-spacing:0.1em;
-  color:rgba(255,255,255,0.22);
-  transition:color 0.22s ease;
-}
-.mo-row.mo-active .mo-row-num { color:var(--coral); }
+.mo-row-num { display:none; }
 
 .mo-row-body { display:flex; flex-direction:column; gap:0.4rem; min-width:0; }
 .mo-row-title {
@@ -2225,24 +2223,24 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .md-wrap {
   width:0; flex-shrink:0; overflow:hidden;
   border-left:0px solid rgba(255,255,255,0.06);
-  transition:width 0.85s cubic-bezier(0.76,0,0.24,1),
-             border-left-width 0s linear 0.85s;
+  transition:width 0.75s cubic-bezier(0.76,0,0.24,1),
+             border-left-width 0s linear 0.75s;
 }
 .mat-outer.mat-open .md-wrap {
   width:60%; border-left-width:1px;
-  transition:width 0.85s cubic-bezier(0.76,0,0.24,1),
+  transition:width 0.75s cubic-bezier(0.76,0,0.24,1),
              border-left-width 0s linear 0s;
 }
 .md-inner {
   width:100%; height:100%;
   display:flex; flex-direction:column; overflow:hidden;
-  opacity:0; transform:translateX(2.5rem);
-  transition:opacity 0.45s ease 0.42s, transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.42s;
+  opacity:0; transform:translateX(100%);
+  transition:opacity 0.4s ease 0.25s, transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.1s;
 }
 .mat-outer.mat-open .md-inner { opacity:1; transform:translateX(0); }
 .mat-outer.mat-closing .md-inner {
-  opacity:0; transform:translateX(2rem);
-  transition:opacity 0.22s ease, transform 0.28s cubic-bezier(0.76,0,0.24,1);
+  opacity:0; transform:translateX(100%);
+  transition:opacity 0.2s ease, transform 0.35s cubic-bezier(0.76,0,0.24,1);
 }
 
 /* Topbar */
@@ -2400,6 +2398,19 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   padding-top:0.15rem; flex-shrink:0;
 }
 .c-row:hover .c-arrow { transform:translate(5px,-5px); color:var(--coral); }
+.c-actions { display:flex; align-items:center; gap:0.75rem; flex-shrink:0; padding-top:0.15rem; }
+.c-copy {
+  font-size:0.6rem; letter-spacing:0.22em; text-transform:uppercase; font-weight:600;
+  color:rgba(255,255,255,0.4);
+  border:1px solid rgba(255,255,255,0.18);
+  padding:0.3rem 0.65rem; border-radius:2px;
+  opacity:0; transform:translateY(4px);
+  transition:opacity 0.3s var(--ease-breathe), transform 0.3s var(--ease-breathe), color 0.3s, border-color 0.3s;
+  cursor:pointer;
+}
+.c-row:hover .c-copy { opacity:1; transform:translateY(0); }
+.c-copy:hover { color:var(--coral); border-color:var(--coral); }
+.c-copy.copied { color:var(--coral); border-color:var(--coral); }
 
 /* OVERLAP BIG TEXT — Anton outlined, full width */
 .footer-overlap {
@@ -2518,42 +2529,59 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 /* ═══════════════ MOBILE PANEL BEHAVIOUR ═══════════════ */
 @media (max-width:768px) {
 
-  /* Red nav bar sits on top — overview slides under it */
-  .asp-left {
-    position:relative; z-index:10; flex-shrink:0;
+  /* Layout becomes vertical — nav moves to bottom */
+  .asp-layout {
+    flex-direction:column;
   }
 
-  /* Right area allows overflow so panels can bleed left under the nav */
+  /* Bottom nav bar */
+  .asp-left {
+    order:2; flex-shrink:0;
+    width:100% !important; min-width:0;
+    height:3.5rem; flex-direction:row;
+    z-index:10;
+  }
+
+  /* Hide desktop-only sections inside the nav */
+  .asp-left-top,
+  .asp-left-hero,
+  .asp-left-footer {
+    display:none;
+  }
+
+  /* Nav items laid out horizontally */
+  .asp-left-nav {
+    flex-direction:row; flex:1;
+    padding:0; gap:0; height:100%;
+  }
+  .asp-nav-item {
+    flex:1; flex-direction:column;
+    justify-content:center; align-items:center;
+    gap:0.15rem;
+  }
+  .asp-nav-num  { font-size:0.52rem; letter-spacing:0.1em; }
+  .asp-nav-label { font-size:0.68rem; letter-spacing:0.04em; }
+
+  /* Right content takes remaining height */
   .asp-right {
+    flex:1; min-height:0;
     overflow:visible; position:relative;
   }
 
   /* ── Signal ── */
-  .mat-outer {
-    overflow:visible; position:relative;
+  .mat-outer { overflow:hidden; position:relative; }
+  .mo-wrap, .md-wrap {
+    position:relative; inset:auto;
+    width:100% !important; flex-shrink:0; flex:none;
+    transform:none !important;
+    transition:none !important;
+    border-left:none !important;
   }
-  .mo-wrap {
-    position:absolute; inset:0;
-    width:100%; flex:none;
-    transform:translateX(0);
-    transition:transform 0.75s cubic-bezier(0.76,0,0.24,1);
-    z-index:1;
+  .mat-track {
+    display:flex; width:200%; height:100%;
+    transition:transform 0.72s cubic-bezier(0.76,0,0.24,1);
   }
-  /* slide overview left — it disappears under the red nav bar */
-  .mat-outer.mat-open .mo-wrap {
-    flex:none;
-    transform:translateX(-100%);
-  }
-  .md-wrap {
-    position:absolute; inset:0;
-    width:100% !important; border-left:none !important;
-    transform:translateX(100%);
-    transition:transform 0.75s cubic-bezier(0.76,0,0.24,1);
-    z-index:2;
-  }
-  .mat-outer.mat-open .md-wrap {
-    transform:translateX(0);
-  }
+  .mat-outer.mat-open .mat-track { transform:translateX(-50%); }
   .md-inner {
     opacity:1 !important; transform:none !important;
     transition:none !important;
@@ -2563,30 +2591,19 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   }
 
   /* ── Ascent ── */
-  .ascent-outer {
-    overflow:visible; position:relative;
+  .ascent-outer { overflow:hidden; position:relative; }
+  .ao-wrap, .ad-wrap {
+    position:relative; inset:auto;
+    width:100% !important; flex-shrink:0; flex:none;
+    transform:none !important;
+    transition:none !important;
+    border-left:none !important;
   }
-  .ao-wrap {
-    position:absolute; inset:0;
-    width:100%; flex:none;
-    transform:translateX(0);
-    transition:transform 0.75s cubic-bezier(0.76,0,0.24,1);
-    z-index:1;
+  .ao-track {
+    display:flex; width:200%; height:100%;
+    transition:transform 0.72s cubic-bezier(0.76,0,0.24,1);
   }
-  .ascent-outer.ascent-open .ao-wrap {
-    flex:none;
-    transform:translateX(-100%);
-  }
-  .ad-wrap {
-    position:absolute; inset:0;
-    width:100% !important; border-left:none !important;
-    transform:translateX(100%);
-    transition:transform 0.75s cubic-bezier(0.76,0,0.24,1);
-    z-index:2;
-  }
-  .ascent-outer.ascent-open .ad-wrap {
-    transform:translateX(0);
-  }
+  .ascent-outer.ascent-open .ao-track { transform:translateX(-50%); }
   .ad-inner {
     opacity:1 !important; transform:none !important;
     transition:none !important;
@@ -2947,7 +2964,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
     </div>
     <div class="asp-right">
       <div class="ascent-outer" id="ascentOuter">
-
+        <div class="ao-track" id="aoTrack">
         <!-- OVERVIEW — full width state 1, compresses to left in state 2 -->
         <div class="ao-wrap">
           <div class="ao-inner">
@@ -3060,7 +3077,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
             </div>
           </div>
         </div>
-
+        </div>
       </div>
     </div>
   </div>
@@ -3098,6 +3115,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
     </div>
     <div class="asp-right">
       <div class="mat-outer" id="matOuter">
+        <div class="mat-track" id="matTrack">
         <!-- Overview panel -->
         <div class="mo-wrap">
           <div class="mo-inner">
@@ -3121,6 +3139,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
             </div>
             <div class="md-content" id="mdContent"></div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -3162,10 +3181,13 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
         <div class="footer-invite">Building something tender and ambitious? Hiring for a thoughtful product role? Or just want to trade notes on growth, craft, or clouds — I'd love to hear from you.</div>
       </div>
       <div class="footer-contacts">
-        <a class="c-row" href="mailto:poonthottathilthejas@gmail.com">
+        <div class="c-row c-row--email">
           <div class="c-content"><span class="c-label">Email</span><span class="c-value">poonthottathilthejas@gmail.com</span></div>
-          <span class="c-arrow">↗</span>
-        </a>
+          <div class="c-actions">
+            <button class="c-copy" onclick="copyEmail(this)">COPY</button>
+            <a class="c-arrow" href="mailto:poonthottathilthejas@gmail.com">↗</a>
+          </div>
+        </div>
         <a class="c-row" href="https://www.linkedin.com/in/thejasdp" target="_blank">
           <div class="c-content"><span class="c-label">LinkedIn</span><span class="c-value">/in/thejasdp</span></div>
           <span class="c-arrow">↗</span>
@@ -3183,6 +3205,17 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 
 <script>
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+function copyEmail(btn) {
+  navigator.clipboard.writeText('poonthottathilthejas@gmail.com').then(function() {
+    btn.textContent = 'COPIED';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'COPY';
+      btn.classList.remove('copied');
+    }, 1800);
+  });
+}
 /* ═══════════════ LOADING ═══════════════ */
 const loader = document.getElementById('loader');
 const loaderCd = document.getElementById('loaderCd');

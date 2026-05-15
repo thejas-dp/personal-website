@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://personal-website-drab-rho-85.vercel.app/sitemap.xml

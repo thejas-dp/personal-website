@@ -2335,14 +2335,45 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 
 /* ═══════════════ CONTACT — full black right panel ═══════════════ */
 #page-contact .asp-right {
-  background:#0c0c0c;
+  background:#0a0a0a;
+  display:flex; flex-direction:column;
+  padding:4vh 5vw; overflow-y:auto;
 }
-.footer-contacts {
-  border-bottom-color:rgba(255,255,255,0.08);
+.cn-hero { margin-bottom:3rem; }
+.cn-headline {
+  font-family:'Anton', Impact, sans-serif; font-weight:400;
+  font-size:clamp(3rem,7vw,6.5rem);
+  line-height:0.95; letter-spacing:-0.01em;
+  text-transform:uppercase; color:#fff;
+  margin-bottom:2.5rem;
 }
-.c-row {
-  border-top-color:rgba(255,255,255,0.08);
+.cn-divider { width:2.5rem; height:1.5px; background:rgba(255,255,255,0.25); }
+.cn-contacts { display:flex; flex-direction:column; }
+.cn-row {
+  display:flex; flex-direction:column; gap:0.4rem;
+  padding:1.5rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  text-decoration:none; cursor:pointer; color:var(--cream);
 }
+.cn-label {
+  font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); font-weight:500;
+}
+.cn-main { display:flex; align-items:center; justify-content:space-between; }
+.cn-val {
+  font-size:clamp(1.1rem,2.2vw,1.9rem);
+  font-weight:600; color:#fff; line-height:1;
+  transition:color 0.35s var(--ease-breathe);
+}
+.cn-arr {
+  color:rgba(255,255,255,0.25); font-size:1.2rem; flex-shrink:0;
+  transition:transform 0.45s var(--ease-breathe), color 0.3s;
+}
+.cn-row:hover .cn-val { color:rgba(255,255,255,0.72); }
+.cn-row:hover .cn-arr { transform:translate(5px,-5px); color:var(--coral); }
+/* legacy — keep selectors so mobile overrides still compile */
+.footer-contacts { border-bottom-color:rgba(255,255,255,0.08); }
+.c-row { border-top-color:rgba(255,255,255,0.08); }
 
 /* ═══════════════ FOOTER (umber) ═══════════════ */
 .footer {
@@ -3177,27 +3208,33 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
       <div class="asp-left-footer">© THEJAS DP 2024</div>
     </div>
     <div class="asp-right" id="siteFooter">
-      <div class="footer-top" style="padding:2rem 2rem 1.5rem;">
-        <div class="footer-invite">Building something tender and ambitious? Hiring for a thoughtful product role? Or just want to trade notes on growth, craft, or clouds — I'd love to hear from you.</div>
+      <div class="cn-hero">
+        <div class="cn-headline">LET'S BUILD<br>WHAT MATTERS.</div>
+        <div class="cn-divider"></div>
       </div>
-      <div class="footer-contacts">
-        <div class="c-row c-row--email">
-          <div class="c-content"><span class="c-label">Email</span><span class="c-value">poonthottathilthejas@gmail.com</span></div>
-          <div class="c-actions">
-            <button class="c-copy" onclick="copyEmail(this)">COPY</button>
-            <a class="c-arrow" href="mailto:poonthottathilthejas@gmail.com">↗</a>
+      <div class="cn-contacts">
+        <div class="cn-row" onclick="copyEmailRow(this)">
+          <span class="cn-label">Email</span>
+          <div class="cn-main">
+            <span class="cn-val" data-orig="poonthottathilthejas@gmail.com">poonthottathilthejas@gmail.com</span>
+            <span class="cn-arr">↗</span>
           </div>
         </div>
-        <a class="c-row" href="https://www.linkedin.com/in/thejasdp" target="_blank">
-          <div class="c-content"><span class="c-label">LinkedIn</span><span class="c-value">/in/thejasdp</span></div>
-          <span class="c-arrow">↗</span>
+        <a class="cn-row" href="https://www.linkedin.com/in/thejasdp" target="_blank">
+          <span class="cn-label">LinkedIn</span>
+          <div class="cn-main">
+            <span class="cn-val">/in/thejasdp</span>
+            <span class="cn-arr">↗</span>
+          </div>
         </a>
-        <a class="c-row" href="tel:+919847698127">
-          <div class="c-content"><span class="c-label">Phone</span><span class="c-value">+91 98476 98127</span></div>
-          <span class="c-arrow">↗</span>
+        <a class="cn-row" href="tel:+919847698127">
+          <span class="cn-label">Phone</span>
+          <div class="cn-main">
+            <span class="cn-val">+91 98476 98127</span>
+            <span class="cn-arr">↗</span>
+          </div>
         </a>
       </div>
-      <div class="footer-overlap"><span>O</span><span>V</span><span>E</span><span>R</span><span>L</span><span>A</span><span>P</span></div>
     </div>
   </div>
 </div><!-- /#page-contact -->
@@ -3206,13 +3243,15 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 <script>
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-function copyEmail(btn) {
+function copyEmailRow(row) {
+  var val = row.querySelector('.cn-val');
+  var arr = row.querySelector('.cn-arr');
   navigator.clipboard.writeText('poonthottathilthejas@gmail.com').then(function() {
-    btn.textContent = 'COPIED';
-    btn.classList.add('copied');
+    val.textContent = 'Copied!';
+    if (arr) arr.textContent = '✓';
     setTimeout(function() {
-      btn.textContent = 'COPY';
-      btn.classList.remove('copied');
+      val.textContent = val.dataset.orig;
+      if (arr) arr.textContent = '↗';
     }, 1800);
   });
 }

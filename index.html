@@ -2658,13 +2658,14 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   .mat-outer { overflow:hidden; position:relative; }
   .mo-wrap, .md-wrap {
     position:relative; inset:auto;
-    width:50% !important; flex-shrink:0; flex:none;
+    flex:0 0 50% !important; width:50% !important;
     transform:none !important;
     transition:none !important;
     border-left:none !important;
   }
   .mat-track {
-    display:flex; width:200%; height:100%;
+    flex:none !important;
+    display:flex; width:200% !important; height:100%;
     transition:transform 0.72s cubic-bezier(0.76,0,0.24,1);
   }
   .mat-outer.mat-open .mat-track { transform:translateX(-50%); }
@@ -2680,13 +2681,14 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   .ascent-outer { overflow:hidden; position:relative; }
   .ao-wrap, .ad-wrap {
     position:relative; inset:auto;
-    width:50% !important; flex-shrink:0; flex:none;
+    flex:0 0 50% !important; width:50% !important;
     transform:none !important;
     transition:none !important;
     border-left:none !important;
   }
   .ao-track {
-    display:flex; width:200%; height:100%;
+    flex:none !important;
+    display:flex; width:200% !important; height:100%;
     transition:transform 0.72s cubic-bezier(0.76,0,0.24,1);
   }
   .ascent-outer.ascent-open .ao-track { transform:translateX(-50%); }

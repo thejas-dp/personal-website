@@ -1,0 +1,131 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TRUST | Thejas Dhanesh</title><meta name="description" content="Loan Workflow Orchestration Platform - a product case study by Thejas Dhanesh."><link rel="canonical" href="https://thejasdp.vercel.app/work/trust/"><meta property="og:title" content="TRUST | Thejas Dhanesh"><meta property="og:url" content="https://thejasdp.vercel.app/work/trust/"><meta property="og:image" content="https://thejasdp.vercel.app/images/social-card.png"><style>body{background:#fcfbf8;color:#1a1a1a;margin:0;font:17px/1.7 system-ui,sans-serif}header{background:#e01616;padding:1rem max(1rem,calc((100vw - 900px)/2))}header a{color:inherit}main{max-width:850px;padding:2.5rem 1.2rem;margin:auto}h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.1}h2{font-size:1.4rem;margin-top:2rem}.md-section,.md-divider{margin:1.6rem 0}.md-section-label{font-weight:700;font-size:1.3rem}.md-heading,.md-subtitle{display:none}.md-role{font-weight:600}.md-metrics,.md-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem}.md-metric,.md-stats>div{background:#f5f1e8;padding:1rem}.md-metric-num,.md-stat-val{font-size:2rem;font-weight:700}.md-metric-label{font-weight:600}.md-metric-sub{font-size:.85rem}.md-callout{border-left:4px solid #c81815;padding:1rem;background:#f5f1e8}img{max-width:100%;height:auto}a{color:#a01210}footer{padding:2rem;border-top:1px solid #ccc}</style></head><body><header><a href="/#page-signal">Thejas DP / All work</a></header><main><p>PRODUCT CASE STUDY</p><h1>TRUST</h1><p>Loan Workflow Orchestration Platform</p><div class="md-role">Founding PM — Strategy to Shipped</div>
+<div class="md-heading">TRUST</div>
+<div class="md-subtitle">Loan Workflow Orchestration Platform</div>
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>The Problem</h2>
+  <p class="md-body">NBFCs process hundreds to thousands of loan applications every day across distributed teams — internal sales and ops, credit and compliance, and third-party field operators. The coordination between these actors is what determines how fast and how accurately loans get processed. And in most operations, that coordination is entirely manual.</p>
+  <p class="md-body" style="margin-top:1rem">Data lives across phone calls, WhatsApp threads, spreadsheets, and physical paper trails. Handoffs between teams happen informally, which means ownership of any given application is implied rather than explicit — nobody is clearly responsible, so nobody is clearly accountable. Documents go missing, get duplicated, or arrive in the wrong format. Approvals depend on someone chasing someone else. Checkers send applications back to makers repeatedly because submissions are incomplete, and each loop adds days to the turnaround time.</p>
+  <p class="md-body" style="margin-top:1rem">The outcome at scale is predictable. Decisions are slow. Error rates are high. And nobody has a reliable, real-time view of where any application actually stands. The operation runs on individual effort and institutional memory rather than on a system — which means it doesn't scale, and it doesn't improve.</p>
+  <p class="md-body" style="margin-top:1rem">This wasn't a people problem. The teams were working hard. It was a coordination problem. There was no layer between the actors enforcing structure, making ownership explicit, or creating an auditable record of what happened and why.</p>
+</div>
+
+<div class="md-section">
+  <h2>The Solution</h2>
+  <p class="md-body">TRUST is a workflow orchestration and enforcement layer built for loan operations. It sits between the teams and tools already in place, enforcing structured progression, making ownership explicit at every stage, and turning a messy multi-actor human process into a governed, auditable system. It is not a loan origination system. It is not a CRM. It is the coordination layer that makes the existing operation actually work under load.</p>
+  <p class="md-body" style="margin-top:1rem">The platform is built around four core mechanics.</p>
+</div>
+
+<div class="md-section">
+  <h2>Role-Based Architecture</h2>
+  <p class="md-body">Every action in TRUST is mapped to a role — NBFC makers who initiate and input, ATSL makers who execute field and document tasks, checkers at both NBFC and ATSL levels who validate and gate progression, and admins who configure roles, access, and governance rules. Ownership is never implied. At every point in the process, one actor holds the application and knows what they need to do next. This eliminates the single biggest coordination failure in manual ops: the application that exists in a grey zone where everyone assumes someone else is handling it.</p>
+</div>
+
+<div class="md-section">
+  <h2>State Machine — Structured Lifecycle</h2>
+  <p class="md-body">Every loan moves through a non-skippable state machine: data capture, document upload, field execution, multi-level validation, and final approval or rejection. States cannot be skipped or reordered. This means silent failures — applications that stall without anyone noticing — are structurally impossible. Every bottleneck is visible and measurable. The process becomes debuggable in a way that a WhatsApp-based operation never could be.</p>
+</div>
+
+<div class="md-section">
+  <h2>Deviation Engine</h2>
+  <p class="md-body">Real loan operations are not clean. Documents go missing. Exceptions arise. Non-standard cases need extraordinary approval. TRUST handles this through a first-class deviation engine rather than forcing teams to work around the system. Deviations are explicitly triggered, tracked as their own objects with full audit trails, and resolved through controlled overrides. This was the design decision that separated a rigid workflow tool from a system that actually survives production reality.</p>
+</div>
+
+<div class="md-section">
+  <h2>Document Lifecycle Management</h2>
+  <p class="md-body">Documents are centrally stored, linked to application state, and permissioned by role. No more lost files, duplicated submissions, or compliance exposure from documents sitting in someone's email inbox. Every document is where it's supposed to be, accessible to the people who need it, and off-limits to those who don't.</p>
+  <p class="md-body" style="margin-top:1rem">I owned the full product surface — problem framing, system design, roles and permissions architecture, state machine design, deviation handling, verification logic, PRDs, user stories, acceptance criteria, sprint planning, IA and task flows, interaction design for all three actor types, design system, dev handoff, onboarding flows, and operational rollout planning.</p>
+</div>
+
+<div class="md-callout">Before TRUST: people coordinated the system.<br>After TRUST: the system coordinates people.</div>
+
+<div class="md-section" style="margin-top:1.8rem">
+  <h2>Workflow</h2>
+  <p class="md-body">A maker opens a new application and is guided through structured data capture with explicit document requirements at each step. Nothing is left to interpretation. The system tells the maker exactly what is needed before the application can progress. Once submitted, ATSL operators receive a clear task with defined scope — what they need to collect, scan, or execute in the field — and the application cannot move forward until those tasks are marked complete.</p>
+  <p class="md-body" style="margin-top:1rem">The application then moves to the checker layer. Checkers work from a standardised validation view that surfaces exactly what they need to review and why. If the submission is complete and correct, they approve and the application progresses. If something is wrong, they send it back with an explicit reason attached — not a phone call, not a message, a structured send-back that creates a record and routes the application back to the right actor with full context.</p>
+  <p class="md-body" style="margin-top:1rem">Deviations are handled as first-class events throughout. When a document is missing, when a case is non-standard, when an exception needs escalation, the system routes it through a controlled override process rather than letting it fall into a WhatsApp thread.</p>
+  <p class="md-body" style="margin-top:1rem">At every point, admins and supervisors have real-time visibility into where every application sits, who owns it, how long it has been in its current state, and whether it is at risk of breaching its SLA. The operation is no longer dependent on someone having the right spreadsheet open.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section-label" style="margin-bottom:0.8rem">Success Metrics</div>
+<p class="md-body" style="margin-bottom:1.4rem">The north star metric is time-to-decision with quality — speed and correctness together. A fast decision based on incomplete information is not a good outcome. TRUST is designed to improve both simultaneously by eliminating the rework loops that slow things down and the document failures that create downstream risk.</p>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num">41%</div>
+    <div class="md-metric-label">TAT reduction</div>
+    <div class="md-metric-sub">11 days → 6.5 days median</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">43%</div>
+    <div class="md-metric-label">Rework loop reduction</div>
+    <div class="md-metric-sub">Maker-checker cycles</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">52%</div>
+    <div class="md-metric-label">Manual follow-ups reduced</div>
+    <div class="md-metric-sub">Teams shifted to platform</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">1.8×</div>
+    <div class="md-metric-label">Applications per ops user</div>
+    <div class="md-metric-sub">Same headcount, 2× volume</div>
+  </div>
+</div>
+
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">100%</div>
+    <div class="md-metric-label">Real-time state visibility</div>
+    <div class="md-metric-sub">vs 34% before platform</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">9%</div>
+    <div class="md-metric-label">Missing doc rate at checker</div>
+    <div class="md-metric-sub">Down from 38%</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">11%</div>
+    <div class="md-metric-label">SLA breach rate</div>
+    <div class="md-metric-sub">Down from 27%</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">1.3</div>
+    <div class="md-metric-label">Avg send-back loops</div>
+    <div class="md-metric-sub">Down from 2.7 cycles</div>
+  </div>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>Impact</h2>
+  <p class="md-body">The impact of TRUST compounds across three dimensions: operational speed, error reduction, and governance quality.</p>
+  <p class="md-body" style="margin-top:1rem">On speed, the <span class="md-num">41%</span> reduction in TAT directly translates to faster disbursements and a better borrower experience. At a volume of <span class="md-num">500 applications a month</span>, reducing the median processing time by <span class="md-num">4.5 days</span> means the operation is consistently running <span class="md-num">2,250 fewer application-days in process</span> at any given time. That is capital deployed faster and risk resolved sooner.</p>
+  <p class="md-body" style="margin-top:1rem">On quality, the drop in rework loops from <span class="md-num">2.7 to 1.3 cycles per application</span> means checkers are spending their time on genuine validation rather than repeatedly correcting the same submission errors. The <span class="md-num">missing document rate reduction from 38% to 9%</span> at the checker stage alone eliminates one of the most expensive recurring failure modes in manual loan ops.</p>
+  <p class="md-body" style="margin-top:1rem">On throughput, the <span class="md-num">1.8×</span> improvement in applications processed per ops user means the operation can scale volume without a proportional increase in headcount. For a team of <span class="md-num">20 ops users</span>, this is the effective capacity of <span class="md-num">36 users</span> on the previous system.</p>
+  <p class="md-body" style="margin-top:1rem">On governance, having <span class="md-num">100% application traceability</span> with a full audit trail for every state transition, decision, and deviation means the operation can pass a compliance audit, identify systemic failure patterns, and improve over time. Before TRUST, none of that was possible because the data didn't exist in a structured form.</p>
+</div>
+
+<div class="md-callout">Average ops team in the pilot recovered implementation cost within <span class="md-num">8 weeks</span> on headcount efficiency alone — before accounting for loan error reduction and compliance risk reduction from proper document management.</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>Risks and Mitigation</h2>
+  <p class="md-body"><strong style="color:rgba(255,255,255,0.7)">Adoption friction.</strong> Structured systems change how people work, and ops teams under volume pressure have very little tolerance for tools that slow them down before they speed them up. The mitigation was role-specific UX designed around each actor's actual task — makers see a guided capture flow, checkers see a validation-focused interface, operators see a task list. Progressive disclosure keeps complexity out of the way until it's needed, and "what happens next" transparency was built into every screen so no actor is ever confused about their next action.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Flexibility versus control.</strong> A strict state machine can feel rigid, particularly for experienced ops staff who know when a rule should bend. The deviation engine was the direct answer to this: teams retain the ability to handle exceptions, but every exception is explicit, tracked, and approved through a controlled mechanism rather than handled informally outside the system.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Partial adoption.</strong> Teams using TRUST for some applications and falling back to manual coordination for others produces worse outcomes than either approach alone. The mitigation was designing the platform to make the manual fallback actively harder than using the system, combined with admin visibility into which applications are in the platform so supervisors can identify and address gaps.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Auditability trust.</strong> Whether ops and compliance teams would actually rely on TRUST's audit trail for regulatory and internal review required the audit log to be genuinely complete rather than a superficial record. Every state transition, every send-back, every deviation, every override is logged with actor, timestamp, and reason. The audit trail was designed to be court-admissible in intent, not just operationally useful.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>The Insight</h2>
+  <p class="md-body">The real product insight behind TRUST is deceptively simple: in a multi-actor operation, the system should be the coordinator — not the most organised person on the team.</p>
+  <p class="md-body" style="margin-top:1rem">Manual coordination is fragile. It depends on individuals knowing the process, following up consistently, and never dropping context across a handoff. When any of those things fail — and at scale they always do — the operation degrades. TRUST replaces individual coordination effort with structural enforcement. The workflow doesn't break when someone is busy, absent, or new. It behaves the same way every time because the rules are in the system, not in someone's head.</p>
+  <p class="md-body" style="margin-top:1rem">The deviation engine is where this philosophy is most visible. It would have been easier to build a rigid workflow and tell teams to conform to it. Instead TRUST was designed around the reality that exceptions are not edge cases in loan ops — they are a constant. Making deviations a first-class, auditable concept rather than something teams work around is what makes the platform trustworthy in production rather than just in a demo.</p>
+</div></main><footer><a href="mailto:poonthotathilthejas@gmail.com">Contact Thejas Dhanesh</a></footer></body></html>

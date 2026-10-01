@@ -2796,6 +2796,7 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
  .ln-char {transform:none!important} .ln-char-outer{overflow:visible!important} .ln-row-inner{height:100%} .ln-row{display:block} .static-work-links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}.static-work-links a{color:#ddd;border:1px solid #777;padding:.35rem .7rem;font-size:.8rem;text-decoration:underline}
 @media(max-width:768px){.id-hero{grid-template-columns:1fr!important;gap:1.5rem!important}.id-hero-right{border-left:0!important;padding-left:0!important}.id-mid,.id-bottom{grid-template-columns:1fr!important;gap:2rem!important}.id-bio,.id-bg-text,.id-stat-sub,.id-drives-sub,.id-do-desc,.id-fw-desc{color:#b5b5b5!important}.id-hero-left{min-width:0}.id-name{font-size:3.5rem!important}.id-wrap{padding-bottom:5rem!important}.portfolio-intro p{max-width:55ch}}
 /* Discoverable introduction, responsive layout, and progressive enhancement. */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0!important;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;background:none!important}
 .portfolio-intro {position:relative;z-index:3;padding:1rem 1.8vw;background:var(--coral);color:var(--ink)}
 .portfolio-intro h1 {font-family:var(--sans);font-size:clamp(1.15rem,2vw,1.6rem);font-weight:700;line-height:1.2}
 .portfolio-intro p {font-size:.85rem;line-height:1.5}
@@ -2848,7 +2849,7 @@ a:focus-visible,button:focus-visible {outline:3px solid white;outline-offset:-4p
       <span class="ln-brand">THEJAS DP</span>
     </div>
 
-    <div class="portfolio-intro"><h1>Thejas Dhanesh</h1><p>Product Manager · AI &amp; Growth · Bengaluru</p><p class="intro-summary">Founding-team experience at Niti AI, working across product, growth, and multi-agent AI workflows for martech.</p><p class="desktop-note">Best experienced on desktop. Fully accessible on mobile.</p></div>
+    <div class="portfolio-intro sr-only"><h1>Thejas Dhanesh</h1><p>Product Manager · AI &amp; Growth · Bengaluru</p><p class="intro-summary">Founding-team experience at Niti AI, working across product, growth, and multi-agent AI workflows for martech.</p></div>
     <div class="ln-rows">
 
       <a class="ln-row" href="#page-about" data-ln-target="page-about">

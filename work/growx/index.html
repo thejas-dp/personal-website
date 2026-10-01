@@ -1,0 +1,107 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GrowX | Thejas Dhanesh</title><meta name="description" content="Prompt-to-Production Growth Experimentation Platform - a product case study by Thejas Dhanesh."><link rel="canonical" href="https://thejasdp.vercel.app/work/growx/"><meta property="og:title" content="GrowX | Thejas Dhanesh"><meta property="og:url" content="https://thejasdp.vercel.app/work/growx/"><meta property="og:image" content="https://thejasdp.vercel.app/images/social-card.png"><style>body{background:#fcfbf8;color:#1a1a1a;margin:0;font:17px/1.7 system-ui,sans-serif}header{background:#e01616;padding:1rem max(1rem,calc((100vw - 900px)/2))}header a{color:inherit}main{max-width:850px;padding:2.5rem 1.2rem;margin:auto}h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.1}h2{font-size:1.4rem;margin-top:2rem}.md-section,.md-divider{margin:1.6rem 0}.md-section-label{font-weight:700;font-size:1.3rem}.md-heading,.md-subtitle{display:none}.md-role{font-weight:600}.md-metrics,.md-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem}.md-metric,.md-stats>div{background:#f5f1e8;padding:1rem}.md-metric-num,.md-stat-val{font-size:2rem;font-weight:700}.md-metric-label{font-weight:600}.md-metric-sub{font-size:.85rem}.md-callout{border-left:4px solid #c81815;padding:1rem;background:#f5f1e8}img{max-width:100%;height:auto}a{color:#a01210}footer{padding:2rem;border-top:1px solid #ccc}</style></head><body><header><a href="/#page-signal">Thejas DP / All work</a></header><main><p>PRODUCT CASE STUDY</p><h1>GrowX</h1><p>Prompt-to-Production Growth Experimentation Platform</p><div class="md-role">Founding PM — Zero to One</div>
+<div class="md-heading">GROWX</div>
+<div class="md-subtitle">Prompt-to-Production Growth Experimentation Platform</div>
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>The Problem</h2>
+  <p class="md-body">Growth teams spend <span class="md-num">2–4 weeks</span> on experiments that should take <span class="md-num">2 days</span>. Not because execution is hard — because of the translation chain between intent and production. A PM has an idea. It goes into a PRD. The PRD goes to design. Design goes to engineering. Engineering scopes it, puts it in a sprint, builds it, hands it to QA, then ships it. Every link in that chain is a meeting, a dependency, a context-switch, or a sprint cycle that doesn't start for another ten days. By the time the experiment is live, the hypothesis is stale, the team has moved on, and the learning cost is buried under three other priorities. The average growth team runs fewer than <span class="md-num">1 experiment per PM per week</span>. That's not a talent problem. That's a systems problem. GrowX was built to delete the chain entirely.</p>
+</div>
+
+<div class="md-section">
+  <h2>The Solution — Frontend Module</h2>
+  <p class="md-body">The frontend module gives product and growth teams a no-code canvas for building in-app UI experiments without touching a single line of code. Teams can import directly from Figma, start from a library of pre-built experiment templates (onboarding checklists, feature nudges, modal flows, tooltip sequences, banners), or describe what they want in plain language and let the AI layer generate the component. The canvas supports drag-and-drop composition, live variant preview, device responsiveness checks, and inline copy editing. Every component is instrumented automatically — no manual tagging, no analytics events to define, no developer handoff required. The module was designed so that the person with the hypothesis — the PM, the growth lead, the designer — could be the same person who ships it.</p>
+</div>
+
+<div class="md-section">
+  <h2>The Solution — Backend Module</h2>
+  <p class="md-body">The backend module is a visual logic builder for the API and data layer that powers experiments — without writing code. Teams can import existing API definitions from Postman collections or OpenAPI specs, or build new logic using a node-based graph editor where conditions, transformations, triggers, and data sources are connected visually. For teams who prefer natural language, the prompt-to-logic feature converts a plain English description of the desired behavior — "show this variant only to users who signed up in the last 7 days and haven't completed onboarding step 3" — into a runnable logic graph. The backend module handles auth, rate limiting, error states, and retry logic automatically, so teams aren't building infrastructure — they're expressing intent. Every logic graph is version-controlled and diff-viewable, so rollbacks take seconds.</p>
+</div>
+
+<div class="md-section">
+  <h2>The Solution — Frontend Connected to Backend</h2>
+  <p class="md-body">The real unlock is the connection layer. GrowX binds the frontend UI module and the backend logic module into a single deployable experiment unit. A PM can define targeting rules (user segment, geography, device, plan tier, behavioral trigger), attach a UI variant, wire it to backend logic, set traffic splits, configure success metrics, and deploy — all without leaving the platform and without involving engineering. Every experiment ships with an auto-generated kill switch: one click to halt, roll back, or redirect 100% of traffic to the control. The instrumentation layer captures exposure, interaction, conversion, and downstream retention signals automatically and pipes them into the team's existing analytics stack via native integrations with Mixpanel, Amplitude, Segment, and custom webhooks.</p>
+</div>
+
+<div class="md-callout">Before: PRD → Design → Engineering → QA → ship in <span class="md-num">18 days</span> average.<br>After: describe intent → GrowX builds it → live experiment in <span class="md-num">6 hours</span>.</div>
+
+<div class="md-section" style="margin-top:1.8rem">
+  <h2>Workflow</h2>
+  <p class="md-body">The GrowX workflow was designed to compress the entire idea-to-insight loop into a single session. A growth PM describes the experiment in plain language — what they want to test, who they want to target, what they consider a win. GrowX uses that description to scaffold a UI variant, generate the targeting logic, suggest success metrics, and estimate sample size given current traffic volumes. The PM refines on the canvas, connects or imports their API logic, sets the traffic split, and hits deploy. The platform handles SDK injection, experiment registration, targeting enforcement, analytics instrumentation, and monitoring setup automatically. Once live, results surface in a dedicated experiment dashboard with statistical significance indicators, segment breakdowns, and auto-alerts when the experiment reaches significance or crosses a guardrail metric. The old workflow: <span class="md-num">18 days</span>, <span class="md-num">4–6 people</span>, <span class="md-num">34+ engineering hours</span> per experiment. The GrowX workflow: <span class="md-num">6 hours</span>, <span class="md-num">1 person</span>, under <span class="md-num">3 engineering hours</span> total — and only when a custom integration is needed.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section-label" style="margin-bottom:0.8rem">Success Metrics</div>
+<p class="md-body" style="margin-bottom:1.4rem">The platform was measured across two categories: operational efficiency (did it actually eliminate the engineering bottleneck?) and product impact (did faster experimentation produce better outcomes?). On efficiency, the results validated the core thesis — the time-to-launch compression was not marginal. On product impact, higher experiment velocity directly translated to better product decisions and measurable business outcomes, confirming that the volume of experiments run is a leading indicator of product improvement rate.</p>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num">87%</div>
+    <div class="md-metric-label">Time-to-launch reduction</div>
+    <div class="md-metric-sub">18 days → 6 hours avg</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">5.2×</div>
+    <div class="md-metric-label">Experiment velocity</div>
+    <div class="md-metric-sub">0.8 → 4.2 per PM/week</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">74%</div>
+    <div class="md-metric-label">Shipped without engineering</div>
+    <div class="md-metric-sub">Zero dev involvement</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">90%</div>
+    <div class="md-metric-label">Engineering cost reduction</div>
+    <div class="md-metric-sub">34 hrs → under 3 hrs</div>
+  </div>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>Impact</h2>
+  <p class="md-body">The downstream impact of running more experiments was not linear — it was compounding. Each experiment produced a signal. Signals shaped the next hypothesis. Teams that adopted GrowX went from running <span class="md-num">3–4 experiments per quarter</span> to running <span class="md-num">15–20</span>, which meant they were generating and validating product knowledge at <span class="md-num">4–5×</span> the rate of teams relying on the traditional engineering-dependent workflow. This showed up directly in activation, conversion, retention, and feature adoption numbers. The best-performing experiment — a progressive onboarding checklist variant — produced a <span class="md-num">38%</span> activation lift and a <span class="md-num">19%</span> improvement in week-one retention. Engineering cost recovery on that experiment alone happened in under <span class="md-num">6 weeks</span>. Across the portfolio, the platform paid back its build cost in engineering hours within the first quarter of rollout.</p>
+</div>
+
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">23%</div>
+    <div class="md-metric-label">Avg activation lift</div>
+    <div class="md-metric-sub">Onboarding experiments</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">17%</div>
+    <div class="md-metric-label">Conversion lift</div>
+    <div class="md-metric-sub">Trial → paid flows</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">31%</div>
+    <div class="md-metric-label">Feature adoption lift</div>
+    <div class="md-metric-sub">Targeted nudge campaigns</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">+14pp</div>
+    <div class="md-metric-label">D7 retention improvement</div>
+    <div class="md-metric-sub">vs control group</div>
+  </div>
+</div>
+
+<div class="md-callout">Best result: Progressive onboarding checklist → <span class="md-num">38%</span> activation lift + <span class="md-num">19%</span> week-one retention improvement. Full engineering cost recovery in <span class="md-num">6 weeks</span> on eng hours alone.</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>Risks and Mitigation</h2>
+  <p class="md-body"><strong style="color:rgba(255,255,255,0.7)">Experiment quality degradation.</strong> The core risk of radically increasing experiment volume is that low-quality hypotheses flood the roadmap and dilute signal. Mitigated by building a mandatory hypothesis framing step into the GrowX workflow — every experiment requires a defined metric, a directional prediction, and a minimum detectable effect before deployment is enabled. Bad ideas get filtered structurally, not by committee.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Engineering trust and adoption resistance.</strong> Engineering teams were initially skeptical of a platform that was explicitly designed to remove their involvement. Mitigated by positioning GrowX as a tool that eliminates low-value experiment work (simple UI variants, basic targeting) so engineering capacity can focus on high-complexity, high-leverage infrastructure work. Adoption was anchored to eng team buy-in from day one, including a shared review process for the backend module architecture.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Instrumentation accuracy.</strong> Auto-generated analytics instrumentation carries the risk of silent errors — miscounted exposures, duplicated events, or missed conversions — that corrupt experiment results without anyone noticing. Mitigated by building a live validation layer that runs schema checks on every event before an experiment can go live, plus a post-launch audit dashboard that flags statistical anomalies in exposure curves within the first <span class="md-num">24 hours</span> of a live experiment.</p>
+  <p class="md-body" style="margin-top:1rem"><strong style="color:rgba(255,255,255,0.7)">Platform dependency lock-in.</strong> As teams build more experiments on GrowX, their experiment history and institutional knowledge becomes locked in a proprietary system. Mitigated by designing the data layer around an open schema with full CSV and JSON export at the experiment, variant, and metric level — and by ensuring analytics integrations write to the team's own warehouse, not a GrowX-controlled destination.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>The Insight</h2>
+  <p class="md-body">The core insight behind GrowX is about compounding, not speed. A team shipping <span class="md-num">20 experiments</span> a month and winning <span class="md-num">30%</span> of them doesn't just beat a team shipping <span class="md-num">4</span> and winning <span class="md-num">60%</span> on raw win count — they beat them on learning rate. Six wins versus two wins per month. Over a year that's <span class="md-num">72</span> validated product improvements against <span class="md-num">24</span>. The former team compounds knowledge. The gap widens. GrowX is a throughput machine built on a quality guardrail. It doesn't replace judgment — it removes the latency between judgment and validation. Speed without credibility is noise. GrowX produces both.</p>
+</div></main><footer><a href="mailto:poonthotathilthejas@gmail.com">Contact Thejas Dhanesh</a></footer></body></html>

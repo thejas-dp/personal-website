@@ -1,0 +1,105 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Statement Analyzer | Thejas Dhanesh</title><meta name="description" content="AI-Powered Bank Statement Intelligence - a product case study by Thejas Dhanesh."><link rel="canonical" href="https://thejasdp.vercel.app/work/statement-analyzer/"><meta property="og:title" content="Statement Analyzer | Thejas Dhanesh"><meta property="og:url" content="https://thejasdp.vercel.app/work/statement-analyzer/"><meta property="og:image" content="https://thejasdp.vercel.app/images/social-card.png"><style>body{background:#fcfbf8;color:#1a1a1a;margin:0;font:17px/1.7 system-ui,sans-serif}header{background:#e01616;padding:1rem max(1rem,calc((100vw - 900px)/2))}header a{color:inherit}main{max-width:850px;padding:2.5rem 1.2rem;margin:auto}h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.1}h2{font-size:1.4rem;margin-top:2rem}.md-section,.md-divider{margin:1.6rem 0}.md-section-label{font-weight:700;font-size:1.3rem}.md-heading,.md-subtitle{display:none}.md-role{font-weight:600}.md-metrics,.md-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem}.md-metric,.md-stats>div{background:#f5f1e8;padding:1rem}.md-metric-num,.md-stat-val{font-size:2rem;font-weight:700}.md-metric-label{font-weight:600}.md-metric-sub{font-size:.85rem}.md-callout{border-left:4px solid #c81815;padding:1rem;background:#f5f1e8}img{max-width:100%;height:auto}a{color:#a01210}footer{padding:2rem;border-top:1px solid #ccc}</style></head><body><header><a href="/#page-signal">Thejas DP / All work</a></header><main><p>PRODUCT CASE STUDY</p><h1>Statement Analyzer</h1><p>AI-Powered Bank Statement Intelligence</p><div class="md-role">Founding PM — End-to-End Ownership</div>
+<div class="md-heading">STATEMENT ANALYZER</div>
+<div class="md-subtitle">AI-Powered Bank Statement Intelligence</div>
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>The Problem</h2>
+  <p class="md-body">Underwriting a loan in an NBFC context depends heavily on one thing: understanding a borrower's actual financial behaviour. Not just their declared income — their real cash flow patterns, their recurring obligations, their spending volatility, and whether their stated income matches what actually hits their account.</p>
+  <p class="md-body" style="margin-top:1rem">The traditional way of doing this is manual. A credit officer downloads a PDF bank statement, scrolls through months of transactions, mentally categorises inflows and outflows, and makes a judgment call. At low volumes, this works. At scale, it breaks — it's slow, inconsistent across analysts, and entirely dependent on individual interpretation. Two analysts looking at the same statement can reach different conclusions. There is no audit trail for the reasoning. And for borrowers with complex or irregular income patterns, the manual process almost always produces conservative, inaccurate assessments.</p>
+  <p class="md-body" style="margin-top:1rem">The cost is real: good borrowers get rejected or under-served because the analysis is too slow or too shallow, and risky borrowers slip through because the signals aren't being read correctly.</p>
+</div>
+
+<div class="md-section">
+  <h2>The Solution</h2>
+  <p class="md-body">The Statement Analyzer is an AI-powered financial intelligence layer that parses raw bank statements and surfaces structured, actionable insight for credit officers — replacing manual review with a governed, consistent, auditable analysis engine. The product has four core surfaces.</p>
+</div>
+
+<div class="md-section">
+  <h2>Credit Score Dashboard</h2>
+  <p class="md-body">The primary view gives credit officers an at-a-glance health picture of the borrower's financial profile — a derived credit score, income stability indicators, obligation-to-income ratios, and cash flow trend lines over the statement period. What previously required <span class="md-num">20 minutes</span> of manual calculation is surfaced in seconds, in a standardised format that every analyst reads the same way. The dashboard is designed around the decision the credit officer needs to make — approve, reject, or escalate — not around raw data display.</p>
+</div>
+
+<div class="md-section">
+  <h2>Advanced Filter</h2>
+  <p class="md-body">The filter system is where the depth of the analysis becomes usable. Credit officers can slice transaction data across multiple dimensions simultaneously — transaction type, date range, amount bands, merchant category, inflow versus outflow, and flagged anomalies. The filter is built for investigative workflows: an analyst who wants to verify whether the borrower's EMI obligations match what they declared can get there in two taps. The advanced filter handles the kind of nuanced interrogation that previously required exporting to Excel and building pivot tables manually. Across the pilot, analysts used the filter layer on <span class="md-num">over 60%</span> of reviewed statements, indicating it became a core part of the review workflow rather than an occasional tool.</p>
+</div>
+
+<div class="md-section">
+  <h2>Search Suggestions</h2>
+  <p class="md-body">The search layer is built with context-aware suggestions that surface the most analytically relevant queries first — common searches like salary credits, recurring debits, UPI inflows, and flagged irregularities. This reduces the time from opening a statement to finding a specific signal from several minutes to under <span class="md-num">30 seconds</span> on average. Search suggestions were adopted by <span class="md-num">89%</span> of active analysts within the first two weeks, indicating fast organic adoption without training overhead.</p>
+</div>
+
+<div class="md-section">
+  <h2>Component System</h2>
+  <p class="md-body">The entire product is built on a consistent component library — cards, data rows, filter chips, score indicators, and trend modules — that allows the interface to scale across different statement types, lenders, and borrower profiles without fragmenting the design. This was a deliberate investment: the component system means new statement categories and new data signals can be added to the product without rebuilding the UX each time.</p>
+  <p class="md-body" style="margin-top:1rem">I owned the full product surface — the analytical framework for what signals to surface and why, the information architecture, the credit score model UX, the filter system design, the search experience, the component library, PRDs, user stories, and dev handoff.</p>
+</div>
+
+<div class="md-section">
+  <h2>Workflow</h2>
+  <p class="md-body">A credit officer receives a loan application with bank statements attached. Instead of opening the PDF and beginning manual review, they open the Statement Analyzer. The system has already parsed the statement, categorised transactions, identified income credits, flagged irregularities, and derived the financial health indicators.</p>
+  <p class="md-body" style="margin-top:1rem">The officer reviews the credit dashboard first — income stability, average monthly inflow, obligation load, and the presence of any flagged patterns like bounced EMIs, sudden large outflows, or irregular income timing. If the dashboard is clean, the review can be completed in under <span class="md-num">3 minutes</span>. If something needs investigation, the officer drops into the advanced filter to interrogate the specific signal — whether a declared salary is actually appearing as a regular credit, whether existing loan EMIs match what the borrower disclosed, whether there are recurring outflows to categories that suggest undisclosed obligations.</p>
+  <p class="md-body" style="margin-top:1rem">The search layer accelerates this investigation. The officer types or selects a query and the system surfaces matching transactions instantly, with context about what they represent in the borrower's overall financial pattern. Every analysis is logged. Every flag has a traceable reason. The credit decision is no longer dependent on one analyst's interpretation of a PDF.</p>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section-label" style="margin-bottom:0.8rem">Success Metrics</div>
+<p class="md-body" style="margin-bottom:1.4rem">The north star is credit decision quality at speed — accurate assessments made faster, with less variance between analysts. Statement review time, analyst consistency, and false-negative rate on income irregularities were the three primary measures.</p>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num">82%</div>
+    <div class="md-metric-label">Review time reduction</div>
+    <div class="md-metric-sub">22 min → 4 min per application</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">67%</div>
+    <div class="md-metric-label">Analyst variance reduction</div>
+    <div class="md-metric-sub">Income assessment consistency</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">44%</div>
+    <div class="md-metric-label">Missed irregularity reduction</div>
+    <div class="md-metric-sub">False negatives, Q1 post-launch</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num">63%</div>
+    <div class="md-metric-label">Filter layer adoption</div>
+    <div class="md-metric-sub">Of all reviewed statements</div>
+  </div>
+</div>
+<div class="md-metrics" style="margin-bottom:1.8rem">
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">89%</div>
+    <div class="md-metric-label">Search suggestion adoption</div>
+    <div class="md-metric-sub">Within first 2 weeks</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">1.8 hrs</div>
+    <div class="md-metric-label">Saved per analyst per day</div>
+    <div class="md-metric-sub">Redirected to higher-judgment work</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">&lt;24 hrs</div>
+    <div class="md-metric-label">Credit decision turnaround</div>
+    <div class="md-metric-sub">Standard cases; was 3–5 days</div>
+  </div>
+  <div class="md-metric">
+    <div class="md-metric-num md-metric-num--hi">5 wks</div>
+    <div class="md-metric-label">Cost recovery</div>
+    <div class="md-metric-sub">On analyst time savings alone</div>
+  </div>
+</div>
+
+<div class="md-divider"></div>
+
+<div class="md-section">
+  <h2>Impact</h2>
+  <p class="md-body">On speed, the <span class="md-num">82%</span> reduction in per-application review time means a team of <span class="md-num">10</span> credit officers can handle the same daily volume that previously required <span class="md-num">18</span>. At <span class="md-num">200 applications reviewed per day</span>, this translates to approximately <span class="md-num">60 hours of analyst time saved daily</span>.</p>
+  <p class="md-body" style="margin-top:1rem">On accuracy, the <span class="md-num">44%</span> reduction in missed income irregularities directly reduces the risk of approving loans based on overstated or misrepresented income — one of the highest-cost error types in consumer lending. Each bad loan prevented has an average recovery cost that far exceeds the cost of the platform.</p>
+  <p class="md-body" style="margin-top:1rem">On consistency, reducing analyst variance by <span class="md-num">67%</span> means credit policy is being applied uniformly across the portfolio rather than varying by who reviewed the application. This has direct implications for regulatory compliance and for the fairness of lending decisions across borrower segments.</p>
+  <p class="md-body" style="margin-top:1rem">On borrower outcomes, faster analysis means credit decisions that previously took <span class="md-num">3 to 5 days</span> are now returned in <span class="md-num">under 24 hours</span> for standard cases — improving the borrower experience and reducing drop-off from applicants who abandon slow processes.</p>
+</div>
+
+<div class="md-callout">Platform paid back implementation cost within <span class="md-num">5 weeks</span> on analyst time savings alone — before accounting for reduction in bad loan approvals and compliance risk improvement.</div></main><footer><a href="mailto:poonthotathilthejas@gmail.com">Contact Thejas Dhanesh</a></footer></body></html>

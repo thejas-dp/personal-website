@@ -2807,7 +2807,28 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 a:focus-visible,button:focus-visible {outline:3px solid white;outline-offset:-4px}
 @media(max-width:768px){.portfolio-intro{padding:1rem 1.4rem}.portfolio-intro .intro-summary{font-size:.72rem}.ln-rows .ln-main-text{font-size:clamp(2.5rem,10vw,4rem)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ln-char{opacity:1!important;transform:none!important}}
-.static-work-links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}.static-work-links a{color:#ddd;border:1px solid #777;padding:.35rem .7rem;font-size:.8rem;text-decoration:underline}.desktop-note{font-size:.65rem!important;opacity:.75;margin-top:.2rem}</style>
+.static-work-links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}.static-work-links a{color:#ddd;border:1px solid #777;padding:.35rem .7rem;font-size:.8rem;text-decoration:underline}.desktop-note{font-size:.65rem!important;opacity:.75;margin-top:.2rem}
+/* Ascent list: horizontal rows */
+.ao-row-full{display:grid;grid-template-columns:3.5rem minmax(0,1.3fr) minmax(0,1fr) 11rem 2.5rem;align-items:center;column-gap:1rem}
+.ao-row-num{font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.1em;color:rgba(255,255,255,.4)}
+.ao-row-full .ao-row-name{font-size:clamp(2.4rem,4.2vw,4.5rem)}
+.ao-row-full .ao-row-role-label{font-size:1rem;letter-spacing:.06em;color:rgba(255,255,255,.55)}
+.ao-row-full .ao-row-date{font-family:'Courier New',monospace;font-size:.8rem;letter-spacing:.1em;text-transform:none;color:rgba(255,255,255,.6);text-align:right}
+.ao-row-arrow{justify-self:end;font-size:1.3rem;color:rgba(255,255,255,.5)}
+.ao-row:hover .ao-row-arrow{color:#fff}
+.ao-row{padding:.9rem 0}
+.ao-row-full .ao-row-role-label{justify-self:start}
+.ao-row-full .ao-row-name{line-height:1}
+.ascent-outer:not(.ascent-open) .ao-head-title{font-size:clamp(2.6rem,4.6vw,5.5rem);line-height:.95}
+@media (max-width:768px){
+.ao-row-full{grid-template-columns:2rem minmax(0,1fr) 1.5rem;row-gap:.3rem}
+.ao-row-num{grid-row:1/4;align-self:start;padding-top:.5rem}
+.ao-row-full .ao-row-name{grid-column:2;font-size:clamp(2.4rem,11vw,3.4rem)}
+.ao-row-full .ao-row-role-label{grid-column:2;font-size:.85rem}
+.ao-row-full .ao-row-date{grid-column:2;text-align:left;font-size:.72rem}
+.ao-row-arrow{grid-column:3;grid-row:1/4;align-self:center}
+}
+</style>
 <noscript><style>.ln-topbar,.ln-rows,.ln-bottom,.ln-bg-img{opacity:1!important}.landing-nav{height:auto!important}.ln-rows{min-height:65vh}.ln-row{min-height:15vh}.ln-main-text{font-size:2.5rem!important}.ln-row-inner{min-height:15vh}.spage{display:none!important}.landing-nav{min-height:100vh!important}.no-js-overview{position:relative;padding:2rem;color:#ddd;background:#0d0d0d}.no-js-overview a{color:#ddd;display:block;margin:.7rem 0}.loader,.mobile-block,#custom-cursor{display:none!important}*{cursor:auto!important}.ln-char{opacity:1!important;transform:none!important}.ln-revealed,.landing-nav{opacity:1!important}body{overflow:auto;height:auto}.spage{position:relative;pointer-events:auto;height:auto;min-height:100vh}.spage .asp-left,.spage .asp-right{transform:none!important;opacity:1!important}.asp-layout{min-height:100vh}.asp-right{overflow:visible}.static-work-links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}.static-work-links a{color:#ddd;border:1px solid #777;padding:.35rem .7rem;font-size:.8rem;text-decoration:underline}</style></noscript></head>
 <body>
 
@@ -3090,15 +3111,15 @@ a:focus-visible,button:focus-visible {outline:3px solid white;outline-offset:-4p
               <div class="ao-divider"></div>
               <div class="ao-row" onclick="ascentSelect(this,0)">
                 <div class="ao-row-full">
-                  <div class="ao-row-full-top">
-                    <span class="ao-row-date">NOV 2022 — JUN 2026</span>
-                    <span class="ao-row-role-label">FOUNDING MEMBER</span>
-                  </div>
+                  <span class="ao-row-num">01</span>
                   <span class="ao-row-name">NITI AI</span>
+                  <span class="ao-row-role-label">FOUNDING MEMBER</span>
+                  <span class="ao-row-date">2022 — Present</span>
+                  <span class="ao-row-arrow">→</span>
                 </div>
                 <div class="ao-row-compact">
                   <div class="ao-row-compact-top">
-                    <span class="ao-row-compact-year">NOV 2022 — JUN 2026</span>
+                    <span class="ao-row-compact-year">2022 — Present</span>
                     <span class="ao-row-compact-role">FOUNDING MEMBER</span>
                   </div>
                   <div class="ao-row-compact-bottom">
@@ -3110,11 +3131,11 @@ a:focus-visible,button:focus-visible {outline:3px solid white;outline-offset:-4p
               <div class="ao-divider"></div>
               <div class="ao-row" onclick="ascentSelect(this,1)">
                 <div class="ao-row-full">
-                  <div class="ao-row-full-top">
-                    <span class="ao-row-date">SUMMER 2022</span>
-                    <span class="ao-row-role-label">PRODUCT & DESIGN</span>
-                  </div>
+                  <span class="ao-row-num">02</span>
                   <span class="ao-row-name">PROCIAL</span>
+                  <span class="ao-row-role-label">PRODUCT & DESIGN</span>
+                  <span class="ao-row-date">Summer 2022</span>
+                  <span class="ao-row-arrow">→</span>
                 </div>
                 <div class="ao-row-compact">
                   <div class="ao-row-compact-top">
@@ -3130,11 +3151,11 @@ a:focus-visible,button:focus-visible {outline:3px solid white;outline-offset:-4p
               <div class="ao-divider"></div>
               <div class="ao-row" onclick="ascentSelect(this,2)">
                 <div class="ao-row-full">
-                  <div class="ao-row-full-top">
-                    <span class="ao-row-date">2021</span>
-                    <span class="ao-row-role-label">UX DESIGNER</span>
-                  </div>
+                  <span class="ao-row-num">03</span>
                   <span class="ao-row-name">FABRIK</span>
+                  <span class="ao-row-role-label">UX DESIGNER</span>
+                  <span class="ao-row-date">2021</span>
+                  <span class="ao-row-arrow">→</span>
                 </div>
                 <div class="ao-row-compact">
                   <div class="ao-row-compact-top">
@@ -3377,7 +3398,10 @@ function navigateTo(pageId) {
     if (prev) {
       prev.classList.remove('sp-active');
       prev.classList.add('sp-exit');
-      setTimeout(function(){ prev.classList.remove('sp-exit'); }, 850);
+      setTimeout(function(){
+        if (_currentPage === prev.id) return;  /* user already came back - do not touch */
+        prev.classList.remove('sp-exit');
+      }, 850);
     }
   }
 
@@ -3396,6 +3420,7 @@ function navigateTo(pageId) {
       target.querySelectorAll('.ao-row').forEach(function(r){ r.classList.remove('ao-active'); });
     }
     setTimeout(function(){
+      target.classList.remove('sp-exit');
       target.classList.add('sp-active');
       if (window._animatePageIn) window._animatePageIn(target);
     }, 60);
@@ -3413,6 +3438,7 @@ function showNav() {
   if (current) {
     current.classList.add('sp-exit');
     setTimeout(function(){
+      if (_currentPage === current.id) return;  /* re-entered before exit finished */
       current.classList.remove('sp-active', 'sp-exit');
     }, 780);
   }

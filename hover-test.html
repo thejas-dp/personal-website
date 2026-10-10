@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Hover test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#e01414;color:#1a1a1a;font-family:'Antonio',sans-serif;overflow:hidden}
+#gl{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.wrap{position:fixed;left:clamp(24px,4vw,64px);bottom:clamp(24px,6vh,64px);top:clamp(24px,6vh,64px);display:flex;flex-direction:column;justify-content:space-between;z-index:1}
+.note{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:400;color:rgba(0,0,0,.55)}
+.heading{font-weight:700;font-size:clamp(64px,11vw,168px);line-height:1.02;text-transform:uppercase;cursor:default}
+.heading span{display:block;width:max-content}
+nav{display:flex;flex-direction:column;gap:.35rem}
+nav a{display:flex;gap:.7rem;align-items:baseline;text-decoration:none;color:#1a1a1a;font-weight:700;font-size:clamp(22px,2.4vw,34px);line-height:1;text-transform:uppercase;width:max-content}
+nav a.sel{color:#fff}
+.t{display:inline-block;white-space:pre;letter-spacing:.01em}
+/* DOM text is the layout + hit area + accessible text; hidden once WebGL draws it */
+.gl-on .t{color:transparent}
+.debug .t{color:rgba(0,0,255,.5)}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div class="wrap">
+  <div class="note">Hover test - three.js + MSDF atlases baked from Antonio 700 and 100</div>
+  <div>
+    <div class="heading" data-msdf data-color="#1a1a1a" data-hover="1"><span class="t" id="h1">(02)</span><span class="t" id="h2">ASCENT</span></div>
+    <nav id="nav" style="margin-top:clamp(40px,12vh,140px)">
+      <a href="#" data-msdf-row><span class="t" data-msdf data-color="#1a1a1a" data-hover="1">(01)</span><span class="t" data-msdf data-color="#1a1a1a" data-hover="1">IDENTITY</span></a>
+      <a href="#" class="sel" data-msdf-row><span class="t" data-msdf data-color="#ffffff" data-hover="0">(02)</span><span class="t" data-msdf data-color="#ffffff" data-hover="0">ASCENT</span></a>
+      <a href="#" data-msdf-row><span class="t" data-msdf data-color="#1a1a1a" data-hover="1">(03)</span><span class="t" data-msdf data-color="#1a1a1a" data-hover="1">SIGNAL</span></a>
+      <a href="#" data-msdf-row><span class="t" data-msdf data-color="#1a1a1a" data-hover="1">(04)</span><span class="t" data-msdf data-color="#1a1a1a" data-hover="1">CONNECT</span></a>
+    </nav>
+  </div>
+</div>
+<script src="lib/gsap.min.js"></script>
+<script type="module">
+import * as THREE from './lib/three.module.min.js';
+
+/* ---- values taken from dillinger.tv (app.a865b5ea.js) ---- */
+const ENTER_DUR = 0.8, ENTER_STAGGER = 0.04, ENTER_DELAY = 0.2;     // arrival_speed .8, arrival_stagger 40ms
+const HOVER_DUR = 0.6, HOVER_EASE = 'power4.out';                    // mouseEnter/mouseLeave: 0.6s Power4.easeOut
+const ENTER_EASE = 'power2.out';                                     // enterFontTransition: Power2.easeOut
+const REST_OPACITY = 0.5;                                            // opacity 0.5 -> 1
+/* Antonio metrics (units per em 2048): ascent 2365, descent 285 */
+const ASC = 2365/2048, DESC = 285/2048;
+
+const dbg = location.search.includes('debug');
+if (dbg) document.documentElement.classList.add('debug');
+
+const canvas = document.getElementById('gl');
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:false});
+} catch(e) { renderer = null; }
+if (!renderer) { console.warn('WebGL unavailable - DOM text stays visible'); }
+else {
+document.documentElement.classList.add('gl-on');
+renderer.setClearColor(0x000000, 0);
+renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+const scene = new THREE.Scene();
+const camera = new THREE.OrthographicCamera(0, 1, 0, 1, -10, 10); // pixel space, y down
+
+async function loadFont(w){
+  const [json, tex] = await Promise.all([
+    fetch(`msdf/antonio-${w}.json`).then(r=>r.json()),
+    new Promise((res,rej)=>new THREE.TextureLoader().load(`msdf/antonio-${w}.png`,res,undefined,rej))
+  ]);
+  tex.flipY = false; tex.generateMipmaps = false;
+  tex.minFilter = tex.magFilter = THREE.LinearFilter;
+  tex.colorSpace = THREE.NoColorSpace;
+  const map = {}; json.chars.forEach(c=>map[c.char]=c);
+  return {json, tex, map, size: json.info.size};
+}
+const [fBold, fLight] = await Promise.all([loadFont(700), loadFont(100)]);
+
+const vert = `
+attribute vec2 positionTo; attribute vec2 uvTo;
+uniform float progress;
+varying vec2 vUv; varying vec2 vUvTo;
+void main(){
+  vUv = uv; vUvTo = uvTo;
+  vec2 p = mix(position.xy, positionTo, progress);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 0.0, 1.0);
+}`;
+const frag = `
+precision highp float;
+uniform sampler2D tMapFrom; uniform sampler2D tMapTo;
+uniform float progress; uniform float opacity; uniform vec3 color;
+varying vec2 vUv; varying vec2 vUvTo;
+float median(float r,float g,float b){ return max(min(r,g),min(max(r,g),b)); }
+void main(){
+  vec3 a = texture2D(tMapFrom, vUv).rgb;
+  vec3 b = texture2D(tMapTo, vUvTo).rgb;
+  float sd = mix(median(a.r,a.g,a.b), median(b.r,b.g,b.b), progress);
+  float sigma = max(fwidth(sd), 0.0001);
+  float alpha = smoothstep(0.5 - sigma, 0.5 + sigma, sd);
+  gl_FragColor = vec4(color, alpha * opacity);
+  if (gl_FragColor.a < 0.003) discard;
+}`;
+
+function glyphRect(font, ch, penX, k, baselineY){
+  const g = font.map[ch]; if(!g) return null;
+  const x = penX + g.xoffset*k, y = baselineY - (font.json.common.base - g.yoffset)*k;
+  return {g, x, y, w:g.width*k, h:g.height*k, adv:g.xadvance*k};
+}
+function layout(font, text, k, ls){
+  let pen = 0; const out = [];
+  for (const ch of text){
+    const r = glyphRect(font, ch, pen, k, 0);
+    out.push(r); pen += (r?r.adv:0) + ls;
+  }
+  return out;
+}
+
+const items = [];
+document.querySelectorAll('[data-msdf]').forEach((el,i)=>{
+  items.push({el, text:null, mesh:null, state:{progress:1, opacity:REST_OPACITY}, color:new THREE.Color(el.dataset.color), hover:el.dataset.hover==='1', parts:[]});
+});
+// heading has two child lines; treat each as its own text
+const heading = document.querySelector('.heading');
+const idx = items.findIndex(it=>it.el===heading);
+const parts = [...heading.querySelectorAll('.t')].map(el=>({el, text:el.textContent.trim()}));
+items[idx].parts = parts;
+items.forEach(it=>{ if(!it.parts.length) it.parts=[{el:it.el, text:it.el.textContent.trim()}]; });
+
+function build(){
+  items.forEach(it=>{
+    if (it.mesh) { scene.remove(it.mesh); it.mesh.geometry.dispose(); it.mesh = null; }
+    const pos=[], posTo=[], uv=[], uvTo=[], idxs=[];
+    let n=0;
+    it.parts.forEach(pt=>{
+      const r = pt.el.getBoundingClientRect(); const cs = getComputedStyle(pt.el);
+      const fs = parseFloat(cs.fontSize); const lh = r.height; const ls = parseFloat(cs.letterSpacing)||0;
+      const k = fs / fBold.size;
+      const baseline = r.top + (lh - (ASC+DESC)*fs)/2 + ASC*fs;
+      const a = layout(fBold, pt.text, k, ls), b = layout(fLight, pt.text, k, ls);
+      for (let i=0;i<a.length;i++){
+        const A=a[i], B=b[i]; if(!A||!B||!A.g.width||!B.g.width) continue;
+        const quad = (R,Fnt,P,U,dx,dy)=>{
+          const x0=R.x+dx, y0=R.y+dy, x1=x0+R.w, y1=y0+R.h;
+          const sw=Fnt.json.common.scaleW, sh=Fnt.json.common.scaleH, g=R.g;
+          const u0=g.x/sw, v0=g.y/sh, u1=(g.x+g.width)/sw, v1=(g.y+g.height)/sh;
+          P.push(x0,y0, x1,y0, x1,y1, x0,y1); U.push(u0,v0, u1,v0, u1,v1, u0,v1);
+        };
+        quad(A,fBold,pos,uv,r.left,baseline); quad(B,fLight,posTo,uvTo,r.left,baseline);
+        idxs.push(n,n+1,n+2, n,n+2,n+3); n+=4;
+      }
+    });
+    const geo = new THREE.BufferGeometry();
+    const P = new Float32Array(pos.length/2*3); for(let i=0;i<pos.length/2;i++){P[i*3]=pos[i*2];P[i*3+1]=pos[i*2+1];}
+    geo.setAttribute('position', new THREE.BufferAttribute(P,3));
+    geo.setAttribute('positionTo', new THREE.BufferAttribute(new Float32Array(posTo),2));
+    geo.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(uv),2));
+    geo.setAttribute('uvTo', new THREE.BufferAttribute(new Float32Array(uvTo),2));
+    geo.setIndex(idxs);
+    const mat = new THREE.ShaderMaterial({
+      uniforms:{tMapFrom:{value:fBold.tex}, tMapTo:{value:fLight.tex}, progress:{value:it.state.progress}, opacity:{value:it.state.opacity}, color:{value:it.color}},
+      vertexShader:vert, fragmentShader:frag, transparent:true, depthTest:false, side:THREE.DoubleSide
+    });
+    it.mesh = new THREE.Mesh(geo, mat); it.mesh.frustumCulled = false; scene.add(it.mesh);
+  });
+}
+
+function resize(){
+  const w = innerWidth, h = innerHeight, dpr = Math.min(devicePixelRatio||1, 2);
+  renderer.setPixelRatio(dpr); renderer.setSize(w,h,false);
+  camera.left=0; camera.right=w; camera.top=0; camera.bottom=h; camera.updateProjectionMatrix();
+  build();
+}
+let rq=null; const draw = ()=>{ items.forEach(it=>{ if(!it.mesh) return; it.mesh.material.uniforms.progress.value=it.state.progress; it.mesh.material.uniforms.opacity.value=it.state.opacity; }); renderer.render(scene,camera); rq=null; };
+gsap.ticker.add(draw);
+
+await document.fonts.ready;
+resize();
+addEventListener('resize', resize);
+
+/* intro: light -> bold, opacity .5 -> 1, 40ms stagger */
+items.forEach((it,i)=>{
+  const d = ENTER_DELAY + i*ENTER_STAGGER;
+  gsap.to(it.state,{progress:0, duration:ENTER_DUR, delay:d, ease:ENTER_EASE});
+  gsap.to(it.state,{opacity:1, duration:ENTER_DUR, delay:d, ease:'none'});
+});
+/* hover: 0.6s Power4.easeOut toward the light atlas, back on leave (hit area = the real DOM text) */
+const hoverTo = (it, v)=>{ if(!it.hover) return; gsap.to(it.state,{progress:v, duration:HOVER_DUR, ease:HOVER_EASE, overwrite:'auto'}); };
+document.querySelectorAll('[data-msdf-row]').forEach(row=>{
+  const its = items.filter(it=>row.contains(it.el));
+  row.addEventListener('mouseenter',()=>its.forEach(it=>hoverTo(it,1)));
+  row.addEventListener('mouseleave',()=>its.forEach(it=>hoverTo(it,0)));
+  row.addEventListener('click',e=>e.preventDefault());
+});
+const hit = items[idx];
+heading.addEventListener('mouseenter',()=>hoverTo(hit,1));
+heading.addEventListener('mouseleave',()=>hoverTo(hit,0));
+window.__items = items; window.__gsap = gsap;
+}
+</script>
+</body>
+</html>

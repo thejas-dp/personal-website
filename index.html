@@ -4778,6 +4778,7 @@ function attachBrand(row, platform) {
   }
   row.addEventListener('mouseenter', place);
   row.addEventListener('touchstart', function() {
+    place();
     row.classList.add('mo-touch-reveal');
     setTimeout(function() { row.classList.remove('mo-touch-reveal'); }, 1100);
   }, { passive: true });

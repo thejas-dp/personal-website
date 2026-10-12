@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>SQL product analysis: where does repeat purchase come from? | PREVIEW</title><link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/><style>:root{--cream:#FCFBF8;--cream-2:#F5F1E8;--ink:#1A1A1A;--muted:#8A8077;--coral:#C81815;--umber:#2A1810;--line:rgba(26,26,26,.1)}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--cream);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.banner{background:var(--umber);color:#fff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.5rem;text-align:center}
+.banner b{color:#ff8a80}
+header{display:flex;justify-content:space-between;padding:1.5rem 2.5rem;border-bottom:1px solid var(--line)}
+header a{font:600 15px Antonio,Impact,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+main{max-width:760px;margin:0 auto;padding:3rem 1.5rem 6rem}
+.kind{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);font-weight:600;margin-bottom:.8rem}
+h1{font:600 clamp(2.2rem,6vw,3.6rem)/1.05 Antonio,Impact,sans-serif;text-transform:uppercase;margin-bottom:1.5rem}
+h2{font:600 1.6rem Antonio,Impact,sans-serif;text-transform:uppercase;margin:2.6rem 0 .8rem;letter-spacing:.02em}
+h3{font-size:1.05rem;margin:1.6rem 0 .4rem}p{margin:.8rem 0}ul,ol{margin:.8rem 0 .8rem 1.4rem}li{margin:.3rem 0}
+blockquote{border-left:3px solid var(--coral);background:var(--cream-2);padding:.8rem 1.1rem;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;margin:1.2rem 0;font-size:14px}th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}th{background:var(--cream-2)}
+code{background:var(--cream-2);padding:.1rem .3rem;font-size:.9em}hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+mark.you{background:#ffe14d;color:#000;padding:.1rem .3rem;border:2px dashed #b00;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2rem}
+.card{background:var(--cream);padding:1.6rem;text-decoration:none;color:inherit;display:block}.card:hover{background:var(--cream-2)}
+.card h3{font:600 1.4rem Antonio,Impact,sans-serif;text-transform:uppercase;margin:.4rem 0}.card p{font-size:14px;color:#555}
+.pill{display:inline-block;background:#ffe14d;border:2px dashed #b00;font-size:11px;font-weight:700;padding:.1rem .5rem;margin-left:.4rem}
+.lede{color:var(--muted);max-width:560px}footer{text-align:center;color:var(--muted);font-size:12px;padding:2rem}</style></head><body><div class="banner"><b>Preview, not published.</b> Draft for Thejas's review.</div><header><a href="/projects/">Thejas Dhanesh</a><a href="/projects/">Projects</a></header><main><div class="kind">SQL product analysis</div><h1>SQL product analysis: where does repeat purchase come from?</h1><p><strong>Dataset:</strong> <a href="https://archive.ics.uci.edu/dataset/352/online+retail">UCI Machine Learning Repository, &quot;Online Retail&quot;</a>. Real transactions from a UK-based online gift-ware retailer, 1 Dec 2010 to 9 Dec 2011, 541,909 line items. Many customers are wholesalers, so read this as a repeat-heavy, B2B-flavoured shop, not a typical consumer app.</p>
+<p><strong>Product question:</strong> Should this business spend its next growth effort on bringing in new customers, or on turning first-time buyers into repeat buyers?</p>
+<p><strong>Tooling:</strong> loaded the spreadsheet into SQLite and ran every query below. All numbers in this page are the actual outputs of these queries.</p>
+<h2>Step 1: clean the data</h2>
+<p>Rows with no customer ID can&#39;t be tied to a person (135,080 rows). Cancelled invoices start with &quot;C&quot;. Non-positive quantities and prices are returns or adjustments.</p>
+<pre><code class="language-sql">CREATE TEMP VIEW clean AS
+SELECT InvoiceNo AS inv, CustomerID AS cust, date(InvoiceDate) AS d,
+       substr(InvoiceDate,1,7) AS m, Quantity*UnitPrice AS rev, Country
+FROM retail
+WHERE CustomerID IS NOT NULL AND InvoiceNo NOT LIKE &#39;C%&#39;
+  AND Quantity &gt; 0 AND UnitPrice &gt; 0;
+
+CREATE TEMP TABLE orders AS
+SELECT inv, cust, min(d) d, min(m) m, sum(rev) rev, min(Country) Country
+FROM clean GROUP BY inv, cust;
+</code></pre>
+<p><strong>Result:</strong> 18,532 orders from 4,338 identified customers, about 8.91M in revenue (currency is GBP).</p>
+<h2>Step 2: how concentrated is value in repeat customers?</h2>
+<pre><code class="language-sql">WITH c AS (SELECT cust, count(*) n, sum(rev) rev FROM orders GROUP BY cust)
+SELECT CASE WHEN n=1 THEN &#39;1 order&#39; WHEN n&lt;=3 THEN &#39;2-3 orders&#39;
+            WHEN n&lt;=10 THEN &#39;4-10&#39; ELSE &#39;11+&#39; END bucket,
+       count(*) customers,
+       round(100.0*count(*)/(SELECT count(*) FROM c),1) pct_cust,
+       round(sum(rev)) revenue,
+       round(100.0*sum(rev)/(SELECT sum(rev) FROM c),1) pct_rev
+FROM c GROUP BY 1 ORDER BY min(n);
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Orders placed</th>
+<th>Customers</th>
+<th>% of customers</th>
+<th>% of revenue</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1,493</td>
+<td>34.4%</td>
+<td>6.9%</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>1,343</td>
+<td>31.0%</td>
+<td>15.6%</td>
+</tr>
+<tr>
+<td>4-10</td>
+<td>1,165</td>
+<td>26.9%</td>
+<td>28.2%</td>
+</tr>
+<tr>
+<td>11+</td>
+<td>337</td>
+<td>7.8%</td>
+<td>49.3%</td>
+</tr>
+</tbody></table>
+<p><strong>Read:</strong> 7.8% of customers produce 49.3% of revenue. One-time buyers are a third of customers and 6.9% of revenue.</p>
+<h2>Step 3: when does the second order happen?</h2>
+<pre><code class="language-sql">WITH r AS (SELECT cust, d, row_number() OVER (PARTITION BY cust ORDER BY d, inv) rn FROM orders),
+g AS (SELECT a.cust, julianday(b.d)-julianday(a.d) gap
+      FROM r a JOIN r b ON a.cust=b.cust AND a.rn=1 AND b.rn=2)
+SELECT count(*) customers_with_2nd, sum(gap=0) same_day,
+       sum(gap BETWEEN 1 AND 30) d1_30, sum(gap BETWEEN 31 AND 90) d31_90,
+       sum(gap&gt;90) d90p, round(avg(gap),1) mean_gap
+FROM g;
+</code></pre>
+<p>Of 2,845 customers who placed a second order: 222 the same day, 745 within 1 to 30 days, 962 within 31 to 90 days, 916 after 90 days. Mean gap 76.7 days.</p>
+<p>For a fair 90-day repeat rate, only count customers whose first order is early enough to have a full 90-day window (first order on or before 9 Sep 2011):</p>
+<pre><code class="language-sql">WITH r AS (SELECT cust, d, row_number() OVER (PARTITION BY cust ORDER BY d, inv) rn FROM orders),
+f AS (SELECT cust, d FROM r WHERE rn=1 AND d &lt;= &#39;2011-09-09&#39;),
+s AS (SELECT cust, d FROM r WHERE rn=2)
+SELECT count(*) first_time_customers,
+       sum(s.d IS NOT NULL AND julianday(s.d)-julianday(f.d) &lt;= 90) repeat_90d,
+       round(100.0*sum(s.d IS NOT NULL AND julianday(s.d)-julianday(f.d) &lt;= 90)/count(*),1) pct
+FROM f LEFT JOIN s USING(cust);
+</code></pre>
+<p><strong>Result:</strong> 3,370 first-time customers, 1,607 repeated within 90 days: <strong>47.7%</strong>.</p>
+<p><strong>Read:</strong> the second order is mostly a 1 to 90 day decision (1,707 of 2,845 second orders land in that range, same-day excluded), so there is a real window to influence.</p>
+<h2>Step 4: do new cohorts keep coming back?</h2>
+<pre><code class="language-sql">WITH f AS (SELECT cust, min(m) cm FROM orders GROUP BY cust),
+a AS (SELECT DISTINCT o.cust, f.cm, o.m FROM orders o JOIN f USING(cust)),
+x AS (SELECT cm,
+        (cast(substr(m,1,4) as int)-cast(substr(cm,1,4) as int))*12
+        + cast(substr(m,6,2) as int)-cast(substr(cm,6,2) as int) k, count(*) n
+      FROM a GROUP BY 1,2)
+SELECT cm cohort, max(CASE WHEN k=0 THEN n END) size,
+  round(100.0*max(CASE WHEN k=1 THEN n END)/max(CASE WHEN k=0 THEN n END),1) m1,
+  round(100.0*max(CASE WHEN k=3 THEN n END)/max(CASE WHEN k=0 THEN n END),1) m3
+FROM x WHERE cm &lt;= &#39;2011-06&#39; GROUP BY cm ORDER BY cm;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>First-order month</th>
+<th>Cohort size</th>
+<th>Active again in month +1</th>
+<th>Month +3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2010-12</td>
+<td>885</td>
+<td>36.6%</td>
+<td>38.4%</td>
+</tr>
+<tr>
+<td>2011-01</td>
+<td>417</td>
+<td>22.1%</td>
+<td>23.0%</td>
+</tr>
+<tr>
+<td>2011-02</td>
+<td>380</td>
+<td>18.7%</td>
+<td>28.4%</td>
+</tr>
+<tr>
+<td>2011-03</td>
+<td>452</td>
+<td>15.0%</td>
+<td>19.9%</td>
+</tr>
+<tr>
+<td>2011-04</td>
+<td>300</td>
+<td>21.3%</td>
+<td>21.0%</td>
+</tr>
+<tr>
+<td>2011-05</td>
+<td>284</td>
+<td>19.0%</td>
+<td>17.3%</td>
+</tr>
+<tr>
+<td>2011-06</td>
+<td>242</td>
+<td>17.4%</td>
+<td>26.4%</td>
+</tr>
+</tbody></table>
+<p><strong>Caveat:</strong> the December 2010 cohort is not truly &quot;new&quot;. The dataset starts on 1 Dec, so many December customers had bought before. Treat it as inflated. Ignoring it, month +1 return sits roughly between 15% and 22%.</p>
+<h2>Step 5: is the business already living off repeat customers?</h2>
+<pre><code class="language-sql">WITH f AS (SELECT cust, min(m) cm FROM orders GROUP BY cust)
+SELECT o.m,
+  round(sum(CASE WHEN o.m=f.cm THEN rev END)) new_rev,
+  round(sum(CASE WHEN o.m&gt;f.cm THEN rev END)) returning_rev
+FROM orders o JOIN f USING(cust) GROUP BY o.m ORDER BY o.m;
+</code></pre>
+<p>From April 2011 onward, revenue from returning customers is larger than revenue from newly seen customers every month. In Nov 2011 (the peak) it was 1,025,225 returning against 136,592 from new customers.</p>
+<p>Also: average first-order value was 425.7 against 497.7 for later orders.</p>
+<h2>Recommendation</h2>
+<p><strong>Prioritise converting first-time buyers into second-time buyers before spending more on acquisition.</strong></p>
+<ol>
+<li>Value sits with repeaters: customers with 4+ orders are 34.6% of customers and 77.5% of revenue. Each customer pulled across the second-order line moves toward that group.</li>
+<li>There is a usable window: about half of first-time customers repeat within 90 days, which means the rest are plausibly persuadable, and most second orders happen between 1 and 90 days.</li>
+<li>New-customer revenue is a minority of monthly revenue after spring 2011, so acquisition spend is feeding a base that already carries the business.</li>
+</ol>
+<p><strong>Proposed actions:</strong> a day-14 and day-45 reorder prompt built from the first basket; a second-order incentive to test against a holdout; track 90-day repeat rate as the lead metric.</p>
+<h2>Limits (honest)</h2>
+<ul>
+<li>Correlation only. Repeat customers may simply be wholesalers who were always going to reorder. The recommendation needs an experiment to confirm that nudges move the second order.</li>
+<li>135,080 rows without customer ID were dropped, which biases toward identified customers.</li>
+<li>One retailer, one year, GBP, B2B-leaning. The method transfers; the numbers don&#39;t.</li>
+<li>Revenue is gross of returns I did not net out beyond removing cancelled invoices.</li>
+</ul>
+<h2>Takeaway</h2>
+<p>Before building anything, find where the value lives. Here it lives in the second order.</p>
+</main><footer>Preview build</footer></body></html>

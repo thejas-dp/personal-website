@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>A/B test design: a free-delivery progress bar in quick commerce | PREVIEW</title><link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/><style>:root{--cream:#FCFBF8;--cream-2:#F5F1E8;--ink:#1A1A1A;--muted:#8A8077;--coral:#C81815;--umber:#2A1810;--line:rgba(26,26,26,.1)}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--cream);color:var(--ink);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.banner{background:var(--umber);color:#fff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.5rem;text-align:center}
+.banner b{color:#ff8a80}
+header{display:flex;justify-content:space-between;padding:1.5rem 2.5rem;border-bottom:1px solid var(--line)}
+header a{font:600 15px Antonio,Impact,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+main{max-width:760px;margin:0 auto;padding:3rem 1.5rem 6rem}
+.kind{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);font-weight:600;margin-bottom:.8rem}
+h1{font:600 clamp(2.2rem,6vw,3.6rem)/1.05 Antonio,Impact,sans-serif;text-transform:uppercase;margin-bottom:1.5rem}
+h2{font:600 1.6rem Antonio,Impact,sans-serif;text-transform:uppercase;margin:2.6rem 0 .8rem;letter-spacing:.02em}
+h3{font-size:1.05rem;margin:1.6rem 0 .4rem}p{margin:.8rem 0}ul,ol{margin:.8rem 0 .8rem 1.4rem}li{margin:.3rem 0}
+blockquote{border-left:3px solid var(--coral);background:var(--cream-2);padding:.8rem 1.1rem;margin:1.2rem 0}
+table{border-collapse:collapse;width:100%;margin:1.2rem 0;font-size:14px}th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}th{background:var(--cream-2)}
+code{background:var(--cream-2);padding:.1rem .3rem;font-size:.9em}hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+mark.you{background:#ffe14d;color:#000;padding:.1rem .3rem;border:2px dashed #b00;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2rem}
+.card{background:var(--cream);padding:1.6rem;text-decoration:none;color:inherit;display:block}.card:hover{background:var(--cream-2)}
+.card h3{font:600 1.4rem Antonio,Impact,sans-serif;text-transform:uppercase;margin:.4rem 0}.card p{font-size:14px;color:#555}
+.pill{display:inline-block;background:#ffe14d;border:2px dashed #b00;font-size:11px;font-weight:700;padding:.1rem .5rem;margin-left:.4rem}
+.lede{color:var(--muted);max-width:560px}footer{text-align:center;color:var(--muted);font-size:12px;padding:2rem}</style></head><body><div class="banner"><b>Preview, not published.</b> Draft for Thejas's review.</div><header><a href="/projects/">Thejas Dhanesh</a><a href="/projects/">Projects</a></header><main><div class="kind">A/B testing project</div><h1>A/B test design: a free-delivery progress bar in quick commerce</h1><p><em>This is an experiment design, not a results report. Baselines and sample sizes are shown as formulas and placeholders because I do not have the app&#39;s data and won&#39;t invent it.</em></p>
+<h2>Context</h2>
+<p>In quick commerce, small baskets are expensive to serve. Many apps use a free-delivery threshold. A common UI question: do users respond to a <strong>live progress bar</strong> (&quot;Add Rs X more for free delivery&quot;) in the cart?</p>
+<h2>Hypothesis</h2>
+<p><strong>If</strong> we show a progress bar toward free delivery in the cart and on product add, <strong>then</strong> average order value will rise among orders that start below the threshold, <strong>because</strong> the nudge makes the gap concrete and cheap to close.</p>
+<p>Null: the bar has no effect on AOV among sub-threshold carts.</p>
+<h2>Variants</h2>
+<ul>
+<li><strong>Control:</strong> current cart, delivery fee shown at checkout summary.</li>
+<li><strong>Treatment:</strong> persistent progress bar in the cart and mini-cart with remaining amount, plus 3 to 4 suggested low-cost add-ons that close the gap.</li>
+</ul>
+<h2>Population and randomisation</h2>
+<ul>
+<li><strong>Unit:</strong> user, not session, to avoid the same person seeing both versions.</li>
+<li><strong>Eligibility:</strong> users with a cart below the threshold at any point. Exclude first-ever order (different behavior) and handle them as a separate experiment.</li>
+<li><strong>Split:</strong> 50/50, hashed on user ID, stable across the test.</li>
+</ul>
+<h2>Metrics</h2>
+<p><strong>Primary:</strong> AOV among orders placed by eligible users (or revenue per eligible cart session, to avoid selection effects of only counting completed orders).</p>
+<p><strong>Secondary:</strong></p>
+<ul>
+<li>Share of carts that cross the threshold</li>
+<li>Conversion rate cart to order</li>
+<li>Items per order</li>
+<li>Add-on attach rate</li>
+</ul>
+<p><strong>Guardrails (the real risk):</strong></p>
+<ul>
+<li><strong>Contribution margin per order</strong> (a higher AOV with low-margin items can lose money)</li>
+<li>Delivery cost per order (batching and slot impact)</li>
+<li>Order cancellation and refund rate</li>
+<li>Cart abandonment (progress bar could feel pushy)</li>
+<li>App latency in the cart screen</li>
+<li>Repeat order rate at 7 and 28 days (a nudge that hurts the next order is a bad trade)</li>
+</ul>
+<h2>Sample size and duration</h2>
+<p>For the primary conversion-type metric, per-arm sample size is approximately:</p>
+<p><code>n = 2 * (z_alpha/2 + z_beta)^2 * p(1-p) / delta^2</code></p>
+<p>For a continuous metric like AOV, replace <code>p(1-p)</code> with the variance of AOV, <code>sigma^2</code>.</p>
+<p>Inputs I would pull from data: baseline mean and variance of AOV, minimum detectable effect that justifies the build cost, alpha 0.05, power 0.8.</p>
+<p><strong>Duration:</strong> at least two full weeks so every weekday appears twice and payday effects are visible. Do not stop on the first significant day.</p>
+<h2>Validity checks before reading results</h2>
+<ul>
+<li><strong>Sample ratio mismatch:</strong> check the realised split against 50/50 with a chi-square test. A mismatch means the assignment or logging is broken.</li>
+<li><strong>Novelty effect:</strong> compare week 1 and week 2 effect. A fading effect means the lift is novelty.</li>
+<li><strong>Heavy-user skew:</strong> AOV has a long tail. Winsorise or use a log transform and report both.</li>
+<li><strong>Interference:</strong> if the bar changes pricing or inventory (add-ons selling out), note it.</li>
+</ul>
+<h2>Decision rule (written before the test)</h2>
+<p>Ship if primary rises with a lower confidence bound above zero <strong>and</strong> contribution margin per order does not fall and cancellations do not rise. If AOV rises but margin falls, do not ship; redesign add-on selection toward margin-positive items.</p>
+<h2>What I&#39;d learn even if it fails</h2>
+<p>Whether the problem is awareness of the threshold, or willingness to add items at all. Next test would be the add-on suggestions alone.</p>
+<h2>Takeaway</h2>
+<p>The test is easy to run. The craft is in the guardrails: an AOV win that costs margin or repeat orders is a loss.</p>
+</main><footer>Preview build</footer></body></html>

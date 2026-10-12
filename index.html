@@ -2253,6 +2253,81 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .mo-row:hover .mo-row-arrow-icon { opacity:1; transform:translateX(0); }
 .mo-row.mo-active .mo-row-arrow-icon { opacity:0.7; transform:translateX(0); }
 
+
+/* ── Brand reveal strip (Signal hover) ── */
+.mo-row { position:relative; }
+.mo-brand {
+  position:absolute; top:0; left:0; right:0; height:0;
+  pointer-events:none; opacity:0;
+  transition:opacity .22s ease;
+}
+.mo-brand-strip {
+  position:absolute; top:var(--bs-top,0px); left:var(--bs-left,auto);
+  width:var(--bs-w,360px); height:var(--bs-h,92px);
+  display:flex; align-items:center; justify-content:center; gap:.7rem;
+  background:#141414; border:1px solid rgba(255,255,255,.22);
+  overflow:hidden;
+  transform:translateX(-14px);
+  transition:transform .26s cubic-bezier(.16,1,.3,1);
+}
+.mo-brand-strip::before,.mo-brand-strip::after {
+  content:''; position:absolute; top:0; bottom:0; width:24%; pointer-events:none;
+}
+.mo-brand-strip::before {
+  left:0;
+  background:radial-gradient(circle,rgba(255,255,255,.55) 0.9px,transparent 1.3px) 0 0/4px 4px,
+             repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 1px,transparent 1px 9px);
+  -webkit-mask-image:linear-gradient(90deg,#000 0,transparent 100%); mask-image:linear-gradient(90deg,#000 0,transparent 100%);
+  opacity:.55;
+}
+.mo-brand-strip::after {
+  right:0;
+  background:radial-gradient(circle,rgba(255,255,255,.55) 0.9px,transparent 1.3px) 0 0/4px 4px,
+             repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 1px,transparent 1px 9px);
+  -webkit-mask-image:linear-gradient(270deg,#000 0,transparent 100%); mask-image:linear-gradient(270deg,#000 0,transparent 100%);
+  opacity:.55;
+}
+.mo-brand-grain {
+  position:absolute; inset:0; pointer-events:none; opacity:.22; mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.mo-brand-logo { position:relative; z-index:1; height:42%; width:auto; max-width:46%; object-fit:contain; display:block; }
+.mo-brand-logo--tile { height:70%; border-radius:12px; }
+.mo-brand-name {
+  position:relative; z-index:1; font-family:'Inter',sans-serif; font-weight:700;
+  font-size:clamp(1.1rem,2.1vw,1.9rem); letter-spacing:-.03em; color:#fff; line-height:1; white-space:nowrap;
+}
+.mo-brand-name--tile { display:none; }
+.mo-brand--compact .mo-brand-logo { height:58%; max-width:40%; }
+.mo-brand--compact .mo-brand-logo--tile { height:78%; }
+.mo-brand--compact .mo-brand-name { font-size:1.15rem; }
+.mo-brand--compact .mo-brand-name--tile { display:block; }
+.mo-brand-line {
+  position:absolute; top:var(--bs-line-y,0px); left:var(--bs-line-l,0px); width:var(--bs-line-w,0px); height:1px;
+  background:rgba(255,255,255,.7);
+  transform-origin:left center; transform:scaleX(0);
+  transition:transform .3s cubic-bezier(.16,1,.3,1) .04s;
+}
+.mo-brand-line::before,.mo-brand-line::after {
+  content:''; position:absolute; top:-2px; width:5px; height:5px; border-radius:50%; background:#fff;
+}
+.mo-brand-line::before { left:-2px; } .mo-brand-line::after { right:-2px; }
+@media (min-width:901px) {
+  .mat-outer:not(.mat-open) .mo-row:hover .mo-brand { opacity:1; }
+  .mat-outer:not(.mat-open) .mo-row:hover .mo-brand-strip { transform:translateX(0); }
+  .mat-outer:not(.mat-open) .mo-row:hover .mo-brand-line { transform:scaleX(1); }
+}
+/* touch / small screens: brief reveal on tap, compact strip, no line */
+@media (hover:none) and (pointer:coarse), (max-width:900px) {
+  .mo-brand-line { display:none; }
+  .mo-row.mo-touch-reveal .mo-brand { opacity:1; }
+  .mo-row.mo-touch-reveal .mo-brand-strip { transform:translateX(0); }
+  .mo-brand-strip { --bs-w:min(200px,48%); --bs-h:48px; gap:.4rem; }
+  .mo-brand-name { font-size:.9rem; }
+}
+.mat-outer.mat-open .mo-brand { display:none; }
+@media (prefers-reduced-motion:reduce) { .mo-brand,.mo-brand-strip,.mo-brand-line { transition:none; } }
+
 /* ── Detail panel ── */
 .md-wrap {
   width:0; flex-shrink:0; overflow:hidden;
@@ -4612,7 +4687,9 @@ function initMat() {
   fragmentData.forEach(function(f, i) {
     var num = String(i + 1).padStart(2, '0');
     list.appendChild(makeDivider());
-    list.appendChild(makeRow('fragment', i, num, f.heading, f.label));
+    var frow = makeRow('fragment', i, num, f.heading, f.label);
+    attachBrand(frow, f.platform);
+    list.appendChild(frow);
   });
   list.appendChild(makeDivider());
 
@@ -4627,6 +4704,85 @@ function initMat() {
   }, 120);
 }
 /* initMat() called after fragmentData is defined below */
+
+/* ── Brand reveal: logo strip per Signal entry (observations only) ── */
+var BRAND_LOGOS = {
+  'meesho':{src:'images/brands/meesho.png',name:'Meesho',tile:true},
+  'whatsapp':{src:'images/brands/whatsapp.svg',name:'WhatsApp'},
+  'youtube':{src:'images/brands/youtube.svg',name:'YouTube'},
+  'swiggy':{src:'images/brands/swiggy.svg',name:'Swiggy'},
+  'gpay':{src:'images/brands/googlepay.svg',name:'Google Pay'},
+  'google pay':{src:'images/brands/googlepay.svg',name:'Google Pay'},
+  'duolingo':{src:'images/brands/duolingo.svg',name:'Duolingo'},
+  'spotify':{src:'images/brands/spotify.svg',name:'Spotify'},
+  'google maps':{src:'images/brands/googlemaps.svg',name:'Google Maps'},
+  'phonepe':{src:'images/brands/phonepe.svg',name:'PhonePe'},
+  'zomato':{src:'images/brands/zomato.svg',name:'Zomato'},
+  'uber':{src:'images/brands/uber.svg',name:'Uber'},
+  'airbnb':{src:'images/brands/airbnb.svg',name:'Airbnb'},
+  'instagram':{src:'images/brands/instagram.svg',name:'Instagram'},
+  'notion':{src:'images/brands/notion.svg',name:'Notion'}
+};
+function attachBrand(row, platform) {
+  var b = BRAND_LOGOS[String(platform || '').toLowerCase()];
+  if (!b) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'mo-brand';
+  wrap.setAttribute('aria-hidden', 'true');
+  wrap.innerHTML =
+    '<div class="mo-brand-line"></div>' +
+    '<div class="mo-brand-strip">' +
+      '<img class="mo-brand-logo' + (b.tile ? ' mo-brand-logo--tile' : '') + '" src="' + b.src + '" alt="" loading="lazy" decoding="async"/>' +
+      '<span class="mo-brand-name' + (b.tile ? ' mo-brand-name--tile' : '') + '">' + b.name + '</span>' +
+      '<span class="mo-brand-grain"></span>' +
+    '</div>';
+  row.appendChild(wrap);
+  var strip = wrap.firstChild.nextSibling;
+  function place() {
+    var title = row.querySelector('.mo-row-title');
+    if (!title) return;
+    var rowR = row.getBoundingClientRect();
+    var rng = document.createRange();
+    rng.selectNodeContents(title);
+    var rects = Array.prototype.slice.call(rng.getClientRects());
+    if (!rects.length) return;
+    var last = rects.reduce(function(a, r) { return r.bottom > a.bottom ? r : a; }, rects[0]);
+    var lastLineRight = Math.max.apply(null, rects.filter(function(r) { return Math.abs(r.bottom - last.bottom) < 4; }).map(function(r) { return r.right; })) - rowR.left;
+    var rowW = rowR.width, arrowRoom = 56, gap = 44;
+    var h = 92, w = Math.min(360, Math.max(200, rowW * 0.3));
+    var left = rowW - arrowRoom - w, top, lineL, lineY;
+    wrap.classList.remove('mo-brand--compact');
+    if (left >= lastLineRight + gap) {
+      /* room beside the headline: strip centred on the headline's last line */
+      var cy = (last.top + last.bottom) / 2 - rowR.top;
+      top = Math.min(Math.max(cy - h / 2, 4), rowR.height - h - 4);
+      lineL = lastLineRight + 14; lineY = top + h / 2;
+    } else {
+      /* headline runs full width: compact strip in the subtitle band under the headline */
+      var sub = row.querySelector('.mo-row-sub');
+      var sr = sub.getBoundingClientRect();
+      var rr = document.createRange(); rr.selectNodeContents(sub);
+      var subRight = Math.max(rr.getBoundingClientRect().right - rowR.left, 0);
+      h = Math.min(46, Math.max(30, rowR.bottom - last.bottom - 14)); w = 260; wrap.classList.add('mo-brand--compact');
+      left = rowW - arrowRoom - w;
+      top = rowR.height - h - 12;
+      lineY = top + h / 2; lineL = subRight + 14;
+    }
+    wrap.style.setProperty('--bs-w', w + 'px');
+    wrap.style.setProperty('--bs-h', h + 'px');
+    wrap.style.setProperty('--bs-left', left + 'px');
+    wrap.style.setProperty('--bs-top', top + 'px');
+    wrap.style.setProperty('--bs-line-l', lineL + 'px');
+    wrap.style.setProperty('--bs-line-w', Math.max(0, left - 12 - lineL) + 'px');
+    wrap.style.setProperty('--bs-line-y', lineY + 'px');
+  }
+  row.addEventListener('mouseenter', place);
+  row.addEventListener('touchstart', function() {
+    row.classList.add('mo-touch-reveal');
+    setTimeout(function() { row.classList.remove('mo-touch-reveal'); }, 1100);
+  }, { passive: true });
+}
+
 
 /* ── Select a project or fragment ── */
 function matSelect(rowEl, type, idx) {

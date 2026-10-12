@@ -2271,35 +2271,32 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   transition:transform .26s cubic-bezier(.16,1,.3,1);
 }
 .mo-brand-strip::before,.mo-brand-strip::after {
-  content:''; position:absolute; top:0; bottom:0; width:24%; pointer-events:none;
+  content:''; position:absolute; top:0; bottom:0; width:22%; pointer-events:none;
 }
 .mo-brand-strip::before {
   left:0;
-  background:radial-gradient(circle,rgba(255,255,255,.55) 0.9px,transparent 1.3px) 0 0/4px 4px,
-             repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 1px,transparent 1px 9px);
+  background:radial-gradient(circle,rgba(255,255,255,.55) 1.2px,transparent 1.6px) 0 0/4px 4px;
   -webkit-mask-image:linear-gradient(90deg,#000 0,transparent 100%); mask-image:linear-gradient(90deg,#000 0,transparent 100%);
   opacity:.55;
 }
 .mo-brand-strip::after {
   right:0;
-  background:radial-gradient(circle,rgba(255,255,255,.55) 0.9px,transparent 1.3px) 0 0/4px 4px,
-             repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 1px,transparent 1px 9px);
+  background:radial-gradient(circle,rgba(255,255,255,.55) 1.2px,transparent 1.6px) 0 0/4px 4px;
   -webkit-mask-image:linear-gradient(270deg,#000 0,transparent 100%); mask-image:linear-gradient(270deg,#000 0,transparent 100%);
   opacity:.55;
 }
-.mo-brand-grain {
-  position:absolute; inset:0; pointer-events:none; opacity:.22; mix-blend-mode:screen;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-.mo-brand-logo { position:relative; z-index:1; height:42%; width:auto; max-width:46%; object-fit:contain; display:block; }
-.mo-brand-logo--tile { height:70%; border-radius:12px; }
+.mo-brand-logo { position:relative; z-index:1; height:28%; width:auto; max-width:46%; object-fit:contain; display:block; }
+.mo-brand-logo--tile { height:44%; border-radius:12px; }
 .mo-brand-name {
   position:relative; z-index:1; font-family:'Inter',sans-serif; font-weight:700;
-  font-size:clamp(1.1rem,2.1vw,1.9rem); letter-spacing:-.03em; color:#fff; line-height:1; white-space:nowrap;
+  font-size:calc(var(--bs-h,92px) * .28); letter-spacing:-.03em; color:#fff; line-height:1; white-space:nowrap;
 }
 .mo-brand-name--tile { display:none; }
+.mo-brand-logo--wm { height:auto; width:34%; max-width:none; }
+.mo-brand-name--wm { display:none; }
 .mo-brand--compact .mo-brand-logo { height:58%; max-width:40%; }
 .mo-brand--compact .mo-brand-logo--tile { height:78%; }
+.mo-brand--compact .mo-brand-logo--wm { height:auto; width:50%; max-width:none; }
 .mo-brand--compact .mo-brand-name { font-size:1.15rem; }
 .mo-brand--compact .mo-brand-name--tile { display:block; }
 .mo-brand-line {
@@ -4711,14 +4708,14 @@ var BRAND_LOGOS = {
   'whatsapp':{src:'images/brands/whatsapp.svg',name:'WhatsApp'},
   'youtube':{src:'images/brands/youtube.svg',name:'YouTube'},
   'swiggy':{src:'images/brands/swiggy.svg',name:'Swiggy'},
-  'gpay':{src:'images/brands/googlepay.svg',name:'Google Pay'},
-  'google pay':{src:'images/brands/googlepay.svg',name:'Google Pay'},
+  'gpay':{src:'images/brands/googlepay.svg',name:'Google Pay',wm:true},
+  'google pay':{src:'images/brands/googlepay.svg',name:'Google Pay',wm:true},
   'duolingo':{src:'images/brands/duolingo.svg',name:'Duolingo'},
   'spotify':{src:'images/brands/spotify.svg',name:'Spotify'},
   'google maps':{src:'images/brands/googlemaps.svg',name:'Google Maps'},
   'phonepe':{src:'images/brands/phonepe.svg',name:'PhonePe'},
-  'zomato':{src:'images/brands/zomato.svg',name:'Zomato'},
-  'uber':{src:'images/brands/uber.svg',name:'Uber'},
+  'zomato':{src:'images/brands/zomato.svg',name:'Zomato',wm:true},
+  'uber':{src:'images/brands/uber.svg',name:'Uber',wm:true},
   'airbnb':{src:'images/brands/airbnb.svg',name:'Airbnb'},
   'instagram':{src:'images/brands/instagram.svg',name:'Instagram'},
   'notion':{src:'images/brands/notion.svg',name:'Notion'}
@@ -4732,9 +4729,8 @@ function attachBrand(row, platform) {
   wrap.innerHTML =
     '<div class="mo-brand-line"></div>' +
     '<div class="mo-brand-strip">' +
-      '<img class="mo-brand-logo' + (b.tile ? ' mo-brand-logo--tile' : '') + '" src="' + b.src + '" alt="" loading="lazy" decoding="async"/>' +
-      '<span class="mo-brand-name' + (b.tile ? ' mo-brand-name--tile' : '') + '">' + b.name + '</span>' +
-      '<span class="mo-brand-grain"></span>' +
+      '<img class="mo-brand-logo' + (b.tile ? ' mo-brand-logo--tile' : '') + (b.wm ? ' mo-brand-logo--wm' : '') + '" src="' + b.src + '" alt="" loading="lazy" decoding="async"/>' +
+      '<span class="mo-brand-name' + (b.tile ? ' mo-brand-name--tile' : '') + (b.wm ? ' mo-brand-name--wm' : '') + '">' + b.name + '</span>' +
     '</div>';
   row.appendChild(wrap);
   var strip = wrap.firstChild.nextSibling;

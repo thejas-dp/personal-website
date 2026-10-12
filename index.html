@@ -4751,7 +4751,9 @@ function initMat() {
   projectData.forEach(function(p, i) {
     var num = String(i + 1).padStart(2, '0');
     list.appendChild(makeDivider());
-    list.appendChild(makeRow('project', i, num, p.name, p.subtitle));
+    var prow = makeRow('project', i, num, p.name, p.subtitle);
+    attachBrand(prow, p.name);
+    list.appendChild(prow);
   });
   list.appendChild(makeDivider());
 
@@ -4794,7 +4796,12 @@ var BRAND_LOGOS = {
   'uber':{src:'images/brands/uber.svg',name:'Uber',wm:true},
   'airbnb':{src:'images/brands/airbnb.svg',name:'Airbnb'},
   'instagram':{src:'images/brands/instagram.svg',name:'Instagram'},
-  'notion':{src:'images/brands/notion.svg',name:'Notion'}
+  'notion':{src:'images/brands/notion.svg',name:'Notion'},
+  'growx':{src:'images/brands/niti.svg',name:'Niti AI',wm:true},
+  'loopx':{src:'images/brands/niti.svg',name:'Niti AI',wm:true},
+  'trust':{src:'images/brands/axisbank.svg',name:'Axis Bank'},
+  'statement analyzer':{src:'images/brands/icici.svg',name:'ICICI Bank',wm:true},
+  'performance powered motivation system':{src:'images/brands/inprime.png',name:'InPrime Finserv'}
 };
 function attachBrand(row, platform) {
   var b = BRAND_LOGOS[String(platform || '').toLowerCase()];
@@ -4882,7 +4889,12 @@ function matSelect(rowEl, type, idx) {
     if (type === 'project') {
       var p = projectData[idx];
       topbarEl.textContent = 'CASE — ' + String(idx + 1).padStart(2, '0') + ' OF ' + projectData.length;
-      ghostEl.textContent  = p.name;
+      var pgb = BRAND_LOGOS[String(p.name || '').toLowerCase()];
+      if (pgb) {
+        ghostEl.innerHTML = '<span class="md-ghost-brand"><img class="md-ghost-logo' + (pgb.wm ? ' md-ghost-logo--wm' : '') + '" src="' + pgb.src + '" alt="' + pgb.name + '"/>' + (pgb.wm ? '' : '<span class="md-ghost-name">' + pgb.name + '</span>') + '</span>';
+      } else {
+        ghostEl.textContent  = p.name;
+      }
       if (p.body) {
         contentEl.innerHTML = p.body;
       } else {

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://thejasdp.vercel.app/</loc></url>
-  <url><loc>https://thejasdp.vercel.app/work/growx/</loc></url>
-  <url><loc>https://thejasdp.vercel.app/work/loopx/</loc></url>
-  <url><loc>https://thejasdp.vercel.app/work/performance-motivation/</loc></url>
-  <url><loc>https://thejasdp.vercel.app/work/trust/</loc></url>
-  <url><loc>https://thejasdp.vercel.app/work/statement-analyzer/</loc></url>
-  <url><loc>https://thejasdp.vercel.app/work/hitha-agritech/</loc></url>
+  <url><loc>https://thejasdp.vercel.app/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/growx/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/loopx/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/performance-motivation/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/trust/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/statement-analyzer/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/hitha-agritech/</loc><lastmod>2026-10-12</lastmod></url>
 </urlset>
+

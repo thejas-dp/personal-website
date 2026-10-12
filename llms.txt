@@ -1,0 +1,22 @@
+# Thejas Dhanesh
+
+> Product manager based in Bengaluru, India, with founding-team experience at Niti AI. Works across product, growth and multi-agent AI workflows for martech.
+
+## Site
+- [Home](https://thejasdp.vercel.app/): identity, experience and contact
+
+## Work
+- [GrowX](https://thejasdp.vercel.app/work/growx/)
+- [LoopX](https://thejasdp.vercel.app/work/loopx/)
+- [Performance Powered Motivation System](https://thejasdp.vercel.app/work/performance-motivation/)
+- [TRUST](https://thejasdp.vercel.app/work/trust/)
+- [Statement Analyzer](https://thejasdp.vercel.app/work/statement-analyzer/)
+- [Hitha AgriTech](https://thejasdp.vercel.app/work/hitha-agritech/)
+
+## Elsewhere
+- [LinkedIn](https://www.linkedin.com/in/thejasdp)
+- [GitHub](https://github.com/thejas-dp)
+- [X](https://x.com/Thejasdp)
+
+## Contact
+- poonthotathilthejas@gmail.com

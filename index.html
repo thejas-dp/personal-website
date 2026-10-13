@@ -1614,8 +1614,8 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 }
 .asp-nav-item:hover .asp-nav-label { font-weight:300; color:#ffffff; }
 .asp-nav-item:hover .asp-nav-num { color:rgba(255,255,255,0.55); font-weight:300; }
-.asp-nav-item--active .asp-nav-label { font-style:normal !important; font-weight:800 !important; color:#1a1a1a !important; }
-.asp-nav-item--active .asp-nav-num { color:#1a1a1a !important; font-weight:700 !important; }
+.asp-nav-item--active .asp-nav-label { font-style:normal !important; font-weight:800 !important; color:#FEFAF9 !important; }
+.asp-nav-item--active .asp-nav-num { color:#FEFAF9 !important; font-weight:700 !important; }
 .asp-left-nav:has(.asp-nav-item:hover) .asp-nav-item:not(:hover):not(.asp-nav-item--active) .asp-nav-label { color:#741212; font-weight:300; }
 .asp-left-nav:has(.asp-nav-item:hover) .asp-nav-item:not(:hover):not(.asp-nav-item--active) .asp-nav-num { color:#741212; font-weight:300; }
 .asp-left-footer {
@@ -2293,12 +2293,12 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
 .mat-outer.mat-open .mo-row { --logo-w:clamp(52px,4.4vw,84px); }
 .mo-row-body { transition:transform .5s cubic-bezier(.16,1,.3,1); will-change:transform; }
 .mo-logo {
-  position:absolute; left:0; top:0; bottom:0; width:var(--logo-w);
+  position:absolute; left:0; top:0; bottom:0; width:var(--slot,var(--logo-w));
   display:flex; align-items:center; justify-content:flex-start;
   opacity:0; transform:translateX(-18px); pointer-events:none;
   transition:opacity .3s ease, transform .5s cubic-bezier(.16,1,.3,1);
 }
-.mo-logo-img { display:block; max-width:100%; max-height:clamp(2.4rem,5vw,6.5rem); width:auto; height:auto; object-fit:contain; }
+.mo-logo-img { display:block; max-width:100%; height:clamp(2.4rem,5vw,6.5rem); width:auto; object-fit:contain; }
 .mo-logo-img--tile { border-radius:12px; width:clamp(2.6rem,5vw,5.2rem); height:clamp(2.6rem,5vw,5.2rem); }
 .mo-logo-img--wm { width:100%; }
 @media (hover:hover) and (pointer:fine) {
@@ -4745,21 +4745,21 @@ var BRAND_LOGOS = {
   'whatsapp':{src:'images/brands/whatsapp.svg',name:'WhatsApp'},
   'youtube':{src:'images/brands/youtube.svg',name:'YouTube'},
   'swiggy':{src:'images/brands/swiggy.svg',name:'Swiggy'},
-  'gpay':{src:'images/brands/googlepay.svg',name:'Google Pay',wm:true},
-  'google pay':{src:'images/brands/googlepay.svg',name:'Google Pay',wm:true},
+  'gpay':{src:'images/brands/googlepay-mark.svg',name:'Google Pay'},
+  'google pay':{src:'images/brands/googlepay-mark.svg',name:'Google Pay'},
   'duolingo':{src:'images/brands/duolingo.svg',name:'Duolingo'},
   'spotify':{src:'images/brands/spotify.svg',name:'Spotify'},
   'google maps':{src:'images/brands/googlemaps.svg',name:'Google Maps'},
   'phonepe':{src:'images/brands/phonepe.svg',name:'PhonePe'},
-  'zomato':{src:'images/brands/zomato.svg',name:'Zomato',wm:true},
-  'uber':{src:'images/brands/uber.svg',name:'Uber',wm:true},
+  'zomato':{src:'images/brands/zomato-mark.svg',name:'Zomato'},
+  'uber':{src:'images/brands/uber-mark.svg',name:'Uber'},
   'airbnb':{src:'images/brands/airbnb.svg',name:'Airbnb'},
   'instagram':{src:'images/brands/instagram.svg',name:'Instagram'},
   'notion':{src:'images/brands/notion.svg',name:'Notion'},
-  'growx':{src:'images/brands/niti.svg',name:'Niti AI',wm:true},
-  'loopx':{src:'images/brands/niti.svg',name:'Niti AI',wm:true},
+  'growx':{src:'images/brands/niti-mark.svg',name:'Niti AI'},
+  'loopx':{src:'images/brands/niti-mark.svg',name:'Niti AI'},
   'trust':{src:'images/brands/axisbank.svg',name:'Axis Bank'},
-  'statement analyzer':{src:'images/brands/icici.svg',name:'ICICI Bank',wm:true},
+  'statement analyzer':{src:'images/brands/icici-mark.svg',name:'ICICI Bank'},
   'performance powered motivation system':{src:'images/brands/inprime.png',name:'InPrime Finserv'}
 };
 function attachBrand(row, platform) {
@@ -4780,13 +4780,17 @@ function attachBrand(row, platform) {
     clearTimeout(unlock);
     var rowR = row.getBoundingClientRect();
     var gap = row.closest('.mat-outer.mat-open') ? 14 : 22;
-    var want = logo.getBoundingClientRect().width + gap;
+    row.style.removeProperty('--slot');
+    var full = logo.getBoundingClientRect().width;
     if (!title.style.width) title.style.width = title.getBoundingClientRect().width + 'px';
     var rng = document.createRange(); rng.selectNodeContents(title);
     var rights = Array.prototype.map.call(rng.getClientRects(), function(r) { return r.right; });
     var maxR = rights.length ? Math.max.apply(null, rights) : rowR.left;
-    var shift = Math.max(0, Math.min(want, rowR.right - 56 - maxR));
-    row.style.setProperty('--shift', shift + 'px');
+    /* long headlines: shrink the logo slot (min 40px) rather than overlap the text */
+    var room = rowR.right - 12 - maxR;
+    var slot = Math.max(40, Math.min(full, room - gap));
+    row.style.setProperty('--slot', slot + 'px');
+    row.style.setProperty('--shift', (slot + gap) + 'px');
   }
   function release() { unlock = setTimeout(function() { title.style.width = ''; }, 560); }
   row.addEventListener('mouseenter', place);

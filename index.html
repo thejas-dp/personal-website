@@ -2871,11 +2871,6 @@ button { font:inherit; background:none; border:none; cursor:pointer; color:inher
   transform: scale(1);
 }
 
-/* logo mode: the follower becomes the hovered row's logo mark */
-#custom-cursor .cursor-logo-img { position:absolute; inset:0; margin:auto; max-width:70%; max-height:70%; width:auto; height:auto; object-fit:contain; opacity:0; transform:scale(.6); transition:opacity .25s ease, transform .4s cubic-bezier(.16,1,.3,1); pointer-events:none; }
-#custom-cursor.cursor-logo { width:76px; height:76px; background:transparent; mix-blend-mode:normal; }
-#custom-cursor.cursor-logo .cursor-label { opacity:0; transform:scale(.7); }
-#custom-cursor.cursor-logo .cursor-logo-img { opacity:1; transform:scale(1); }
 /* hide on mobile/touch */
 @media (hover: none) {
   * { cursor: auto !important; }
@@ -2923,7 +2918,7 @@ a:focus-visible,button:focus-visible {outline:3px solid white;outline-offset:-4p
 <body>
 
 <!-- Custom cursor -->
-<div id="custom-cursor"><span class="cursor-label">OPEN</span><img class="cursor-logo-img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></div>
+<div id="custom-cursor"><span class="cursor-label">OPEN</span></div>
 
 <!-- COLUMN GRID LINES -->
 <!-- columns grid removed -->
@@ -4771,7 +4766,6 @@ function attachBrand(row, platform) {
   var b = BRAND_LOGOS[String(platform || '').toLowerCase()];
   if (!b) return;
   row.classList.add('mo-has-logo');
-  row._logoSrc = b.src;
   row.setAttribute('tabindex', '0');
   row.setAttribute('role', 'button');
   var logo = document.createElement('div');
@@ -5257,17 +5251,12 @@ function renderFragments_UNUSED() {
       el.addEventListener('mouseenter', function() {
         isOpen = true;
         cursor.classList.add('cursor-open');
-        if (el._logoSrc) {
-          cursor.querySelector('.cursor-logo-img').src = el._logoSrc;
-          cursor.classList.add('cursor-logo');
-        }
         var lbl = el.dataset.cursorLabel;
         if (lbl) cursor.querySelector('.cursor-label').textContent = lbl;
       });
       el.addEventListener('mouseleave', function() {
         isOpen = false;
         cursor.classList.remove('cursor-open');
-        cursor.classList.remove('cursor-logo');
         cursor.querySelector('.cursor-label').textContent = 'OPEN';
       });
     });

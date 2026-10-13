@@ -3331,7 +3331,7 @@ a:focus-visible,button:focus-visible {outline:3px solid white;outline-offset:-4p
             </div>
             <!-- Ghost logo -->
             <div class="ad-logo-ghost">
-              <div class="ad-logo-ghost-text" id="adLogoGhost">LOGO HERE</div>
+              <div class="ad-logo-ghost-text" id="adLogoGhost"></div>
             </div>
             <!-- Scrollable content -->
             <div class="ad-content">
@@ -3669,6 +3669,16 @@ function ascentSelect(rowEl, idx) {
   rowEl.classList.add('ao-active');
 
   var populate = function() {
+    (function(){
+      var gh = document.querySelector('#adInner .ad-logo-ghost');
+      if (gh) {
+        var ab = job.name === 'NITI AI' ? BRAND_LOGOS['growx'] : null;
+        var nm = job.name.charAt(0) + job.name.slice(1).toLowerCase();
+        gh.innerHTML = ab
+          ? '<span class="md-ghost-brand"><img class="md-ghost-logo md-ghost-logo--wm" src="' + ab.src + '" alt="' + ab.name + '"/></span>'
+          : '<span class="md-ghost-brand"><span class="md-ghost-name">' + nm + '</span></span>';
+      }
+    })();
     document.getElementById('adTopbarLabel').textContent = job.topbar;
     document.getElementById('adHeading').textContent    = job.role;
     document.getElementById('adDesc').textContent       = job.desc;

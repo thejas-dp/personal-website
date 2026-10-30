@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://thejasdp.vercel.app/</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://thejasdp.vercel.app/work/growx/</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://thejasdp.vercel.app/work/loopx/</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://thejasdp.vercel.app/work/performance-motivation/</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://thejasdp.vercel.app/work/trust/</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://thejasdp.vercel.app/work/statement-analyzer/</loc><lastmod>2026-10-12</lastmod></url>
-  <url><loc>https://thejasdp.vercel.app/work/hitha-agritech/</loc><lastmod>2026-10-12</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/consumer-flows/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/growx/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/hitha-agritech/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/loopx/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/performance-motivation/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/statement-analyzer/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/work/trust/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/meesho-live-deal-window/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/whatsapp-reply-nudge/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/whatsapp-image-provenance/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/youtube-watch-later-revisit/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/the-crowd-removes-the-risk/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/gpay-monthly-wrap/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/gpay-payment-reminder/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/swiggy-squad/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/duolingo-make-the-next-lesson-obvious/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/whatsapp-make-a-chat-plan-recoverable/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/spotify-make-the-next-tracks-inspectable/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/google-maps-preview-the-route-before-taking-it/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/google-pay-offer-a-route-for-the-identifier-in-hand/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/phonepe-make-the-funding-step-explicit/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/zomato-split-meal-choice-from-order-ownership/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/swiggy-join-the-shared-cart-from-the-room-or-remotely/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/uber-surface-pickup-state-outside-the-app/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/airbnb-compare-the-stay-price-before-choosing/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/instagram-make-being-unavailable-a-shared-state/</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://thejasdp.vercel.app/observations/notion-turn-structure-into-an-editable-first-object/</loc><lastmod>2026-10-30</lastmod></url>
 </urlset>
-

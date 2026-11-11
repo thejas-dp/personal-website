@@ -30,3 +30,5 @@ module.exports = async function handler(req, res) {
   res.setHeader('Expires', '0');
   res.status(200).end(GIF);
 };
+
+// redeploy trigger: env var APPS_SCRIPT_URL added after first preview build

@@ -31,3 +31,20 @@ SOFTWARE.
    Source: https://github.com/evestera/svg-halftone
    License: MIT
    Not currently included in the runtime; use only when a suitable photograph is selected.
+
+
+3. AmbientCG surface maps (served from Wikimedia Commons)
+   Cardboard 002 colour map: https://commons.wikimedia.org/wiki/File:Cardboard002_8K_Color.png
+   Paper 005 colour map: https://commons.wikimedia.org/wiki/File:Paper005_8K_Color.png
+   Metal 001 colour map: https://commons.wikimedia.org/wiki/File:Metal001_4K_Color.png
+   Original creator: ambientCG.com / Lennart Demes
+   License: Creative Commons CC0 1.0 Universal Public Domain Dedication
+   Use: CSS texture overlays on the archive shell, folder faces, and dossier pages.
+   The page references resized Wikimedia Commons thumbnail URLs rather than embedding the source files.
+
+4. Photograph used in the attached dossier image
+   File: Rocky landscape with trees and hills.jpg
+   Source: https://commons.wikimedia.org/wiki/File:Rocky_landscape_with_trees_and_hills.jpg
+   Author: Salma A. L Suhuyini
+   License: Creative Commons CC0 1.0 Universal Public Domain Dedication
+   Use: background photo on the dossier clipping, rendered in monochrome with a print halftone overlay.

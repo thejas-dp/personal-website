@@ -25,10 +25,14 @@ function renderFiles(){
 }
 function openFile(id,trigger){
  if(fileIsOpen)return;
- const dossierRect=dossier.getBoundingClientRect();
+ const dossierStyle=getComputedStyle(dossier);
+ const dossierLeft=parseFloat(dossierStyle.left)||0;
+ const dossierTop=parseFloat(dossierStyle.top)||0;
+ const dossierWidth=parseFloat(dossierStyle.width)||window.innerWidth;
+ const dossierHeight=parseFloat(dossierStyle.height)||window.innerHeight;
  const fileRect=trigger.getBoundingClientRect();
- const originX=((fileRect.left+fileRect.width/2-dossierRect.left)/dossierRect.width)*100;
- const originY=((fileRect.top+fileRect.height/2-dossierRect.top)/dossierRect.height)*100;
+ const originX=((fileRect.left+fileRect.width/2-dossierLeft)/dossierWidth)*100;
+ const originY=((fileRect.top+fileRect.height/2-dossierTop)/dossierHeight)*100;
  dossier.style.setProperty("--origin-x",originX+"%");
  dossier.style.setProperty("--origin-y",originY+"%");
  selectProject(id);
@@ -68,7 +72,7 @@ filters.addEventListener("click",e=>{
  const available=projects.filter(p=>activeFilter==="All"||p.cats.includes(activeFilter));
  if(!available.some(p=>p.id===active))active=available[0].id;
  renderFiles();selectProject(active);
-closeFileButton.addEventListener("click",closeFile);
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&fileIsOpen)closeFile();});
 });
 renderFiles();selectProject(active);
+closeFileButton.addEventListener("click",closeFile);
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&fileIsOpen)closeFile();});

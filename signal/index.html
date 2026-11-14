@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>03 — SIGNALS | Thejas DP</title>
+<meta name="description" content="Selected product case studies, interface observations, and design concepts by Thejas DP.">
+<style>
+@font-face{font-family:Barlow Condensed;src:url('/fonts/HTxwL3I-JCGChYJ8VI-L6OO_au7B46r2z3bWuQ.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Barlow Condensed;src:url('/fonts/HTxwL3I-JCGChYJ8VI-L6OO_au7B4873z3bWuQ.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:Inter;src:url('/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2') format('woff2');font-weight:400 700;font-display:swap}
+:root{--red:#ed1116;--black:#0a0a09;--paper:#e9dfcf;--paper-light:#f0e7d9;--paper-dark:#c7b598;--ink:#191610;--muted:#a19b91;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;--cond:"Barlow Condensed","Arial Narrow",Impact,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--black);color:#eee;font-family:Inter,Arial,sans-serif}
+body{overflow-x:hidden}
+button{font:inherit}
+button:focus-visible{outline:2px solid #f5e7d4;outline-offset:4px}
+.site{min-height:100vh;display:grid;grid-template-columns:17% minmax(0,1fr);background:#0a0a09}
+.sidebar{height:100vh;min-height:720px;position:sticky;top:0;background:var(--red);color:#080706;padding:28px 25px 22px;display:flex;flex-direction:column;z-index:10}
+.close{font:22px/1 var(--mono);font-weight:300}
+.side-heading{margin-top:10.6vh;font-family:var(--cond);font-weight:700;font-size:clamp(72px,5.65vw,98px);line-height:.79;letter-spacing:-2.8px;text-transform:uppercase}
+.side-back{font:18px var(--mono);margin-top:22px}
+.side-nav{margin-top:auto;display:grid;gap:13px}
+.side-nav a{color:#090807;text-decoration:none;font:600 clamp(17px,1.28vw,22px)/1 var(--cond);letter-spacing:.3px;opacity:.72}
+.side-nav a.active,.side-nav a:hover{opacity:1}
+.copyright{font:8px var(--mono);margin-top:46px;letter-spacing:.3px;opacity:.72}
+.main{position:relative;min-width:0;min-height:100vh;padding:47px 26px 20px 5.3vw;overflow:hidden;background:
+ radial-gradient(ellipse at 76% 42%,rgba(122,100,74,.07),transparent 46%),
+ linear-gradient(112deg,#0c0c0b 0%,#090909 58%,#0b0a09 100%)}
+.main:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+.header{position:relative;z-index:1;display:grid;grid-template-columns:minmax(400px,1fr) auto;gap:24px;align-items:center;padding-bottom:25px}
+.eyebrow{color:#ed171c;font:9px var(--mono);letter-spacing:3.2px;margin-bottom:13px}
+.intro{color:#aaa69f;max-width:510px;font-size:clamp(17px,1.36vw,22px);line-height:1.45;letter-spacing:-.2px}
+.filters{display:flex;align-items:center;justify-content:flex-end;gap:17px;white-space:nowrap}
+.filter{height:34px;border:1px solid #59554e;border-radius:30px;background:transparent;color:#d3cec5;padding:0 17px;cursor:pointer;font:11px var(--mono);transition:background .18s,border-color .18s,color .18s}
+.filter:hover{border-color:#c5b8a4;color:#fff;background:#201d18}
+.filter.active{background:#e9dfd0;border-color:#e9dfd0;color:#191611}
+.composition{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,42.5%) minmax(0,57.5%);gap:13px;align-items:center;min-height:calc(100vh - 155px)}
+.archive{height:min(75vh,710px);min-height:620px;position:relative;perspective:1450px;isolation:isolate}
+.archive-shadow{position:absolute;left:3%;right:2%;bottom:1px;height:38px;border-radius:50%;background:#000;filter:blur(22px);opacity:.95}
+.archive-shell{position:absolute;inset:16px 0 0;overflow:hidden;border:1px solid #81715a;border-radius:7px 7px 13px 13px;background:linear-gradient(90deg,#171613 0%,transparent 7%,transparent 93%,#171512 100%),linear-gradient(135deg,#5b5143 0%,#3d372e 38%,#27241f 100%);box-shadow:0 26px 46px #000d,inset 0 2px 2px #c1b09488,inset 0 -10px 19px #080706,inset 7px 0 12px #0005,inset -7px 0 12px #0005;transform:rotateY(1.5deg)}
+.box-interior{position:absolute;inset:5px 8px 125px;border:1px solid #191713;border-radius:4px;background:linear-gradient(90deg,#131210,#2c2821 9%,#211e19 90%,#131210);box-shadow:inset 0 13px 18px #000a,inset 0 1px #8d806b55}
+.box-side{position:absolute;top:26px;bottom:111px;width:13px;z-index:2;background:linear-gradient(90deg,#191714,#6c604e 45%,#29251f);border:1px solid #786c58;box-shadow:inset 2px 0 3px #0008,2px 0 5px #0007}
+.box-side.left{left:0}.box-side.right{right:0;transform:scaleX(-1)}
+.box-front{position:absolute;z-index:5;left:0;right:0;bottom:0;height:132px;border-top:2px solid #8c7d65;background:linear-gradient(180deg,#6e614e 0%,#37332c 9%,#25231f 23%,#37332b 72%,#171614 100%);box-shadow:inset 0 6px 9px #0008,inset 0 1px #d4c3a388,0 -4px 9px #0008}
+.files{position:absolute;z-index:4;top:16px;left:0;right:0;height:calc(100% - 132px);display:block}
+.file{position:absolute;top:calc(var(--slot)*67px);left:calc(var(--slot)*10px);width:calc(100% - var(--slot)*10px);height:73px;padding:19px 55px 8px 31px;border:1px solid #a18c6f;border-bottom:1px solid #988366;border-radius:12px 12px 3px 3px;clip-path:polygon(0 14px,62% 14px,68% 0,93% 0,97% 14px,100% 14px,100% 100%,0 100%);text-align:left;color:#211b13;cursor:pointer;background:radial-gradient(ellipse at 20% 0%,#fff9,transparent 43%),repeating-linear-gradient(2deg,transparent 0 6px,#715d4110 7px,transparent 8px),linear-gradient(105deg,#c7b594 0%,#e3d4bb 43%,#d1bea0 100%);box-shadow:0 2px 7px #0005,inset 0 1px #fff9,inset 0 -3px 5px #79684d55;transition:filter .2s,transform .22s,box-shadow .22s}
+.file:hover{filter:brightness(1.08);transform:translateY(-5px);box-shadow:0 9px 16px #0009,inset 0 1px #fff9}
+.file .tab{position:absolute;left:68%;top:-1px;width:25%;height:13px;border:1px solid #a18d70;border-bottom:0;border-radius:7px 7px 0 0;background:linear-gradient(105deg,#cdbb9d,#e4d5bc 60%,#c6b493);transform:translateY(-12px);box-shadow:inset 0 1px #fff9}
+.file-name{display:block;position:relative;z-index:2;font:600 16px/1 var(--cond);letter-spacing:.6px;text-transform:uppercase;text-shadow:0 1px #fff7}
+.file-num{position:absolute;right:20px;top:17px;z-index:2;font:600 12px var(--mono);color:#30281e}
+.file-desc{display:none}
+.file.selected{z-index:9!important;top:calc(var(--slot)*67px - 1px);height:190px;padding:62px 39px 20px 58px;border:1px solid #d44c34;border-bottom:0;border-radius:13px 13px 3px 3px;clip-path:polygon(0 18px,59% 18px,64% 0,91% 0,96% 18px,100% 18px,100% 100%,0 100%);color:#130d09;background:repeating-linear-gradient(1deg,transparent 0 5px,#631a1010 6px,transparent 7px),radial-gradient(ellipse at 100% 100%,#91291c 0%,transparent 37%),linear-gradient(105deg,#c9432d 0%,#ea5d3d 49%,#d44832 100%);box-shadow:0 12px 21px #0009,inset 0 1px 2px #ffb28b99,inset 0 -4px 8px #811e1766;transform:none}
+.file.selected .tab{left:60%;width:31%;height:15px;top:0;background:linear-gradient(105deg,#d34a32,#ee6a48);border-color:#d34a32;transform:translateY(-14px)}
+.file.selected .file-name{font:700 clamp(48px,5vw,76px)/.88 var(--cond);letter-spacing:-1.5px;color:#100d09;white-space:nowrap;text-shadow:0 1px #ff9a7755}
+.file.selected .file-num{top:21px;right:23px;font-size:15px;color:#160e09}
+.file.selected .file-desc{display:block;position:relative;z-index:3;margin-top:13px;max-width:90%;font:13px/1.35 Inter,Arial,sans-serif;color:#1a100c}
+.halftone{position:absolute;right:-1px;bottom:-2px;width:38%;height:58%;z-index:1;pointer-events:none;background-image:radial-gradient(circle,#15100c 0 2.2px,transparent 2.6px);background-size:12px 12px;mask-image:radial-gradient(ellipse at 100% 100%,#000 0%,#000 26%,transparent 73%);opacity:.82}
+.paperclip{position:absolute;z-index:5;left:17px;top:5px;width:31px;height:66px;filter:drop-shadow(2px 3px 2px #0008);transform:rotate(-4deg)}
+.paperclip svg{width:100%;height:100%}
+.plaque{position:absolute;z-index:7;left:27%;width:46%;bottom:26px;min-height:60px;padding:11px 18px 8px;text-align:center;border:2px solid #78684f;border-radius:4px;background:linear-gradient(180deg,#c5b899 0%,#9b8b6f 47%,#c2b292 52%,#95846a 100%);box-shadow:0 3px 7px #000a,inset 0 1px 2px #fff9,inset 0 -2px 3px #574b38;color:#1c1811}
+.plaque-title{display:block;font:700 14px var(--cond);letter-spacing:.8px;text-shadow:0 1px #e5d8c1}
+.plaque-sub{display:block;margin-top:4px;font:8px var(--mono);letter-spacing:1.1px}
+.screw{position:absolute;width:7px;height:7px;border-radius:50%;border:1px solid #564b3b;background:radial-gradient(circle at 35% 30%,#eee3cd 0 15%,#88795e 42%,#322d23 78%);box-shadow:0 1px 2px #0008}
+.screw:after{content:"";position:absolute;left:1px;right:1px;top:3px;height:1px;background:#49402f;transform:rotate(-25deg)}
+.screw.tl{left:7px;top:6px}.screw.tr{right:7px;top:6px}.screw.bl{left:7px;bottom:6px}.screw.br{right:7px;bottom:6px}
+.dossier{min-width:0;position:relative;filter:drop-shadow(0 24px 27px #000b);height:min(72vh,680px);min-height:630px;perspective:1800px}
+.book-back{position:absolute;inset:10px -10px -10px 10px;border:1px solid #9c8664;border-radius:7px 14px 12px 9px;background:repeating-linear-gradient(1deg,transparent 0 5px,#67523818 6px,transparent 7px),linear-gradient(105deg,#aa9676,#806d51 55%,#a89170);transform:rotate(.55deg);box-shadow:0 5px 10px #0008,inset 0 1px #eee0c6}
+.underpages{position:absolute;z-index:0;inset:9px -7px -7px 7px;pointer-events:none}
+.underpages i{position:absolute;inset:0;border:1px solid #b7a588;border-radius:5px 13px 9px 5px;background:linear-gradient(100deg,#d7c8af,#f0e6d6 48%,#d9cbb5);box-shadow:0 2px 3px #0003}
+.underpages i:nth-child(1){transform:translate(3px,3px) rotate(.35deg)}.underpages i:nth-child(2){transform:translate(6px,6px) rotate(.65deg)}.underpages i:nth-child(3){transform:translate(9px,9px) rotate(.9deg)}
+.spread{position:absolute;inset:0;z-index:2;display:grid;grid-template-columns:1fr 1fr;border:1px solid #b6a58b;border-radius:9px 14px 12px 9px;overflow:hidden;background:#e8dece;clip-path:polygon(1% .8%,98.2% 0,99.5% 1.8%,100% 96.7%,98.7% 99.5%,1.4% 99%,0 96%,.3% 4%);box-shadow:inset 0 0 0 7px #d5c5ac,inset 0 0 0 9px #f6eddf,inset 0 0 30px #75604433}
+.spread:before{content:"";position:absolute;z-index:6;top:0;bottom:0;left:50%;width:27px;transform:translateX(-50%);pointer-events:none;background:linear-gradient(90deg,#927d5d99 0%,#e9decb 18%,#fff9ed 38%,#b4a187 51%,#f1e7d7 75%,#8b7759aa 100%);box-shadow:0 0 10px #6e5b4233;opacity:.92}
+.page{position:relative;min-width:0;overflow:hidden;padding:clamp(30px,3vw,45px) clamp(25px,2.8vw,42px);background:radial-gradient(ellipse at 10% 5%,#fff9,transparent 42%),repeating-linear-gradient(1deg,transparent 0 6px,#78664b0b 7px,transparent 8px),linear-gradient(105deg,#f1e8d9,#e7dccb 77%,#f0e6d7);color:#17140f}
+.page.left{border-right:1px solid #b9a78b;box-shadow:inset -9px 0 14px -15px #3d3020}
+.page.right{padding:clamp(28px,2.6vw,40px) clamp(23px,2.4vw,36px);background:radial-gradient(ellipse at 90% 4%,#fff9,transparent 38%),repeating-linear-gradient(-1deg,transparent 0 6px,#78664b0b 7px,transparent 8px),linear-gradient(100deg,#e6dac8,#f0e7d9)}
+.page-no{position:absolute;top:26px;right:25px;color:#a72b21;font:8px var(--mono);letter-spacing:1.5px}
+.case-kicker{margin:9px 0 15px;color:#aa2920;font:9px var(--mono);letter-spacing:2px;text-transform:uppercase}
+.doc-title{margin:0 0 12px;font:700 clamp(51px,5.1vw,77px)/.86 var(--cond);letter-spacing:-1.8px;color:#17130e;text-shadow:0 1px #fff7}
+.doc-sub{max-width:95%;color:#211c16;font:clamp(12px,1.05vw,15px)/1.5 var(--mono)}
+.doc-date{margin:17px 0 0;text-align:right;color:#6f6250;font:8px var(--mono);letter-spacing:1px}
+.rule{height:1px;background:#b7a58a;margin:15px 0 21px}
+.label{margin:16px 0 8px;color:#201b14;font:700 9px var(--mono);letter-spacing:1.65px}
+.lead{max-width:96%;margin:0;font:clamp(10px,.86vw,13px)/1.55 var(--mono);color:#3c3429}
+.what{margin:0;color:#352e24;font:clamp(8px,.72vw,10px)/1.48 var(--mono)}
+.what p{margin:0 0 7px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:7px 0 0}
+.metric{min-width:0;padding-right:8px;border-right:1px solid #b9a88f}.metric:last-child{border-right:0}
+.metric strong{display:block;color:#17130e;font:700 clamp(23px,2.25vw,35px)/.98 var(--cond);white-space:nowrap}
+.metric span{display:block;margin-top:5px;color:#4c4234;font:8px/1.35 var(--mono)}
+.stamp{position:absolute;z-index:8;top:42px;right:31px;border:2px solid #c52b21;color:#bd2b20;background:#f0e3d1aa;padding:7px 10px;font:600 11px var(--cond);letter-spacing:1px;transform:rotate(-7deg);box-shadow:inset 0 0 0 1px #c52b2122}
+.right-page-inner{padding-top:42px}
+.product-screen{position:relative;height:220px;margin:0 0 11px;padding:17px 19px;overflow:hidden;border:1px solid #51483c;border-radius:7px;color:#f1e9dc;background:radial-gradient(ellipse at 100% 100%,#f02c24 0%,#c9201b 26%,transparent 49%),radial-gradient(ellipse at 88% 5%,#fff2,transparent 40%),linear-gradient(130deg,#171615,#080808 70%,#1b1916);box-shadow:0 7px 13px #57472f33,inset 0 1px #fff2}
+.product-screen:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.2;background-image:radial-gradient(circle,#f2eadc 0 .65px,transparent .9px);background-size:4px 4px;mask-image:linear-gradient(90deg,transparent,#000 30%,#000)}
+.screen-kicker{position:relative;z-index:1;margin-bottom:15px;font:8px var(--mono);letter-spacing:1.2px;color:#bcb3a5}
+.screen-title{position:relative;z-index:1;font:600 21px var(--cond);letter-spacing:.5px;color:#fff}
+.screen-copy{position:relative;z-index:1;max-width:65%;margin-top:17px;color:#e4d9c8;font:10px/1.45 var(--mono)}
+.prompt{position:absolute;z-index:2;left:19px;right:19px;bottom:25px;height:32px;padding:0 10px;display:flex;justify-content:space-between;align-items:center;border:1px solid #49443e;border-radius:4px;background:linear-gradient(#292724,#191817);color:#a8a197;font:8px var(--mono);box-shadow:0 2px 5px #0007}
+.prompt b{font:15px var(--mono);color:#eee4d5}
+.evidence{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.evidence-panel{height:112px;min-width:0;padding:8px 9px 5px;border:1px solid #b8a88e;border-radius:5px;background:linear-gradient(135deg,#f3eadb,#e1d4c0);box-shadow:0 2px 4px #67563e22,inset 0 1px #fff}
+.panel-caption{color:#655946;font:7px var(--mono);letter-spacing:.65px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.evidence-panel svg{display:block;width:100%;height:83px;margin-top:2px}
+.photo{position:relative;margin:16px 0 0 auto;width:65%;height:82px;overflow:visible;border:5px solid #d4c5ae;background:repeating-linear-gradient(0deg,#333 0 1px,#bdb7ab 1px 3px),linear-gradient(135deg,#595952,#d0c9bc 45%,#3e3d39);box-shadow:0 3px 7px #5b4b372c;transform:rotate(-1.2deg)}
+.photo:before{content:"";position:absolute;inset:0;opacity:.7;background:radial-gradient(circle,#171715 0 .8px,transparent 1px);background-size:3px 3px;mix-blend-mode:multiply}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#fff3,transparent 45%,#0003)}
+.tape{position:absolute;z-index:3;left:37%;top:-12px;width:73px;height:19px;background:linear-gradient(180deg,#e7d7b8dd,#cbbb9cdd);opacity:.88;transform:rotate(-3deg);box-shadow:0 1px 3px #0003;clip-path:polygon(0 3%,100% 0,97% 94%,2% 100%)}
+.photo-label{position:absolute;z-index:4;bottom:4px;left:7px;color:#f4eee3;font:6px var(--mono);letter-spacing:1px;text-shadow:0 1px 2px #000}
+.book-clip{position:absolute;z-index:12;left:calc(50% - 24px);top:-24px;width:48px;height:66px;filter:drop-shadow(2px 3px 2px #0009);pointer-events:none}
+.book-clip svg{width:100%;height:100%}
+@media(max-width:1250px) and (min-width:761px){.site{grid-template-columns:220px minmax(0,1fr)}.main{padding-left:30px;padding-right:20px}.header{grid-template-columns:1fr}.filters{justify-content:flex-start;gap:8px}.composition{grid-template-columns:minmax(0,40%) minmax(0,60%);gap:10px}.file.selected{padding-left:35px}.file.selected .file-name{font-size:56px}.archive{min-height:560px}.dossier{min-height:560px}.page{padding:25px 22px}}
+@media(max-width:760px){
+ .site{display:block}.sidebar{position:relative;top:auto;height:165px;min-height:0;padding:13px 18px}.close{font-size:18px}.side-heading{margin-top:15px;font-size:44px;line-height:.8}.side-back,.side-nav,.copyright{display:none}
+ .main{padding:24px 16px 35px;min-height:calc(100vh - 165px);overflow:visible}.header{display:block;padding-bottom:18px}.intro{font-size:17px}.filters{justify-content:flex-start;flex-wrap:wrap;gap:7px;margin-top:17px}.filter{padding:0 12px;height:31px}
+ .composition{display:flex;flex-direction:column;align-items:stretch;gap:26px;min-height:0}.archive{height:470px;min-height:470px}.archive-shell{inset:10px 0 0}.files{height:calc(100% - 110px)}.file{height:51px;top:calc(var(--slot)*49px);padding:13px 43px 6px 17px}.file .file-name{font-size:12px}.file .file-num{top:12px;right:12px;font-size:10px}.file.selected{height:132px;padding:43px 18px 14px 29px}.file.selected .file-name{font-size:47px}.file.selected .file-desc{font-size:10px;margin-top:8px}.paperclip{left:8px;top:4px;width:22px;height:49px}.box-front{height:112px}.plaque{left:23%;width:54%;bottom:21px}
+ .dossier{height:auto;min-height:650px}.spread{position:relative;grid-template-columns:1fr;min-height:650px}.spread:before{display:none}.page{min-height:325px;padding:28px 22px}.page.left{border-right:0;border-bottom:1px solid #b9a78b}.page.right{padding:28px 22px}.doc-title{font-size:58px}.stamp{top:32px;right:17px;font-size:9px}.right-page-inner{padding-top:32px}.product-screen{height:190px}.evidence-panel{height:100px}.evidence-panel svg{height:72px}.photo{height:72px}.book-clip{display:none}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="site">
+ <aside class="sidebar">
+  <div class="close">×</div>
+  <div class="side-heading">(03)<br>SIGNAL</div>
+  <div class="side-back">(←)</div>
+  <nav class="side-nav"><a href="/"> (01) IDENTITY</a><a href="/"> (02) ASCENT</a><a class="active" href="/signal/"> (03) SIGNAL</a><a href="/"> (04) CONNECT</a></nav>
+  <div class="copyright">© THEJAS DP 2024</div>
+ </aside>
+ <main class="main">
+  <header class="header">
+   <div><div class="eyebrow">03 / SIGNALS</div><div class="intro">Product case studies, interface observations,<br class="desktop-break"> and design concepts.</div></div>
+   <div class="filters" id="filters">
+    <button class="filter active" data-filter="All">All</button><button class="filter" data-filter="Product">Product</button><button class="filter" data-filter="Growth">Growth</button><button class="filter" data-filter="AI">AI</button><button class="filter" data-filter="Design">Design</button><button class="filter" data-filter="Experiments">Experiments</button>
+   </div>
+  </header>
+  <section class="composition">
+   <section class="archive" aria-label="Project archive">
+    <div class="archive-shadow"></div>
+    <div class="archive-shell"><div class="box-interior"></div><div class="box-side left"></div><div class="box-side right"></div><div class="box-front"></div></div>
+    <div class="files" id="files"></div>
+    <div class="plaque"><i class="screw tl"></i><i class="screw tr"></i><i class="screw bl"></i><i class="screw br"></i><span class="plaque-title">PROJECT FILES</span><span class="plaque-sub" id="plaqueCount">07 RECORDS</span></div>
+   </section>
+   <section class="dossier" aria-label="Selected project case study">
+    <div class="book-back"></div><div class="underpages"><i></i><i></i><i></i></div>
+    <div class="spread" id="spread">
+     <section class="page left">
+      <div class="page-no">01 / 02</div>
+      <div class="case-kicker" id="caseKicker">CASE 01 / 07</div>
+      <h1 class="doc-title" id="docTitle">GROWX</h1>
+      <div class="doc-sub" id="docSub">Prompt-to-Production Growth Experimentation Platform</div>
+      <div class="doc-date" id="docDate">PRODUCT / GROWTH / EXPERIMENTS</div>
+      <div class="rule"></div>
+      <div class="label">THE PROBLEM</div>
+      <p class="lead" id="problem">Growth teams spend 2–4 weeks on experiments that should take 2 days. The bottleneck is the translation chain between intent and production.</p>
+      <div class="label">WHAT I DID</div>
+      <div class="what" id="what"><p>— Designed a no-code frontend canvas for UI experiments.</p><p>— Built a visual backend logic builder for APIs and data.</p><p>— Connected targeting, traffic splits, metrics and deployment.</p></div>
+      <div class="label">IMPACT</div>
+      <div class="metrics" id="metrics">
+       <div class="metric"><strong>87%</strong><span>Time-to-launch reduction</span></div><div class="metric"><strong>5.2×</strong><span>Experiment velocity</span></div><div class="metric"><strong>74%</strong><span>Shipped without engineering</span></div>
+      </div>
+     </section>
+     <section class="page right">
+      <div class="page-no">02 / 02</div><div class="stamp" id="stamp">PRODUCT CASE STUDY</div>
+      <div class="right-page-inner">
+       <div class="product-screen">
+        <div class="screen-kicker" id="screenKicker">GROWX / PRODUCT PREVIEW</div>
+        <div class="screen-title" id="screenTitle">GROWX</div>
+        <div class="screen-copy" id="screenCopy">Run growth experiments from a prompt.</div>
+        <div class="prompt"><span>Describe your experiment...</span><b>↗</b></div>
+       </div>
+       <div class="evidence">
+        <div class="evidence-panel"><div class="panel-caption">EXPERIMENT WORKFLOW</div>
+         <svg viewBox="0 0 220 110" role="img" aria-label="Experiment workflow diagram">
+          <path d="M52 27H91M129 27H166M52 80H91M129 80H166M110 35V70" fill="none" stroke="#776b59" stroke-width="1.2"/>
+          <rect x="7" y="13" width="45" height="27" rx="3" fill="#f2e7d5" stroke="#8f8068"/><rect x="91" y="13" width="38" height="27" rx="3" fill="#d94b34" stroke="#b93626"/><rect x="166" y="13" width="47" height="27" rx="3" fill="#f2e7d5" stroke="#8f8068"/>
+          <rect x="7" y="67" width="45" height="27" rx="3" fill="#f2e7d5" stroke="#8f8068"/><rect x="91" y="67" width="38" height="27" rx="3" fill="#f2e7d5" stroke="#8f8068"/><rect x="166" y="67" width="47" height="27" rx="3" fill="#f2e7d5" stroke="#8f8068"/>
+          <g fill="#51483b" font-size="6.5" font-family="monospace" text-anchor="middle"><text x="29" y="29">PROMPT</text><text x="110" y="29" fill="#fff">BUILD</text><text x="189" y="29">TEST</text><text x="29" y="83">SIGNAL</text><text x="110" y="83">LEARN</text><text x="189" y="83">ITERATE</text></g>
+         </svg>
+        </div>
+        <div class="evidence-panel"><div class="panel-caption">PERFORMANCE SIGNAL</div>
+         <svg viewBox="0 0 180 110" role="img" aria-label="Performance chart">
+          <path d="M17 10V91H169" fill="none" stroke="#9d907b" stroke-width="1"/><path d="M17 28H169M17 48H169M17 68H169" stroke="#b9ad9a" stroke-width=".65" stroke-dasharray="2 3"/>
+          <g fill="#c9362a"><rect x="29" y="72" width="12" height="19"/><rect x="51" y="63" width="12" height="28"/><rect x="73" y="54" width="12" height="37"/><rect x="95" y="43" width="12" height="48"/><rect x="117" y="30" width="12" height="61"/><rect x="139" y="16" width="12" height="75"/></g>
+          <g fill="#776b59" font-size="6" font-family="monospace"><text x="26" y="102">W1</text><text x="48" y="102">W2</text><text x="70" y="102">W3</text><text x="92" y="102">W4</text><text x="114" y="102">W5</text><text x="136" y="102">W6</text></g>
+         </svg>
+        </div>
+       </div>
+       <div class="photo"><div class="tape"></div><div class="photo-label">FIELD NOTES / PRODUCT EXPLORATION</div></div>
+      </div>
+     </section>
+    </div>
+    <div class="book-clip"><svg viewBox="0 0 48 62" aria-hidden="true"><path d="M8 31V17C8 7 15 2 24 2s16 5 16 15v34c0 6-4 9-9 9s-9-4-9-9V17c0-5-3-8-7-8s-7 3-7 8v31" fill="none" stroke="#242321" stroke-width="4" stroke-linecap="round"/><path d="M10 31V17C10 8 16 4 24 4s14 5 14 13v35c0 4-3 6-7 6s-7-3-7-7V17" fill="none" stroke="#b9b4a9" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+   </section>
+  </section>
+ </main>
+</div>
+<script>
+const projects=[
+ {id:"observations",number:"07",name:"ALL OBSERVATIONS",sub:"Interface observations, product patterns and design concepts",cats:["Design","Experiments"],date:"FIELD NOTES / ONGOING",problem:"Small interface decisions reveal larger product patterns. This is a working collection of observations, critiques and concepts across products.",what:["Collected interface observations across familiar products.","Explored interaction patterns, product logic and design opportunities.","Documented concepts that can be tested or developed further."],metrics:[["07","Project records"],["∞","Patterns to explore"],["01","Observation loop"]],stamp:"FIELD NOTES",screen:"FIELD NOTES",screenCopy:"Product details worth noticing, questioning and improving."},
+ {id:"hitha",number:"06",name:"HITHA AGRITECH",sub:"Field Activity Management Platform for Farmers",cats:["Product","Design"],date:"PRODUCT / AGRITECH",problem:"Agricultural operations are coordinated through notebooks, messages and memory. Field teams need a reliable, timestamped record of what happens across farms.",what:["Designed a structured system for farm profiles and activity records.","Mapped day-to-day field logging for observations, inputs and crop stages.","Considered offline-first capture for field officers working with poor connectivity."],metrics:[["FARM","Profiles"],["FIELD","Activity logs"],["OFFLINE","Capture"],],stamp:"PRODUCT CASE STUDY",screen:"AGROTRACK",screenCopy:"A field activity record for farms, officers and operations teams."},
+ {id:"statement",number:"05",name:"STATEMENT ANALYZER",sub:"AI-Powered Bank Statement Intelligence",cats:["Product","AI"],date:"PRODUCT / FINANCIAL AI",problem:"Manual bank-statement review is slow and inconsistent. Credit officers need structured insight into cash flow, income stability and borrower behaviour.",what:["Designed the credit-score dashboard and financial health overview.","Created advanced filters for investigating transaction patterns.","Designed contextual search suggestions and a reusable component system."],metrics:[["20 MIN","→ seconds"],["60%+","Filter usage"],["89%","Search adoption"]],stamp:"AI PRODUCT",screen:"STATEMENT ANALYZER",screenCopy:"Raw statement data becomes structured, reviewable financial insight."},
+ {id:"trust",number:"04",name:"TRUST",sub:"Loan Workflow Orchestration Platform",cats:["Product","AI"],date:"ENTERPRISE / NBFC",problem:"Loan applications move across sales, operations, credit and field teams. Manual handoffs make ownership unclear and applications difficult to track.",what:["Designed role-based ownership and permissions across actors.","Structured the loan lifecycle as a non-skippable state machine.","Designed deviation handling and document lifecycle management."],metrics:[["ROLE","Ownership"],["STATE","Lifecycle"],["AUDIT","Deviations"]],stamp:"ENTERPRISE PRODUCT",screen:"TRUST",screenCopy:"A governed workflow that makes ownership and application state explicit."},
+ {id:"performance",number:"03",name:"PERFORMANCE SYSTEM",sub:"Making incentives transparent and actionable for frontline sales",cats:["Product","Growth","Design"],date:"PRODUCT / INCENTIVE SYSTEM",problem:"Field sales teams could not see what they had earned or what actions would improve earnings. Incentives were complex, changed often and lived in spreadsheets and messages.",what:["Led discovery with salespeople, accounting and finance.","Shaped flows for live earnings, potential earnings and actionable guidance.","Worked with the team on product direction and UX."],metrics:[["50% → 25%","Sales attrition"],["~15%","Higher disbursement"],["80+","Asked where it went"]],stamp:"PRODUCT CASE STUDY",screen:"PERFORMANCE SYSTEM",screenCopy:"Turn incentive rules into live earnings visibility and next actions."},
+ {id:"loopx",number:"02",name:"LOOPX",sub:"Agentic Growth Strategist for D2C Brands",cats:["Product","Growth","AI"],date:"PRODUCT / AI / GROWTH",problem:"D2C brands often apply retention offers uniformly. A human strategist cannot continuously analyse the customer and margin signals needed to make each decision precise.",what:["Developed a six-agent growth intelligence platform concept.","Defined specialist agents for insights, strategy, segmentation, offers and playbooks.","Designed a continuous loop from customer signals to margin-aware action."],metrics:[["06","Specialist agents"],["100+","Customer features"],["DAILY","Signal analysis"]],stamp:"PRODUCT CONCEPT",screen:"LOOPX",screenCopy:"Customer signals become margin-aware growth strategies and action plans."},
+ {id:"growx",number:"01",name:"GROWX",sub:"Prompt-to-Production Growth Experimentation Platform",cats:["Product","Growth","AI","Experiments"],date:"PRODUCT / GROWTH / EXPERIMENTS",problem:"Growth teams spend 2–4 weeks on experiments that should take 2 days. The bottleneck is the translation chain between intent and production.",what:["Designed a no-code frontend canvas for building UI experiments.","Designed a visual backend logic builder for APIs and data.","Connected targeting, variants, traffic splits, metrics and deployment into one experiment unit."],metrics:[["87%","Time-to-launch reduction"],["5.2×","Experiment velocity"],["74%","Shipped without engineering"]],stamp:"PRODUCT CASE STUDY",screen:"GROWX",screenCopy:"Run growth experiments from a prompt."}
+];
+const files=document.getElementById("files"),filters=document.getElementById("filters");
+let active="growx",activeFilter="All";
+function makeFolder(p,slot){
+ const b=document.createElement("button");b.type="button";b.className="file";b.dataset.id=p.id;b.dataset.slot=String(slot);b.style.setProperty("--slot",slot);b.innerHTML='<span class="tab"></span><span class="file-name"></span><span class="file-num"></span><span class="file-desc"></span>';
+ b.querySelector(".file-name").textContent=p.name;b.querySelector(".file-num").textContent=p.number;b.querySelector(".file-desc").textContent=p.sub;
+ if(p.id==="growx")b.insertAdjacentHTML("beforeend",'<span class="halftone"></span><span class="paperclip"><svg viewBox="0 0 34 72" aria-hidden="true"><path d="M22 5c-9 0-14 6-14 15v36c0 8 4 12 10 12s10-4 10-12V19c0-5-3-8-7-8s-7 3-7 8v31" fill="none" stroke="#5b574f" stroke-width="4" stroke-linecap="round"/><path d="M22 5c-9 0-14 6-14 15v36c0 8 4 12 10 12s10-4 10-12V19c0-5-3-8-7-8s-7 3-7 8v31" fill="none" stroke="#d9d5ca" stroke-width="1.2" stroke-linecap="round"/></svg></span>');
+ b.addEventListener("click",()=>selectProject(p.id));return b;
+}
+function renderFiles(){
+ files.innerHTML="";
+ const filtered=projects.filter(p=>activeFilter==="All"||p.cats.includes(activeFilter));
+ filtered.forEach((p,i)=>{const b=makeFolder(p,i);if(p.id===active)b.classList.add("selected");files.appendChild(b)});
+ document.getElementById("plaqueCount").textContent=String(filtered.length).padStart(2,"0")+" RECORDS";
+}
+function selectProject(id){
+ const p=projects.find(x=>x.id===id);if(!p)return;active=id;
+ renderFiles();
+ document.getElementById("caseKicker").textContent="CASE "+p.number+" / 07";
+ document.getElementById("docTitle").textContent=p.name;
+ document.getElementById("docSub").textContent=p.sub;
+ document.getElementById("docDate").textContent=p.date;
+ document.getElementById("problem").textContent=p.problem;
+ document.getElementById("what").innerHTML=p.what.map(x=>"<p>— "+x+"</p>").join("");
+ document.getElementById("metrics").innerHTML=p.metrics.map(m=>'<div class="metric"><strong>'+m[0]+'</strong><span>'+m[1]+'</span></div>').join("");
+ document.getElementById("stamp").textContent=p.stamp;
+ document.getElementById("screenKicker").textContent=p.name+" / SELECTED ARTIFACT";
+ document.getElementById("screenTitle").textContent=p.screen;
+ document.getElementById("screenCopy").textContent=p.screenCopy;
+ const spread=document.getElementById("spread");spread.classList.remove("changed");void spread.offsetWidth;spread.classList.add("changed");
+}
+filters.addEventListener("click",e=>{
+ const b=e.target.closest(".filter");if(!b)return;activeFilter=b.dataset.filter;
+ filters.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));
+ const available=projects.filter(p=>activeFilter==="All"||p.cats.includes(activeFilter));
+ if(!available.some(p=>p.id===active))active=available[0].id;
+ renderFiles();selectProject(active);
+});
+renderFiles();selectProject(active);
+</script>
+</body>
+</html>

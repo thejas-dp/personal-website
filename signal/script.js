@@ -58,7 +58,7 @@ function selectProject(id){
  document.getElementById("docSub").textContent=p.sub;
  document.getElementById("docDate").textContent=p.date;
  document.getElementById("problem").textContent=p.problem;
- document.getElementById("what").innerHTML=p.what.map(x=>"<p>— "+x+"</p>").join("");
+ document.getElementById("what").innerHTML=p.what.map(x=>"<p>"+x+"</p>").join("");
  document.getElementById("metrics").innerHTML=p.metrics.map(m=>'<div class="metric"><strong>'+m[0]+'</strong><span>'+m[1]+'</span></div>').join("");
  document.getElementById("stamp").textContent=p.stamp;
  document.getElementById("screenKicker").textContent=p.screen;
